@@ -44,8 +44,8 @@ public class PokerHand {
 	
 	public static void IsTwoPair(Card[] x){
 		if(IsOnePair(x) == true && IsOnePair(x) == true){
-			IsOnePair.match
-			System.out.println(" two pair found. " );
+		//	IsOnePair.match
+		//	System.out.println(" two pair found. " );
 		}
 	}
 	
