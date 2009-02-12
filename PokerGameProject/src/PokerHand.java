@@ -18,6 +18,8 @@ public class PokerHand {
 	    
 	}
 
+	// goes through the array comparing two positions to each other since the array will be sorted they should match if there is a pair
+	
 	public static boolean IsOnePair(Card[] x){
 		boolean IsOnePair = false;
 		for(int i = 0; i < x.length -1; i++){
@@ -39,23 +41,30 @@ public class PokerHand {
 	} 
 	
 	
-	
+	// goes through the array comparing two positions to each other since the array will be sorted they should match if there is a pair
+	// BUT it adds a counter to it and sees if there is two pairs
 	public static boolean IsTwoPair(Card[] x){
-		int count = 0 ;
+		// keeps track og how many pairs you have encountered
+		int count = 0 ;		
 		boolean IsTwoPair = false;
-		for(int i = 0; i < x.length -1; i++){
+		
+		for(int i  = 0; i < x.length -1; i++){
 			if( (x[i].getValue()) == (x[i+1].getValue())){
-				
-				//System.out.println(" One pair found. " + x[i] +" and " +x[i+1]);
 				count++;
-			}
-			
+				Card paired = x[i+1];	
+			}	
 		}
+		
+		//This is the check that if there are triple cards that a count-- takes place so that three of a kind don't get counted as two pairs
+		
+		if(x[0].getValue() == x[2].getValue() || x[1].getValue() == x[3].getValue() || x[2].getValue() == x[4].getValue()){
+			count--;
+		}
+		
 		if(count == 2){
 			System.out.println("Two pairs found. ");
 			return IsTwoPair = true;
-					}
-		//return false;	
+		}
 		return IsTwoPair;
 	}
 	
@@ -65,7 +74,7 @@ public class PokerHand {
 		for(int i = 0; i < x.length -1; i++){
 			if( (x[i].getValue()) == (x[i+1].getValue()) && (x[i+1].getValue()) == (x[i+2].getValue())){
 				
-				System.out.println(" Trips found of " + x[i].getValue());
+				System.out.println("Trips found of " + x[i].getValue());
 				return IsThreeOfAKind = true;
 			}
 			
@@ -89,7 +98,7 @@ public class PokerHand {
 		return IsfourOfAKind;
 		
 	}
-	
+	// full house uses a count and then the isthreeofAkind and is pair and istwo pair to see if a full house
 	public static boolean IsFullHouse(Card[] x){
 		boolean isFullHouse = false;
 		int count = 0;
@@ -117,18 +126,65 @@ public class PokerHand {
 	public static boolean IsStraight(Card[] x){
 		boolean isStraight = false;
 		int i =0;
-		int j =(x[i].getValue() -1);
-		if( (x[i].getValue())   == (x[i+1].getValue()) && 
-			(x[i+1].getValue()) == (x[i+2].getValue()) && 
-			(x[i+2].getValue()) == (x[i+3].getValue()) && 
-			(x[i+3].getValue()) == (x[i+4].getValue()) ){
+		int j =1;
+		if( (x[i].getValue())   == (x[j].getValue() -1) && 
+			(x[i+1].getValue()) == (x[j+1].getValue() -1) && 
+			(x[i+2].getValue()) == (x[j+2].getValue() -1) && 
+			(x[i+3].getValue()) == (x[j+3].getValue() -1)
 			
-			System.out.println(" Straight found");
+			)
+		
+		{
+			System.out.println("Straight found");
 			return isStraight = true;
 		}
 		return isStraight;
 	}
 	
+	
+	// isflush counts the occurences of a cards suit showing up, using a switch statement and if equal to 5 there is a flush
+	public static boolean IsFlush(Card[] x){
+		boolean isFlush = false;
+		int spadeCount = 0;
+		int heartCount = 0;
+		int diamondCount = 0;
+		int clubCount = 0;
+		int defail = 0;
+		
+		for(int i = 0; i < x.length; i++){
+			
+			int suit = x[i].getSuit();	
+			switch( suit ){
+			case 0: spadeCount++; break;
+			case 1: heartCount++; break;
+			case 2: diamondCount++; break;
+			case 3: clubCount++; break;
+			default: defail++; break;
+			}
+		}
+			if( spadeCount  == 5){
+				System.out.println("Flush found of Spades");
+				return isFlush = true;
+			}
+			if( heartCount == 5){
+				System.out.println("Flush found of Hearts");
+				return isFlush = true;
+			}
+			if( diamondCount == 5){
+				System.out.println("Flush found of Diamonds");
+				return isFlush = true;
+			}
+			if( clubCount == 5){
+				System.out.println("Flush found of Clubs");
+				return isFlush = true;
+			}
+			
+		return isFlush;
+	
+	}
+	
+	
+	// my testing main method
 	public static void main(String args[]){
 	Deck deck = new Deck();
 	deck.shuffle();
@@ -136,11 +192,11 @@ public class PokerHand {
 	Card[] cardHand = new Card[5];
 	cardHand = deck.dealCards(cardHand);
 	
-	cardHand[0] = new Card(6, 0);
-	cardHand[4] = new Card(2, 3);
-	cardHand[1] = new Card(4, 1);
-	cardHand[2] = new Card(5, 2);
-	cardHand[3] = new Card(3, 3);
+	cardHand[0] = new Card(6, 2);
+	cardHand[4] = new Card(4, 2);
+	cardHand[1] = new Card(6, 2);
+	cardHand[2] = new Card(6, 2);
+	cardHand[3] = new Card(4, 2);
 	
 	bubbleSort(cardHand);
 	
@@ -149,10 +205,8 @@ public class PokerHand {
 			System.out.println(cardHand[i]);
 		}
 	
-		IsStraight(cardHand);
-		//if (IsOnePair(cardHand) == true){
-		//	System.out.println(" One pair found.");
-		//}
+		IsFlush(cardHand);
+		
 	}
 	
 	
