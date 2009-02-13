@@ -68,7 +68,7 @@ public class PokerHand {
 		return IsTwoPair;
 	}
 	
-	
+	// check to see if three cards in a row are the same value
 	public static boolean IsThreeOfAKind(Card[] x){
 		boolean IsThreeOfAKind = false;
 		for(int i = 0; i < x.length -1; i++){
@@ -83,7 +83,7 @@ public class PokerHand {
 		return IsThreeOfAKind;
 	}
 	
-	
+	// check to see if four cards in a row are the same value
 	public static boolean IsFourOfAKind(Card[] x){
 		boolean IsfourOfAKind = false;
 		for(int i = 0; i < x.length -1; i++){
@@ -205,7 +205,7 @@ public class PokerHand {
 			System.out.println(cardHand[i]);
 		}
 	
-		IsFlush(cardHand);
+		IsThreeOfAKind(cardHand);
 		
 	}
 	
