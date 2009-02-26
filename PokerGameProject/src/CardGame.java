@@ -25,5 +25,8 @@ public class CardGame {
 			System.out.println(cardHand[i]);
 		}
 		
+		cardHand.shouldDiscard(3);
+		cardHand.s
+		
 	}	
 }
