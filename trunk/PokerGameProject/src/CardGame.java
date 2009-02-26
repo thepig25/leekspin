@@ -10,7 +10,7 @@ public class CardGame {
 		Deck deck = new Deck();
 		
 		deck.shuffle();
-		
+		//gff
 		/*
 		 *  creating an array and filling it with 5 cards
 		 */
