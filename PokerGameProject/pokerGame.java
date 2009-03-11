@@ -4,7 +4,7 @@ public class pokerGame {
 	int gameOver;
 	
 	public pokerGame(int NOplayer, int startAmount, int bigBlind){
-		int [] positions = new int[NOplayer];
+		Player [] positions = new Player[NOplayer];
 		// code for deciding dealer goes here
 		gameOver = NOplayer;
 		positions[0] = new HumanPlayer("Hugh Man",startAmount,null,true);
