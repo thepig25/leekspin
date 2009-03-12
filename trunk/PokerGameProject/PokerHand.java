@@ -39,6 +39,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		//theseCards = Cardies.getSpecial(); // used for testing. creates hands with certain cards. At the moment it is drawing cards which form a straight flush.
 		for(int j1=0;j1<testAmount;j1++){//run this x many times
 			theseCards = Cardies.getHand(); // for normal use
+			
 			//				for(int i=0;i<theseCards.length;i++){
 			//					System.out.println(theseCards[i].getValue());
 			//					System.out.println(theseCards[i].getValueAsString()+ " of " + theseCards[i].getSuitAsString());

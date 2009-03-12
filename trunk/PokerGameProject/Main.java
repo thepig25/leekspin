@@ -6,10 +6,10 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Pack myPack = new Pack();
+		pokerGame test = new pokerGame(2, 2500, 50);
 		
 		//myPack.dealCards(temp1)
-		PokerHand myPhand = new PokerHand(myPack);
+		//PokerHand myPhand = new PokerHand(myPack);
 		//myPhand.testBooleans();
 		//sortedCards(myHand);
 		/*myPack.printHand();

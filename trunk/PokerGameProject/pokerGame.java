@@ -1,5 +1,5 @@
 
-public class pokerGame {
+public class pokerGame extends Pack {
 	
 	int gameOver;
 	
@@ -12,15 +12,26 @@ public class pokerGame {
 		
 		
 		
-		while(gameOver>1){ // loop which keeps game going
-			for (int i=0;i<positions.length;i++{ // checks at start of hand if any players ar out of chips
-				if(positions[i].canPlay==false){ 
-					positon[i]=null;// kicks player if they're out
-					gameOver--; // one closer to a game over situation
-				}
-			}
+//		while(gameOver>1){ // loop which keeps game going
+//			for (int i=0;i<positions.length;i++{ // checks at start of hand if any players are out of chips
+//				if(positions[i].canPlay==false){ 
+//					positon[i]=null;// kicks player if they're out
+//					gameOver--; // one closer to a game over situation
+//				}
+//			}
+			Pack myPack = new Pack();
 			
 			
+			Card[] deal = myPack.getOneCard();
+			positions[0].receiveCards(deal);
+			deal = myPack.getOneCard();
+			positions[1].receiveCards(deal);
+			deal = myPack.getOneCard();
+			positions[0].receiveCards(deal);
+			deal = myPack.getOneCard();
+			positions[1].receiveCards(deal);
+			positions[0].printHand();
+			positions[1].printHand();
 			
 		}
 	}
