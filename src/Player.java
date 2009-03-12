@@ -1,5 +1,5 @@
 
-public class Player extends PokerHand {
+public class Player extends Pack {
 
 	int decision;
 	int bet=0;
