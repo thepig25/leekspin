@@ -8,14 +8,14 @@ public class Player extends PokerHand {
 	int cardCount=0;
 
 	
-	public player(String Name, int Chips, Card[] currentHand){
+	public Player(String Name, int Chips, Card[] currentHand){
 		
 	}
 	
 	// this takes ah array of dealt cards then adds them to the
 	// players hand. using cardCount to make sure its in the 
 	// position
-	public Card[] receiveCards(Card[] received){
+	public void receiveCards(Card[] received){
 		Card[] temp = received;
 		for(int i = 0;i <temp.length;i++){
 			thisHand[cardCount] = temp[i];
@@ -40,6 +40,7 @@ public class Player extends PokerHand {
 		if(decision!=0){
 			return bet;
 		}
+		return bet;
 		
 	}
 	
