@@ -7,8 +7,8 @@ public class pokerGame extends Pack {
 		Player [] positions = new Player[NOplayer];
 		// code for deciding dealer goes here
 		gameOver = NOplayer;
-		positions[0] = new HumanPlayer("Hugh Man",startAmount,null,true);
-		positions[1] = new AI_Player ("Megatron",startAmount,null,true);
+		positions[0] = new HumanPlayer("Hugh Man",startAmount,null);
+		positions[1] = new AI_Player ("Megatron",startAmount,null);
 		
 		
 		
@@ -20,20 +20,22 @@ public class pokerGame extends Pack {
 //				}
 //			}
 			Pack myPack = new Pack();
+			myPack.createPack();
 			
 			
-			Card[] deal = myPack.getOneCard();
+			Card[] deal = myPack.dealOneCardArray();
 			positions[0].receiveCards(deal);
-			deal = myPack.getOneCard();
+			deal = myPack.dealOneCardArray();
 			positions[1].receiveCards(deal);
-			deal = myPack.getOneCard();
+			deal = myPack.dealOneCardArray();
 			positions[0].receiveCards(deal);
-			deal = myPack.getOneCard();
+			deal = myPack.dealOneCardArray();
 			positions[1].receiveCards(deal);
 			positions[0].printHand();
+			System.out.println("Finished pos[0]");
 			positions[1].printHand();
 			
 		}
 	}
 	
-}
+

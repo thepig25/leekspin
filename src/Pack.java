@@ -87,6 +87,13 @@ public class Pack {
 		return oneCard;
 	}
 	
+	public Card[] dealOneCardArray(){
+		Card[] temp = new Card[1];
+		temp[0]=getOneCard();
+		return temp;
+	}
+	
+	
 	public void printHand(){
 		Card[] Hand = dealCards(thisPack);
 		

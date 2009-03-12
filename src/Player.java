@@ -26,7 +26,7 @@ public class Player extends Pack {
 	
 	public void printHand(){
 	
-		for(int i = 0; i < thisHand.length; i++){
+		for(int i = 0; i < 2; i++){
 			System.out.println(thisHand[i].getValueAsString()+ " of " + thisHand[i].getSuitAsString());
 
 		}
