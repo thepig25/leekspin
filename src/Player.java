@@ -17,8 +17,8 @@ public class Player extends PokerHand {
 	// position
 	public Card[] receiveCards(Card[] received){
 		Card[] temp = received;
-		for(int i = 0,i <temp.length,i++){
-			thisHand[cardCound] = temp[i];
+		for(int i = 0;i <temp.length;i++){
+			thisHand[cardCount] = temp[i];
 			cardCount++;
 		}
 	}
@@ -26,14 +26,14 @@ public class Player extends PokerHand {
 	
 	public void printHand(){
 	
-		for(int i = 0, i < thisHand.length, i++){
+		for(int i = 0; i < thisHand.length; i++){
 			System.out.println(thisHand[i].getValueAsString()+ " of " + thisHand[i].getSuitAsString());
 
 		}
 	}
 	
 	public int getDecision(){ // public methods for OOP to get our decision and amount to bet (if any)
-		return  decision // 0=fold,1=check/call, 2=raise
+		return  decision; // 0=fold,1=check/call, 2=raise
 	}
 	
 	public int getBet(){
@@ -43,9 +43,9 @@ public class Player extends PokerHand {
 		
 	}
 	
-	private makeDecision(thisHand){ // where we decide what to do - keep private!
+	//private makeDecision(thisHand){ // where we decide what to do - keep private!
 		
-	}
+//	}
 	
 	private int makeBet(){ // where we decide what to bet(if any) - keep private!
 		return bet;
