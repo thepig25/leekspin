@@ -26,7 +26,7 @@ public class Player extends PokerHand {
 	
 	public void printHand(){
 	
-		for(int i = 0, i < thisHand.lenght, i++){
+		for(int i = 0, i < thisHand.length, i++){
 			System.out.println(thisHand[i].getValueAsString()+ " of " + thisHand[i].getSuitAsString());
 
 		}
