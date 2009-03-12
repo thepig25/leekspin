@@ -1,3 +1,3 @@
 
-public class HumanPlayer implents Player {
+public class HumanPlayer extends Player {
 	}
