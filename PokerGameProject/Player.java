@@ -12,10 +12,14 @@ public class Player extends PokerHand {
 		
 	}
 	
-	public Card[] recieveCards(Card[] recieved){
-		Card[] temp = recieved;
-		for(inti=0,i<temp.length,i++){
-			
+	// this takes ah array of dealt cards then adds them to the
+	// players hand. using cardCount to make sure its in the 
+	// position
+	public Card[] receiveCards(Card[] received){
+		Card[] temp = received;
+		for(int i = 0,i <temp.length,i++){
+			thisHand[cardCound] = temp[i];
+			cardCount++;
 		}
 	}
 	
