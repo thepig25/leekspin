@@ -24,6 +24,14 @@ public class Player extends PokerHand {
 	}
 	
 	
+	public void printHand(){
+	
+		for(int i = 0, i < thisHand.lenght, i++){
+			System.out.println(thisHand[i].getValueAsString()+ " of " + thisHand[i].getSuitAsString());
+
+		}
+	}
+	
 	public int getDecision(){ // public methods for OOP to get our decision and amount to bet (if any)
 		return  decision // 0=fold,1=check/call, 2=raise
 	}
