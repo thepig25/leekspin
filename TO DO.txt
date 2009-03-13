@@ -5,6 +5,10 @@ so we know who is working on it and update your code first always
 and commit often.
 MAKE GOOD COMMENTS!!!
 
+Jobs to be done:
+look up java inhertiance, extends , interfaces
+someone should understand how this works, especially for oop
+
 As I was saying before, I think we should really make a plan of the classes
 that we're going to be implementing beforehand and state specifically what
 each should do, rather than just hacking out code.
