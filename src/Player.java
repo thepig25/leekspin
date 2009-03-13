@@ -26,9 +26,9 @@ public class Player extends Pack {
 			System.arraycopy(communityCards, 0, tempCopy, 0, tempCopy.length);
 			communityCards = new Card[(communityCards.length+1)];
 			System.out.println("Array lenght : " +communityCards.length );
-			System.out.println("tempArray lenght : " +tempCopy.length );
+			System.out.println("tempArray length : " +tempCopy.length );
 
-			System.arraycopy(tempCopy, 0,communityCards , 0, communityCards.length);
+			System.arraycopy(tempCopy, 0,communityCards , 0, tempCopy.length);
 			System.out.println("Array lenght : " +communityCards.length );
 		}
 		
