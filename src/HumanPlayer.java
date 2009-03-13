@@ -10,9 +10,10 @@ public class HumanPlayer extends Player {
 	
 	public int getBet(){
 		
-		int j = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter amount here"));
-		return j;
-		
+		int bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter amount here"));
+		currentMoney = currentMoney - bet;
+		return bet;
+				
 	}
 	
-	}
+}

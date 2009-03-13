@@ -19,7 +19,7 @@ public class Player extends Pack {
 	// this takes ah array of dealt cards then adds them to the
 	// players hand. using cardCount to make sure its in the 
 	// position
-	public void receiveCards(Card[] received){
+	public void receiveCommunityCards(Card[] received){
 		
 		if( cardCount >= 3){
 			Card[] tempCopy = new Card[(communityCards.length)];
@@ -85,4 +85,10 @@ public class Player extends Pack {
 	private int makeBet(){ // where we decide what to bet(if any) - keep private!
 		return bet;
 	}
+	
+	public int checkMoney(){
+		return currentMoney;
+		
+	}
+	
 }

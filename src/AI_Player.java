@@ -10,7 +10,9 @@ public class AI_Player extends Player {
 	
 	public int getBet(){
 		
-		return 20;
+		bet = 20;
+		currentMoney = currentMoney - bet;
+		return bet;
 		
 	}
 	
