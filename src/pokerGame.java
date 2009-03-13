@@ -1,5 +1,5 @@
 
-public class pokerGame extends Pack {
+public class pokerGame extends Pack { // this is test code for dealing - not a final implementation. Want to be able to deal with more than 2 players in future. for now we'll just use 2
 	
 	int gameOver;
 	private int pot;

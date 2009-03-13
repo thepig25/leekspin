@@ -13,7 +13,7 @@ public class Player extends Pack {
 
 	
 	public Player(String Name, int Chips, Card[] currentHand){
-		
+		currentMoney=Chips;
 	}
 	
 	// this takes ah array of dealt cards then adds them to the
@@ -25,11 +25,10 @@ public class Player extends Pack {
 			Card[] tempCopy = new Card[(communityCards.length)];
 			System.arraycopy(communityCards, 0, tempCopy, 0, tempCopy.length);
 			communityCards = new Card[(communityCards.length+1)];
-			System.out.println("Array lenght : " +communityCards.length );
-			System.out.println("tempArray length : " +tempCopy.length );
+			
 
 			System.arraycopy(tempCopy, 0,communityCards , 0, tempCopy.length);
-			System.out.println("Array lenght : " +communityCards.length );
+			
 		}
 		
 		
