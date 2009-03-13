@@ -22,7 +22,7 @@ public class pokerGame extends Pack {
 //			}
 			Pack myPack = new Pack();
 			myPack.createPack();
-			myPack.Shuffle();
+			//myPack.Shuffle();
 			
 			
 			Card[] deal = myPack.dealOneCardArray(); // this part deals the pocket pair to each player in the correct manner

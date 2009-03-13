@@ -6,7 +6,7 @@ public class Player extends Pack {
 	int currentMoney;
 	Card[] thisHand = new Card[7];
 	Card[] playerHand = new Card[2];
-	Card[] communityCards = new Card[5];
+	Card[] communityCards = new Card[3];
 	int cardCount=0;
 	int cardPocketCount=0;
 	
