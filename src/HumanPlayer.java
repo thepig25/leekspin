@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 
 public class HumanPlayer extends Player {
 
@@ -5,4 +7,12 @@ public class HumanPlayer extends Player {
 		super(Name, Chips, currentHand);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public int getBet(){
+		
+		int j = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter amount here"));
+		return j;
+		
+	}
+	
 	}

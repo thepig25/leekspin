@@ -92,6 +92,14 @@ public class Pack {
 		temp[0]=getOneCard();
 		return temp;
 	}
+	public Card[] dealThreeCardArray(){
+		Card[] temp = new Card[3];
+		temp[0]=getOneCard();
+		temp[1]=getOneCard();
+		temp[2]=getOneCard();
+		return temp;
+	}
+	
 	
 	
 	public void printHand(){

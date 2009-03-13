@@ -2,6 +2,7 @@
 public class pokerGame extends Pack {
 	
 	int gameOver;
+	private int pot;
 	
 	public pokerGame(int NOplayer, int startAmount, int bigBlind){
 		Player [] positions = new Player[NOplayer];
@@ -21,9 +22,10 @@ public class pokerGame extends Pack {
 //			}
 			Pack myPack = new Pack();
 			myPack.createPack();
+			myPack.Shuffle();
 			
 			
-			Card[] deal = myPack.dealOneCardArray();
+			Card[] deal = myPack.dealOneCardArray(); // this part deals the pocket pair to each player in the correct manner
 			positions[0].receiveCards(deal);
 			deal = myPack.dealOneCardArray();
 			positions[1].receiveCards(deal);
@@ -31,9 +33,32 @@ public class pokerGame extends Pack {
 			positions[0].receiveCards(deal);
 			deal = myPack.dealOneCardArray();
 			positions[1].receiveCards(deal);
-			positions[0].printHand();
-			System.out.println("Finished pos[0]");
-			positions[1].printHand();
+			
+			pot = positions[0].getBet(); // first round of betting
+			pot = pot+ positions[1].getBet();
+			
+			
+			deal = myPack.dealThreeCardArray(); // deal 3 community cards
+			positions[0].receiveCards(deal); // each player gets same cards
+			positions[1].receiveCards(deal); // each player gets same cards
+			
+			pot = pot+ positions[0].getBet(); // 2nd round of betting
+			pot = pot+ positions[1].getBet(); // 2nd round of betting
+			
+			deal = myPack.dealOneCardArray(); // deal 1 community card
+			positions[0].receiveCards(deal); // each player gets same cards
+			positions[1].receiveCards(deal); // each player gets same cards
+			
+			pot = pot+ positions[0].getBet(); // 3rd round of betting
+			pot = pot+ positions[1].getBet(); // 3rd round of betting
+			
+			deal = myPack.dealOneCardArray(); // deal final community card
+			positions[0].receiveCards(deal); // each player gets same cards
+			positions[1].receiveCards(deal); // each player gets same cards
+			
+			pot = pot+ positions[0].getBet(); // final round of betting
+			pot = pot+ positions[1].getBet(); // final round of betting
+			
 			
 		}
 	}
