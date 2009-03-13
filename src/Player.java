@@ -21,20 +21,22 @@ public class Player extends Pack {
 	// position
 	public void receiveCommunityCards(Card[] received){
 		
-		if( cardCount >= 3){
+		if( cardCount >= 2){
 			Card[] tempCopy = new Card[(communityCards.length)];
 			System.arraycopy(communityCards, 0, tempCopy, 0, tempCopy.length);
 			communityCards = new Card[(communityCards.length+1)];
 			System.arraycopy(tempCopy, 0,communityCards , 0, communityCards.length);
 		}
 		
-		Card[] temp = received;
-		for(int i = 0;i <temp.length;i++){
-			communityCards[cardCount] = temp[i];
-			cardCount++;
-		}
+		
+			Card[] temp = received;
+			for(int i = 0;i <temp.length;i++){
+				communityCards[cardCount] = temp[i];
+				cardCount++;
+			}
 		
 		
+			
 	}
 	
 	// this takes ah array of dealt cards then adds them to the
@@ -43,7 +45,7 @@ public class Player extends Pack {
 	public void receivePocketCards(Card[] received){
 		Card[] temp = received;
 		for(int i = 0;i <temp.length;i++){
-			playerHand[cardCount] = temp[i];
+			playerHand[cardPocketCount] = temp[i];
 			cardPocketCount++;
 		}
 	}
@@ -59,7 +61,7 @@ public class Player extends Pack {
 	
 	public void printHand(){
 		
-		for(int i = 0; i < 5; i++){
+		for(int i = 0; i < communityCards.length; i++){
 			System.out.println("community Cards are :" +communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString());
 
 		}
