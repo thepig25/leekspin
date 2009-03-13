@@ -34,6 +34,10 @@ public class pokerGame extends Pack {
 			deal = myPack.dealOneCardArray();
 			positions[1].receivePocketCards(deal);
 			
+			positions[0].printPocketHand();
+			positions[1].printPocketHand();
+			
+			
 			pot = positions[0].getBet(); // first round of betting
 			pot = pot+ positions[1].getBet();
 			
@@ -41,6 +45,9 @@ public class pokerGame extends Pack {
 			deal = myPack.dealThreeCardArray(); // deal 3 community cards
 			positions[0].receiveCommunityCards(deal); // each player gets same cards
 			positions[1].receiveCommunityCards(deal); // each player gets same cards
+			
+			positions[0].printHand();
+			positions[1].printHand();
 			
 			pot = pot+ positions[0].getBet(); // 2nd round of betting
 			pot = pot+ positions[1].getBet(); // 2nd round of betting
