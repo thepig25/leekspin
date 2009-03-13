@@ -1,0 +1,27 @@
+Hey guys,
+Just a few points to make:
+
+As I was saying before, I think we should really make a plan of the classes
+that we're going to be implementing beforehand and state specifically what
+each should do, rather than just hacking out code.
+
+We know that that's bad practice and we've been told this year and last year 
+that planning it out and keeping it as simple as possible is the best policy.
+If there's one thing that Joe taught us, it's to state the obvious and keep
+things simple. Methods should do one thing only! So anything a player can do
+in real life ie.fold, raise, check, should have one method dedicated to it.
+
+For example, we need a CommunityCards class at the moment that interacts with
+the PokerHand class in a way that every player will have their own PokerHand
+constructor when they're created, but there will be only one CommunityCards
+constructor for all players. And both classes must use the same deck of 
+cards as they are dealt. I think it's best to plan this out now rather than 
+writing a whole load of code and then having to change it later on and 
+having problems. It's also easier in terms of the team as we all know
+exactly what has to be done, rather than looking at someone else's code and
+trying to figure out how that will fit into the bigger picture.
+
+Sorry for the rant! Just thought I'd point all this out now before there's a 
+whole lot more coding done. Let me know what you think.
+
+Neil
