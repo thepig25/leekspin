@@ -1,5 +1,6 @@
 Hey guys,
 Just a few points to make:
+MAKE GOOD COMMENTS!!!
 
 As I was saying before, I think we should really make a plan of the classes
 that we're going to be implementing beforehand and state specifically what
