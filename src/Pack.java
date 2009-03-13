@@ -34,12 +34,12 @@ public class Pack {
 	
 	public void Shuffle(){
 		Random rnd = new Random();
-		System.out.println("Shuffling");
-		System.out.println("..");
-		System.out.println("..");
-		System.out.println("..");
-		System.out.println("..");
-		System.out.println("..");
+//		System.out.println("Shuffling");
+//		System.out.println("..");
+//		System.out.println("..");
+//		System.out.println("..");
+//		System.out.println("..");
+//		System.out.println("..");
 		for (int i = thisPack.length - 1; i > 0; i--)
 		{
 			int swapWithPos = rnd.nextInt(i + 1);
