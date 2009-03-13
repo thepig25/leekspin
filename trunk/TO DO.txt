@@ -1,5 +1,8 @@
 Hey guys,
 Just a few points to make:
+If you are going to be working on this, please be on gtalk
+so we know who is working on it and update your code first always
+and commit often.
 MAKE GOOD COMMENTS!!!
 
 As I was saying before, I think we should really make a plan of the classes
