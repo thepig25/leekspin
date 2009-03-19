@@ -458,6 +458,10 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 
 	}
+	
+	public Card getFifth(){
+		return mySortedCards[4];
+	}
 
 
 }
