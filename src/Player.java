@@ -12,26 +12,23 @@ public class Player extends Pack {
 	
 
 	
-	public Player(String Name, int Chips, Card[] currentHand){
-		currentMoney=Chips;
+	public Player(String Name, int Chips, Card[] currentHand){ // constructor for player
+		currentMoney=Chips; // initialise currentMoney to the starting amount
 	}
 	
-	// this takes ah array of dealt cards then adds them to the
+	// this takes an array of dealt cards then adds them to the
 	// players hand. using cardCount to make sure its in the 
 	// position
-	public void receiveCommunityCards(Card[] received){
+	public void receiveCommunityCards(Card[] received){ // method for receiving community cards. 
+		//initially set array to size 3 and then copy to make it the full size of 5
 		
 		if( cardCount >= 2){
 			Card[] tempCopy = new Card[(communityCards.length)];
 			System.arraycopy(communityCards, 0, tempCopy, 0, tempCopy.length);
 			communityCards = new Card[(communityCards.length+1)];
-			
-
 			System.arraycopy(tempCopy, 0,communityCards , 0, tempCopy.length);
 			
 		}
-		
-		
 		Card[] temp = received;
 		for(int i = 0;i <temp.length;i++){
 			communityCards[cardCount] = temp[i];
@@ -40,8 +37,8 @@ public class Player extends Pack {
 					
 	}
 	
-	// this takes ah array of dealt cards then adds them to the
-	// players hand.
+	// this takes an array of dealt cards then adds them to the
+	// the private variable which holds the player's hand.
 	// This is just for the first two pocket cards a player gets
 	public void receivePocketCards(Card[] received){
 		Card[] temp = received;
@@ -52,7 +49,7 @@ public class Player extends Pack {
 	}
 	
 	
-	public void printPocketHand(){
+	public void printPocketHand(){ // prints pocket pair
 	
 		for(int i = 0; i < 2; i++){
 			System.out.println(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString());
@@ -60,7 +57,7 @@ public class Player extends Pack {
 		}
 	}
 	
-	public void printHand(){
+	public void printCommunity(){ // prints the community cards
 		
 		for(int i = 0; i < communityCards.length; i++){
 			System.out.println("community Cards are :" +communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString());
@@ -89,7 +86,7 @@ public class Player extends Pack {
 		return bet;
 	}
 	
-	public int checkMoney(){
+	public int checkMoney(){ // returns player's current money
 		return currentMoney;
 		
 	}

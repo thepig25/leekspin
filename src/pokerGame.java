@@ -1,5 +1,6 @@
 
-public class pokerGame extends Pack { // this is test code for dealing - not a final implementation. Want to be able to deal with more than 2 players in future. for now we'll just use 2
+public class pokerGame extends pokerGameMethods { // this is test code for dealing - not a final implementation. 
+	//Want to be able to deal with more than 2 players in future. for now we'll just use 2
 	
 	int gameOver;
 	private int pot;
@@ -24,6 +25,9 @@ public class pokerGame extends Pack { // this is test code for dealing - not a f
 			myPack.createPack();
 			//myPack.Shuffle();
 			
+			int Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
+			System.out.println("Dealer is player: "+Dealer);
+			
 			
 			Card[] deal = myPack.dealOneCardArray(); // this part deals the pocket pair to each player in the correct manner
 			positions[0].receivePocketCards(deal);
@@ -46,8 +50,7 @@ public class pokerGame extends Pack { // this is test code for dealing - not a f
 			positions[0].receiveCommunityCards(deal); // each player gets same cards
 			positions[1].receiveCommunityCards(deal); // each player gets same cards
 			
-			positions[0].printHand();
-			positions[1].printHand();
+			positions[0].printCommunity();
 			
 			pot = pot+ positions[0].getBet(); // 2nd round of betting
 			pot = pot+ positions[1].getBet(); // 2nd round of betting
@@ -70,8 +73,8 @@ public class pokerGame extends Pack { // this is test code for dealing - not a f
 			positions[0].printPocketHand();
 			positions[1].printPocketHand();
 			
-			positions[0].printHand();
-			positions[1].printHand();
+			positions[0].printCommunity();
+			
 			System.out.println("Pot is: " +pot);
 			
 			System.out.println (positions[0].checkMoney());
