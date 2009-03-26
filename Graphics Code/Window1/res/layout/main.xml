@@ -21,7 +21,7 @@ android:orientation="horizontal"
 >
 <ImageView
 android:id="@+id/img1"
-android:layout_width="wrap_content"
+android:layout_width="fill_parent"
 android:layout_height="250px"
 android:src="@drawable/table"
 >
