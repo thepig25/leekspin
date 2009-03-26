@@ -1,4 +1,5 @@
 
+
 public class PokerHand extends Pack { // Not really working for this weeks assignment - Doesn't pick up on improved hands for anything more than 2 pair
 
 
@@ -6,6 +7,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 	Card[] theseCards;
 	Card[] mySortedCards;
+	
 	int[] matchedCards;
 	double Pair=0;
 	double twoPair=0;
@@ -27,99 +29,16 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	boolean almostFlush=false;
 	boolean printedBoolean=false;
 	int[][] cardStats = new int[10][3];
+	
 
 
 
-	public PokerHand(Pack Cardies) {
+		public PokerHand(Card[] Hand) {
 		// TODO Auto-generated constructor stub
-
-		Cardies.createPack();
-		Cardies.Shuffle();// for normal use
-		//cardStats = new int[10][3];
-		//theseCards = Cardies.getSpecial(); // used for testing. creates hands with certain cards. At the moment it is drawing cards which form a straight flush.
-		for(int j1=0;j1<testAmount;j1++){//run this x many times
-			theseCards = Cardies.getHand(); // for normal use
-			
-			//				for(int i=0;i<theseCards.length;i++){
-			//					System.out.println(theseCards[i].getValue());
-			//					System.out.println(theseCards[i].getValueAsString()+ " of " + theseCards[i].getSuitAsString());
-			//				}
-			mySortedCards = sortedCards(theseCards);			
-			int bestBoolean=testBooleans();
-			for(int j=0;j<3;j++){
-
-				matchedCards = new int[5];
-				int bestDiscard=0;
-				String bestCardValue="";
-				String bestCardSuit="";
-				int bestCardi=0;
-
-				for(int i=0;i<mySortedCards.length;i++){
-					System.out.println(mySortedCards[i].getValue());
-					System.out.println(mySortedCards[i].getValueAsString()+ " of " + mySortedCards[i].getSuitAsString());
-				}
-
-
-				for(int i=0;i<mySortedCards.length;i++){
-					if(shouldDiscard(i)>bestDiscard){
-						bestDiscard = shouldDiscard(i);
-						bestCardValue = mySortedCards[i].getValueAsString();
-						bestCardSuit = mySortedCards[i].getSuitAsString();
-						bestCardi=i;
-					}
-
-				}
-				System.out.println("flush count "+flushCount);
-				System.out.println("Most likely card to discard is " +bestCardValue+" of "+bestCardSuit+" with a discard value of "+bestDiscard);
-
-				System.out.println("Discarding card....");
-
-				mySortedCards[bestCardi]=Cardies.getOneCard();
-				Card[]temp = mySortedCards;
-				printedBoolean=false;
-				mySortedCards = sortedCards(temp);
-
-				if(bestBoolean>testBooleans()){ // if the previous hand before discarding was worse, do this
-					int tempStat = cardStats[bestBoolean][j];
-					System.out.println("Improvement count "+tempStat + "Best Boolean : " + bestBoolean);
-					tempStat++;
-					cardStats[bestBoolean][j]=tempStat;
-					
-				}
-				
-
-			}
-			bestBoolean=0;
-			
+			Card[] theseCards = Hand; 	
+			mySortedCards = sortedCards(theseCards);
 		}
-		//		System.out.println("Pair " + Pair + "Percentage: " + (Pair/testAmount)*100);
-		//		System.out.println("twoPair " + twoPair + "Percentage: " + (twoPair/testAmount)*100);
-		//		System.out.println("Threes " + Threes + "Percentage: " + (Threes/testAmount)*100);
-		//		System.out.println("Fours " + Fours + "Percentage: " + (Fours/testAmount)*100);
-		//		System.out.println("fullHouse "+ fullHouse + "Percentage: " + (fullHouse/testAmount)*100);
-		//		System.out.println("Straight "+ Straight+ "Percentage: " + (Straight/testAmount)*100);
-		//		
-		//		System.out.println("SF " + SF+ "Percentage: " + (SF/testAmount)*100);
-		//		System.out.println("SRoyalFlush " + SRoyalFlush+ "Percentage: " + (SRoyalFlush/testAmount)*100);
-
-		System.out.println("Hand		Card 1	Card 2	Card 3	Count");
-		System.out.println("Threes		" + ((cardStats[6][2])));
-		System.out.println("RoyalFlush	" + ((cardStats[0][0])*100/testAmount)+"	"+((cardStats[0][1])*100/testAmount)+"	"+((cardStats[0][2])*100/testAmount));
-		System.out.println("SF		" +  ((cardStats[1][0])*100/testAmount)+"	"+((cardStats[1][1])*100/testAmount)+"	"+((cardStats[1][2])*100/testAmount));
-		System.out.println("Four of a Kind	" +  ((cardStats[2][0])*100/testAmount)+"	"+((cardStats[2][1])*100/testAmount)+"	"+((cardStats[2][2])*100/testAmount));
-		System.out.println("fullHouse	"+  ((cardStats[3][0])*100/testAmount)+"	"+((cardStats[3][1])*100/testAmount)+"	"+((cardStats[3][2])*100/testAmount));
-		System.out.println("Flush		" +  ((cardStats[4][0])*100/testAmount)+"	"+((cardStats[4][1])*100/testAmount)+"	"+((cardStats[4][2])*100/testAmount));
-		System.out.println("Straight	"+ ((cardStats[5][0])*100/testAmount)+"	"+((cardStats[5][1])*100/testAmount)+"	"+((cardStats[5][2])*100/testAmount));
-		System.out.println("Threes		" + ((cardStats[6][0])*100/testAmount)+"	"+((cardStats[6][1])*100/testAmount)+"	"+((cardStats[6][2])*100/testAmount)+"	"+Threes);
-		System.out.println("twoPair		" + ((cardStats[7][0])*100/testAmount)+"	"+((cardStats[7][1])*100/testAmount)+"	"+((cardStats[7][2])*100/testAmount)+"	"+twoPair);
-		System.out.println("Pair		" + ((cardStats[8][0])*100/testAmount)+"	"+((cardStats[8][1])*100/testAmount)+"	"+((cardStats[8][2])*100/testAmount));
-		System.out.println("Nothing		" + ((cardStats[9][0])*100/testAmount)+"	"+((cardStats[9][1])*100/testAmount)+"	"+((cardStats[9][2])*100/testAmount));
-
-
-
-
-	}
-
+		
 	public int testBooleans(){
 		//tests for different winning hands.
 		if(isRoyalFlush()){
@@ -258,7 +177,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		for(int i=0;i<mySortedCards.length-1;i++){
 
 			if((mySortedCards[i]).getValue()==(mySortedCards[i+1].getValue())){
-				firstMatch = theseCards[i].getValue();
+				firstMatch = mySortedCards[i].getValue();
 				return true;
 			}
 
@@ -269,11 +188,12 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	}
 	public boolean isTwoPair(){
 
-		for(int i=0;i<mySortedCards.length-1;i++){
+	
+	  for(int i=0;i<mySortedCards.length-1;i++){
 
-			if((mySortedCards[i]).getValue()==(mySortedCards[i+1].getValue())&&isOnePair()){
-				if((mySortedCards[i]).getValue()!=firstMatch){
-					secondMatch =mySortedCards[i].getValue();
+			if((mySortedCards[i]).getValue()==(mySortedCards[i+1].getValue())){
+				if((mySortedCards[i]).getValue()!=firstMatch&&mySortedCards[i+1].getValue()!=firstMatch){
+					secondMatch=mySortedCards[i].getValue();
 					return true;
 				}
 
@@ -458,10 +378,5 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 
 	}
-	
-	public Card getFifth(){
-		return mySortedCards[4];
-	}
-
 
 }

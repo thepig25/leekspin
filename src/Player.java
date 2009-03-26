@@ -92,10 +92,11 @@ public class Player extends Pack {
 	}
 	
 	public PokerHand getBestHand(){
-		Card[] poolCard =  // need to add the community and pocket card arrays together here!
+		Card[] poolCard =   // need to add the community and pocket card arrays together here!
 			
 			// then go through the combos and select the best card
 			// a lot of the combos are going to have the same hand value so we need to search by highest card
 	}
 	
+
 }
