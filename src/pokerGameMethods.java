@@ -10,9 +10,7 @@ public int chooseFirstDealer(int amtPlayers){
 		int min=0;
 		int max=amtPlayers;
 
-		
 		int randomNum = rand.nextInt(max - min ) + min;
-
 		
 		return randomNum;
 		
