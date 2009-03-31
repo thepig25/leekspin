@@ -91,12 +91,63 @@ public class Player extends Pack {
 		
 	}
 	
-	public PokerHand getBestHand(){
-		Card[] poolCard =   // need to add the community and pocket card arrays together here!
+	public  Card [] getBestHand(){
+		Card [] poolCards = new Card[communityCards.length+playerHand.length];
+		if(playerHand.length+playerHand.length==5){ // just return the 5 cards available
+			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length);
+			System.arraycopy(communityCards, 0, poolCards, playerHand.length+1, communityCards.length);
+			return poolCards;
+		}
+		
+		if(communityCards.length+playerHand.length==6){
+			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length);
+			System.arraycopy(communityCards, 0, poolCards, playerHand.length+1, communityCards.length);
+			Card [] testCard = new Card [5];
+			
+			int[] elements = {0, 1, 2, 3, 4, 5};
+			int[] indices;
+			int [] genCards = new int [5];
+			int [][] allCombos = new int[6][5];// going to have an array of six combos of 5 cards
+			int count=0;
+			int bestBoolean=20;
+			CombinationGenerator x = new CombinationGenerator (elements.length, 5);
+			StringBuffer combination;
+			while (x.hasMore ()) {
+			  combination = new StringBuffer ();
+			  indices = x.getNext ();
+			  for (int i = 0; i < indices.length; i++) {
+			    combination.append (elements[indices[i]]);
+			    genCards[i]= elements[indices[i]];
+			  }
+			  allCombos[count] = genCards;
+			  System.out.println (combination.toString());
+			  count++;
+			}
+			
+			
+			System.out.println ("First Card combo is:");
+			for (int i = 0; i < genCards.length; i++) {
+				System.out.println (genCards[i]);
+				int temp =genCards[i];
+				testCard[i]=poolCards[temp];
+			}
+			PokerHand testHand=new PokerHand(testCard);
+			if(testHand.testBooleans()<=bestBoolean){
+				bestBoolean=testHand.testBooleans();
+			}
+			
+			
+			
+		}
+		
+		
+		   // need to add the community and pocket card arrays together here!
 			
 			// then go through the combos and select the best card
 			// a lot of the combos are going to have the same hand value so we need to search by highest card
 	}
+	
+	
 	
 
 }
