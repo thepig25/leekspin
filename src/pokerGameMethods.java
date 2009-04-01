@@ -10,7 +10,9 @@ public int chooseFirstDealer(int amtPlayers){
 		int min=0;
 		int max=amtPlayers;
 
+		
 		int randomNum = rand.nextInt(max - min ) + min;
+
 		
 		return randomNum;
 		
@@ -43,8 +45,8 @@ public Player winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ /
 	int winningPlayer=0;
 	
 	for(int i=0;i<localpossibleWinners.length;i++){ // now need to check for any other players with the same hand and use the highest card to determine the winner
-		if(localpossibleWinners[i].testBooleans()==bestBoolean && localpossibleWinners[i].getFifth().getValue()>finalistsHighCardCount){
-			finalistsHighCardCount = localpossibleWinners[i].getFifth().getValue();
+		if(localpossibleWinners[i].testBooleans()==bestBoolean && localpossibleWinners[i].getHighCard().getValue()>finalistsHighCardCount){
+			finalistsHighCardCount = localpossibleWinners[i].getHighCard().getValue();
 			winningPlayer=i;
 		}
 	}
@@ -52,6 +54,8 @@ public Player winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ /
 	return involvedPlayers[winningPlayer];
 	
 }
+
+
 	
 }
 

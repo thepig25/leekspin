@@ -147,7 +147,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 
 
-	public Card[]  sortedCards(Card[] hand){ // sorts cards to test for a straight
+	public Card[]  sortedCards(Card[] hand){ // sorts cards 
 		boolean doMore = true;
 		int n = hand.length;
 		while (doMore) {
@@ -376,7 +376,21 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 
 
-
 	}
 
+	public Card getHighCard(){
+		if (mySortedCards[0].getValue()==1){ // check for an ace which counts as a 1 numerically
+			return mySortedCards[0];
+		}
+		else{
+			return mySortedCards[4];
+		}
+	
+	
+		
+		
+	}
+	public Card [] getCard(){
+		return mySortedCards;
+	}
 }

@@ -4,16 +4,28 @@ public class Player extends Pack {
 	int decision;
 	int bet=0;
 	int currentMoney;
+	String name;
 	Card[] thisHand = new Card[7];
 	Card[] playerHand = new Card[2];
 	Card[] communityCards = new Card[3];
 	int cardCount=0;
 	int cardPocketCount=0;
+	PokerHand bestPokerHand;
+	CombinationGenerator x;
+	int[] elements;
+	Card [] poolCards;
+	int allCombosLength;
+	
 	
 
 	
 	public Player(String Name, int Chips, Card[] currentHand){ // constructor for player
 		currentMoney=Chips; // initialise currentMoney to the starting amount
+		name = Name;
+	}
+	
+	public String getName(){
+		return name;
 	}
 	
 	// this takes an array of dealt cards then adds them to the
@@ -92,62 +104,116 @@ public class Player extends Pack {
 	}
 	
 	public  Card [] getBestHand(){
-		Card [] poolCards = new Card[communityCards.length+playerHand.length];
-		if(playerHand.length+playerHand.length==5){ // just return the 5 cards available
+		//poolCards = new Card[communityCards.length+playerHand.length];
+		
+				
+		if(playerHand.length+communityCards.length==5){ // just return the 5 cards available
+			poolCards = new Card[communityCards.length+playerHand.length];
 			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length);
-			System.arraycopy(communityCards, 0, poolCards, playerHand.length+1, communityCards.length);
+			System.arraycopy(communityCards, 0, poolCards, 2, communityCards.length);
 			return poolCards;
+			
 		}
 		
-		if(communityCards.length+playerHand.length==6){
-			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length);
-			System.arraycopy(communityCards, 0, poolCards, playerHand.length+1, communityCards.length);
-			Card [] testCard = new Card [5];
+		if(communityCards.length+playerHand.length>5){
 			
-			int[] elements = {0, 1, 2, 3, 4, 5};
+			poolCards = new Card[communityCards.length+playerHand.length];
+			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length); // copy from player's hand into pool Card
+			System.arraycopy(communityCards, 0, poolCards, 2, communityCards.length); // copy from community cards into pool cards starting after the player's first two cards
+			
+			
+			
+			if(poolCards.length==6){
+				System.out.println("Turn card out");
+				elements = new int[]  {0, 1, 2, 3, 4, 5};
+				x = new CombinationGenerator (elements.length, 5);
+				allCombosLength=6; // six possible combinations of five cards
+				
+				
+			}
+			else if(poolCards.length==7){
+				System.out.println("River card out");
+				elements = new int[] {0, 1, 2, 3, 4, 5, 6};
+				x = new CombinationGenerator (elements.length, 5);
+				allCombosLength=21; // 21 possible combinations of five cards
+	
+			}
+			else{
+				return null;
+			}
+		}
+		Card [] testCard = new Card [5];
 			int[] indices;
 			int [] genCards = new int [5];
-			int [][] allCombos = new int[6][5];// going to have an array of six combos of 5 cards
+			int [][] allCombos = new int[allCombosLength][5];// going to have an array of x combos of 5 cards
 			int count=0;
 			int bestBoolean=20;
-			CombinationGenerator x = new CombinationGenerator (elements.length, 5);
+			int highCard=2;
 			StringBuffer combination;
-			while (x.hasMore ()) {
-			  combination = new StringBuffer ();
-			  indices = x.getNext ();
-			  for (int i = 0; i < indices.length; i++) {
-			    combination.append (elements[indices[i]]);
-			    genCards[i]= elements[indices[i]];
-			  }
-			  allCombos[count] = genCards;
-			  System.out.println (combination.toString());
-			  count++;
+			
+			System.out.println ("entering first loop");
+			
+			
+			for(int j=0;j<allCombosLength;j++){
+				while (x.hasMore ()) {
+					combination = new StringBuffer ();
+					indices = x.getNext ();
+						for (int i = 0; i < indices.length; i++) {
+							combination.append (elements[indices[i]]);
+							genCards[i]= elements[indices[i]];
+						}
+					allCombos[count] = genCards;
+					//System.out.println (combination.toString());
+					count++;
+				}
+			
+			
+				System.out.println ("First Card combo is:");
+			
+				for (int i = 0; i < genCards.length; i++) {
+					//System.out.println (genCards[i]);
+					int temp =genCards[i];
+					testCard[i]=poolCards[temp];
+				}
+				PokerHand testHand=new PokerHand(testCard);
+					if(testHand.testBooleans()<=bestBoolean&&testHand.getHighCard().getValue()>highCard){
+						bestBoolean=testHand.testBooleans();
+						System.out.println(testHand.testBooleans());
+						highCard=testHand.getHighCard().getValue();
+						bestPokerHand = testHand;
+						System.out.println("Current best 5 are: ");
+						Card bestCard = bestPokerHand.getHighCard();
+						
+					}
+			
 			}
 			
 			
-			System.out.println ("First Card combo is:");
-			for (int i = 0; i < genCards.length; i++) {
-				System.out.println (genCards[i]);
-				int temp =genCards[i];
-				testCard[i]=poolCards[temp];
-			}
-			PokerHand testHand=new PokerHand(testCard);
-			if(testHand.testBooleans()<=bestBoolean){
-				bestBoolean=testHand.testBooleans();
-			}
 			
-			
-			
+			return bestPokerHand.getCard();
 		}
+	
+	public  PokerHand getBestPokerHand(){
+		getBestHand();
+		return bestPokerHand;
+	}
 		
 		
 		   // need to add the community and pocket card arrays together here!
 			
 			// then go through the combos and select the best card
 			// a lot of the combos are going to have the same hand value so we need to search by highest card
+	
+	
+	
+	public  void showBestHand(){
+		Card [] showCards = getBestHand();
+		System.out.println("Player's best hand is: ");
+		//System.out.println("showCards length: "+showCards.length);
+		for (int i=0;i<showCards.length;i++){
+			
+			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
+		}
 	}
-	
-	
-	
 
 }
