@@ -15,6 +15,11 @@ public class Player extends Pack {
 	int[] elements;
 	Card [] poolCards;
 	int allCombosLength;
+	int highestFirstPair=2;
+	int highestSecondPair=2;
+	int bestBoolean=20;
+	int highCard=2;
+	int highestLowest=0;
 	
 	
 
@@ -105,12 +110,15 @@ public class Player extends Pack {
 	
 	public  Card [] getBestHand(){
 		//poolCards = new Card[communityCards.length+playerHand.length];
-		
+
 				
 		if(playerHand.length+communityCards.length==5){ // just return the 5 cards available
 			poolCards = new Card[communityCards.length+playerHand.length];
 			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length);
 			System.arraycopy(communityCards, 0, poolCards, 2, communityCards.length);
+			PokerHand testHand=new PokerHand(poolCards);
+			bestBoolean=testHand.testBooleans();
+			
 			return poolCards;
 			
 		}
@@ -121,10 +129,8 @@ public class Player extends Pack {
 			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length); // copy from player's hand into pool Card
 			System.arraycopy(communityCards, 0, poolCards, 2, communityCards.length); // copy from community cards into pool cards starting after the player's first two cards
 			
-			
-			
 			if(poolCards.length==6){
-				System.out.println("Turn card out");
+				
 				elements = new int[]  {0, 1, 2, 3, 4, 5};
 				x = new CombinationGenerator (elements.length, 5);
 				allCombosLength=6; // six possible combinations of five cards
@@ -132,7 +138,7 @@ public class Player extends Pack {
 				
 			}
 			else if(poolCards.length==7){
-				System.out.println("River card out");
+				
 				elements = new int[] {0, 1, 2, 3, 4, 5, 6};
 				x = new CombinationGenerator (elements.length, 5);
 				allCombosLength=21; // 21 possible combinations of five cards
@@ -147,11 +153,10 @@ public class Player extends Pack {
 			int [] genCards = new int [5];
 			int [][] allCombos = new int[allCombosLength][5];// going to have an array of x combos of 5 cards
 			int count=0;
-			int bestBoolean=20;
-			int highCard=2;
+			
 			StringBuffer combination;
 			
-			System.out.println ("entering first loop");
+			
 			
 			
 			for(int j=0;j<allCombosLength;j++){
@@ -163,20 +168,34 @@ public class Player extends Pack {
 							genCards[i]= elements[indices[i]];
 						}
 					allCombos[count] = genCards;
-					//System.out.println (combination.toString());
+					
 					count++;
 				}
+				
+				
 			
 			
-				System.out.println ("First Card combo is:");
-			
-				for (int i = 0; i < genCards.length; i++) {
-					//System.out.println (genCards[i]);
-					int temp =genCards[i];
-					testCard[i]=poolCards[temp];
+				for (int i = 0; i < allCombosLength; i++) {
+					for (int k=0;k<genCards.length;k++){
+						int temp =allCombos[i][k];
+						testCard[k]=poolCards[temp];
+					}
+					
+					
 				}
 				PokerHand testHand=new PokerHand(testCard);
-					if(testHand.testBooleans()<=bestBoolean&&testHand.getHighCard().getValue()>highCard){
+				if(testHand.testBooleans()==7){ // special case for two pair
+					if(testHand.testBooleans()<=bestBoolean&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
+						highestSecondPair=testHand.highestSecondPair;
+						highestFirstPair=testHand.firstMatch;
+						bestPokerHand = testHand;
+						if(testHand.testBooleans()<bestBoolean){
+							bestBoolean=testHand.testBooleans();
+						}
+					}
+				}
+					
+				if(testHand.testBooleans()<=bestBoolean&&testHand.getHighCard().getValue()>highCard&&testHand.getLowestHighCard().getValue()>highestLowest){
 						bestBoolean=testHand.testBooleans();
 						System.out.println(testHand.testBooleans());
 						highCard=testHand.getHighCard().getValue();

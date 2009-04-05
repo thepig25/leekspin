@@ -29,6 +29,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	boolean almostFlush=false;
 	boolean printedBoolean=false;
 	int[][] cardStats = new int[10][3];
+	int highestSecondPair;
 	
 
 
@@ -43,7 +44,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		//tests for different winning hands.
 		if(isRoyalFlush()){
 			if(printedBoolean==false){
-				System.out.println("Royal Flush!!!!");
+				//System.out.println("Royal Flush!!!!");
 				SRoyalFlush++;
 				printedBoolean=true;
 			}
@@ -54,7 +55,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 		if(isStraightFlush()){
 			if(printedBoolean==false){
-				System.out.println("Straight flush");
+				//System.out.println("Straight flush");
 				printedBoolean=true;
 				SF++;
 			}
@@ -65,7 +66,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 		if(isFourOfAKind()){
 			if(printedBoolean==false){
-				System.out.println("Found four of a kind");
+				//System.out.println("Found four of a kind");
 				Fours++;
 				printedBoolean=true;
 			}
@@ -75,7 +76,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 		if(isFullHouse()){
 			if(printedBoolean==false){
-				System.out.println("Found a full house");
+				//System.out.println("Found a full house");
 				fullHouse++;	
 				printedBoolean=true;
 			}
@@ -84,7 +85,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 		if(isFlush()){
 			if(printedBoolean==false){
-				System.out.println("Found a flush");
+				//System.out.println("Found a flush");
 				Flush++;
 				printedBoolean=true;
 			}
@@ -93,7 +94,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 		if(isStraight()){
 			if(printedBoolean==false){
-				System.out.println("Found a straight");
+				//System.out.println("Found a straight");
 				Straight++;	
 				printedBoolean=true;
 			}
@@ -102,7 +103,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 		if(isThreeOfAKind()){
 			if(printedBoolean==false){
-				System.out.println("Found three of a kind");
+				//System.out.println("Found three of a kind");
 				Threes++;
 				printedBoolean=true;
 			}
@@ -111,7 +112,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 		if(isTwoPair()){
 			if(printedBoolean==false){
-				System.out.println("Found two pair");
+				//System.out.println("Found two pair");
 				twoPair++;
 				printedBoolean=true;
 			}
@@ -121,7 +122,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 		if(isOnePair()){
 			if(printedBoolean==false){
-				System.out.println("Found a pair");
+				//System.out.println("Found a pair");
 				Pair++;
 				printedBoolean=true;
 			}
@@ -132,7 +133,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		if(!isStraight()&&!isFullHouse()&&!isFourOfAKind()&&!isThreeOfAKind()
 				&&!isTwoPair()&&!isOnePair()&&!isFlush()){
 			if(printedBoolean==false){
-				System.out.println("Found nothing");
+				//System.out.println("Found nothing");
 				printedBoolean=true;
 			}
 
@@ -164,10 +165,10 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 				}
 			}
 		}
-		System.out.println("Sorted:");
+		/*System.out.println("Sorted:");
 		for(int i=0;i<hand.length;i++){
 			System.out.println(hand[i].getValueAsString()+ " of " + hand[i].getSuitAsString());
-		}
+		}*/
 
 		return hand;
 	}
@@ -194,6 +195,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 			if((mySortedCards[i]).getValue()==(mySortedCards[i+1].getValue())){
 				if((mySortedCards[i]).getValue()!=firstMatch&&mySortedCards[i+1].getValue()!=firstMatch){
 					secondMatch=mySortedCards[i].getValue();
+					highestSecondPair=secondMatch;
 					return true;
 				}
 
@@ -385,11 +387,26 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		else{
 			return mySortedCards[4];
 		}
-	
-	
-		
-		
 	}
+	
+	public Card getLowestHighCard()  {
+		
+		if(mySortedCards[0].getValue() == 1){
+			for(int i = 0; i < 5 ; i++){
+				if(mySortedCards[i].getValue() != 1){
+					return mySortedCards[i];
+				}
+			}
+		}
+		else {
+			return mySortedCards[0];
+		}
+		System.out.println("I'm throwing an error in the getLowestHighCard method!!");
+		return null;
+	}
+		
+		
+	
 	public Card [] getCard(){
 		return mySortedCards;
 	}
