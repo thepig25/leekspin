@@ -148,7 +148,7 @@ public class Player extends Pack {
 				return null;
 			}
 		}
-		Card [] testCard = new Card [5];
+		Card [][] testCard = new Card [allCombosLength][5];
 			int[] indices;
 			int [] genCards = new int [5];
 			int [][] allCombos = new int[allCombosLength][5];// going to have an array of x combos of 5 cards
@@ -166,8 +166,9 @@ public class Player extends Pack {
 						for (int i = 0; i < indices.length; i++) {
 							combination.append (elements[indices[i]]);
 							genCards[i]= elements[indices[i]];
+							allCombos[count][i] = genCards[i];
 						}
-					allCombos[count] = genCards;
+					
 					
 					count++;
 				}
@@ -178,12 +179,14 @@ public class Player extends Pack {
 				for (int i = 0; i < allCombosLength; i++) {
 					for (int k=0;k<genCards.length;k++){
 						int temp =allCombos[i][k];
-						testCard[k]=poolCards[temp];
+						testCard[i][k]=poolCards[temp];
+						//System.out.println(testCard[i][k].getValueAsString()+" "+ testCard[i][k].getSuitAsString());
 					}
-					
+					//System.out.println("Next Hand is");
 					
 				}
-				PokerHand testHand=new PokerHand(testCard);
+				
+				PokerHand testHand=new PokerHand(testCard[j]);
 				if(testHand.testBooleans()==7){ // special case for two pair
 					if(testHand.testBooleans()<=bestBoolean&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
 						highestSecondPair=testHand.highestSecondPair;

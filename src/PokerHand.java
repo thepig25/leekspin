@@ -38,6 +38,12 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		// TODO Auto-generated constructor stub
 			Card[] theseCards = Hand; 	
 			mySortedCards = sortedCards(theseCards);
+			System.out.println("PokerHand created is:");
+			for(int i=0;i<Hand.length;i++){
+				
+				System.out.println(Hand[i].getValueAsString()+" "+Hand[i].getSuitAsString());
+			}
+			
 		}
 		
 	public int testBooleans(){
