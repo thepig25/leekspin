@@ -15,8 +15,8 @@ public class Player extends Pack {
 	int[] elements;
 	Card [] poolCards;
 	int allCombosLength;
-	int highestFirstPair=2;
-	int highestSecondPair=2;
+	int highestFirstPair=1;
+	int highestSecondPair=1;
 	int bestBoolean=20;
 	int highCard=2;
 	int highestLowest=0;
@@ -190,15 +190,22 @@ public class Player extends Pack {
 				
 				PokerHand testHand=new PokerHand(testCard[j]);
 				if(testHand.testBooleans()==7){ // special case for two pair
-					if(testHand.testBooleans()<=bestBoolean&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
-						highestSecondPair=testHand.highestSecondPair;
-						highestFirstPair=testHand.firstMatch;
-						bestPokerHand = testHand;
-						if(testHand.testBooleans()<bestBoolean){
-							bestBoolean=testHand.testBooleans();
-						}
+					if(testHand.testBooleans()<=bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
+						bestBoolean=testHand.testBooleans();
+						System.out.println("upper 2 pair code");
+						System.out.println(testHand.firstMatch);
+						System.out.println(testHand.highestSecondPair);
 					}
-				}
+						if(testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
+							highestSecondPair=testHand.highestSecondPair;
+							highestFirstPair=testHand.firstMatch;
+							bestPokerHand = testHand;
+							System.out.println("lower 2 pair code");
+						}
+						
+						
+					}
+				
 				
 				//System.out.println("Best Boolean is ");
 					
@@ -210,7 +217,7 @@ public class Player extends Pack {
 					bestPokerHand = testHand;
 				}
 				
-				if(testHand.testBooleans()==bestBoolean&&testHand.getHighCard().getValue()>highCard&&testHand.getLowestHighCard().getValue()>highestLowest){
+				if(testHand.testBooleans()==bestBoolean&&testHand.getHighCard().getValue()>highCard&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=7){
 						
 						System.out.println(testHand.testBooleans());
 						highCard=testHand.getHighCard().getValue();

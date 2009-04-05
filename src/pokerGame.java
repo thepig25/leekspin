@@ -23,20 +23,25 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 //			}
 			Pack myPack = new Pack();
 			myPack.createPack();
-			myPack.Shuffle();
+			//myPack.Shuffle();
 			
 			int Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
 			System.out.println("Dealer is player: "+Dealer);
 			
+			Card[] deal = myPack.getFirstPocketSpecial();
+			positions[0].receivePocketCards(deal);
+			deal = myPack.getSecondPocketSpecial();
+			positions[1].receivePocketCards(deal);
 			
-			Card[] deal = myPack.dealOneCardArray(); // this part deals the pocket pair to each player in the correct manner
+			
+			/*Card[] deal = myPack.dealOneCardArray(); // this part deals the pocket pair to each player in the correct manner
 			positions[0].receivePocketCards(deal);
 			deal = myPack.dealOneCardArray();
 			positions[1].receivePocketCards(deal);
 			deal = myPack.dealOneCardArray();
 			positions[0].receivePocketCards(deal);
 			deal = myPack.dealOneCardArray();
-			positions[1].receivePocketCards(deal);
+			positions[1].receivePocketCards(deal);*/
 			
 			
 			System.out.print("Player "+positions[0].getName()+" has been dealt a ");
@@ -48,11 +53,15 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			pot = positions[0].getBet(); // first round of betting
 			pot = pot+ positions[1].getBet();
 			
+			deal = myPack.getCommmunitySpecial();
+			positions[0].receiveCommunityCards(deal); 
+			positions[1].receiveCommunityCards(deal); 
 			
-			deal = myPack.dealThreeCardArray(); // deal 3 community cards
+			
+			/*deal = myPack.dealThreeCardArray(); // deal 3 community cards
 			positions[0].receiveCommunityCards(deal); // each player gets same cards
 			positions[1].receiveCommunityCards(deal); // each player gets same cards
-			
+*/			
 			
 			positions[0].printCommunity();
 			
@@ -70,7 +79,10 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			pot = pot+ positions[0].getBet(); // 2nd round of betting
 			pot = pot+ positions[1].getBet(); // 2nd round of betting
 			
-			deal = myPack.dealOneCardArray(); // deal 1 community card
+			//deal = myPack.dealOneCardArray(); // deal 1 community card
+			
+			deal = myPack.getTurnSpecial();
+			
 			positions[0].receiveCommunityCards(deal); // each player gets same cards
 			positions[1].receiveCommunityCards(deal); // each player gets same cards
 			
@@ -87,7 +99,9 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			pot = pot+ positions[0].getBet(); // 3rd round of betting
 			pot = pot+ positions[1].getBet(); // 3rd round of betting
 			
-			deal = myPack.dealOneCardArray(); // deal final community card
+			//deal = myPack.dealOneCardArray(); // deal final community card
+			
+			deal = myPack.getRiverSpecial();
 			positions[0].receiveCommunityCards(deal); // each player gets same cards
 			positions[1].receiveCommunityCards(deal); // each player gets same cards
 			

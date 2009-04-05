@@ -118,7 +118,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 		if(isTwoPair()){
 			if(printedBoolean==false){
-				//System.out.println("Found two pair");
+				System.out.println("Found two pair");
 				twoPair++;
 				printedBoolean=true;
 			}
@@ -194,13 +194,15 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 	}
 	public boolean isTwoPair(){
-
+		isOnePair();
+	
 	
 	  for(int i=0;i<mySortedCards.length-1;i++){
 
 			if((mySortedCards[i]).getValue()==(mySortedCards[i+1].getValue())){
 				if((mySortedCards[i]).getValue()!=firstMatch&&mySortedCards[i+1].getValue()!=firstMatch){
 					secondMatch=mySortedCards[i].getValue();
+					
 					highestSecondPair=secondMatch;
 					return true;
 				}

@@ -65,6 +65,40 @@ public class Pack {
 		
 	}
 	
+	public Card[] getFirstPocketSpecial(){
+		Card [] special = new Card [2];
+		special[0] = thisPack[1];
+		special[1] = thisPack[14];
+		return special;
+	}
+	
+	public Card[] getSecondPocketSpecial(){
+		Card [] special = new Card [2];
+		special[0] = thisPack[3];
+		special[1] = thisPack[16];
+		return special;
+	}
+
+	public Card[] getCommmunitySpecial(){
+		Card [] special = new Card [3];
+		special[0] = thisPack[7];
+		special[1] = thisPack[20];
+		special[2] = thisPack[10];
+	return special;
+	}
+	
+	public Card[] getTurnSpecial(){
+		Card [] special = new Card [1];
+		special[0] = thisPack[12];
+		return special;
+	}
+	
+	public Card[] getRiverSpecial(){
+		Card [] special = new Card [1];
+		special[0] = thisPack[23];
+		return special;
+	}
+	
 	
 	public void printPack(){
 		
