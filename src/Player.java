@@ -118,6 +118,8 @@ public class Player extends Pack {
 			System.arraycopy(communityCards, 0, poolCards, 2, communityCards.length);
 			PokerHand testHand=new PokerHand(poolCards);
 			bestBoolean=testHand.testBooleans();
+			PokerHand test1Hand=new PokerHand(poolCards);
+			bestPokerHand=test1Hand;
 			
 			return poolCards;
 			
@@ -197,16 +199,28 @@ public class Player extends Pack {
 						}
 					}
 				}
+				
+				//System.out.println("Best Boolean is ");
 					
-				if(testHand.testBooleans()<=bestBoolean&&testHand.getHighCard().getValue()>highCard&&testHand.getLowestHighCard().getValue()>highestLowest){
-						bestBoolean=testHand.testBooleans();
+				
+				if(testHand.testBooleans()<bestBoolean){
+					bestBoolean=testHand.testBooleans();
+					highCard=testHand.getHighCard().getValue();
+					highestLowest=testHand.getLowestHighCard().getValue();
+					bestPokerHand = testHand;
+				}
+				
+				if(testHand.testBooleans()==bestBoolean&&testHand.getHighCard().getValue()>highCard&&testHand.getLowestHighCard().getValue()>highestLowest){
+						
 						System.out.println(testHand.testBooleans());
 						highCard=testHand.getHighCard().getValue();
 						bestPokerHand = testHand;
 						System.out.println("Current best 5 are: ");
 						Card bestCard = bestPokerHand.getHighCard();
 						
-					}
+				}
+				
+				
 			
 			}
 			
