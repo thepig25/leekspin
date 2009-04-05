@@ -118,7 +118,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 		if(isTwoPair()){
 			if(printedBoolean==false){
-				System.out.println("Found two pair");
+				//System.out.println("Found two pair");
 				twoPair++;
 				printedBoolean=true;
 			}

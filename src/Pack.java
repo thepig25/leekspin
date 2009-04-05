@@ -82,8 +82,8 @@ public class Pack {
 	public Card[] getCommmunitySpecial(){
 		Card [] special = new Card [3];
 		special[0] = thisPack[7];
-		special[1] = thisPack[20];
-		special[2] = thisPack[10];
+		special[1] = thisPack[23];
+		special[2] = thisPack[11];
 	return special;
 	}
 	
@@ -95,7 +95,7 @@ public class Pack {
 	
 	public Card[] getRiverSpecial(){
 		Card [] special = new Card [1];
-		special[0] = thisPack[23];
+		special[0] = thisPack[20];
 		return special;
 	}
 	
