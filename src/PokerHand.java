@@ -164,12 +164,24 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 			for (int i=0; i<n; i++) {
 				if(((hand[i]).getValue())>((hand[i+1]).getValue())){
+					/*System.out.println(hand[i].getValue()+" "+hand[i].getSuitAsString());
+					System.out.println(hand[i+1].getValue()+" "+hand[i+1].getSuitAsString());
+					System.out.println(" ");*/
 					Card big = hand[i];
 					hand[i] = hand[i+1];
 					hand[i+1] = big;
 					doMore=true;
+					/*System.out.println(hand[i].getValue()+" "+hand[i].getSuitAsString());
+					System.out.println(hand[i+1].getValue()+" "+hand[i+1].getSuitAsString());
+					System.out.println(" ");*/
 				}
+				
 			}
+			for(int j=0;j<hand.length;j++){
+				System.out.println(hand[j].getValueAsString());
+				
+			}
+			System.out.println(" ");
 		}
 		/*System.out.println("Sorted:");
 		for(int i=0;i<hand.length;i++){
@@ -417,5 +429,11 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	
 	public Card [] getCard(){
 		return mySortedCards;
+	}
+	
+	public void printPokerHand(){
+		for (int i=0;i<mySortedCards.length;i++){
+			System.out.println(mySortedCards[i].getValueAsString()+" "+mySortedCards[i].getSuitAsString());
+		}
 	}
 }

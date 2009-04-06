@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class pokerGameMethods extends Pack {
 
+	int bestBoolean=10;
 	
 public int chooseFirstDealer(int amtPlayers){
 		
@@ -33,10 +34,17 @@ public Player winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ /
 	
 	PokerHand[] localpossibleWinners = possibleWinners;
 	
-	int bestBoolean=10;
+	System.out.println("Cards passed in are: ");
+	for(int i=0;i<localpossibleWinners[0].mySortedCards.length;i++){
+		System.out.println(localpossibleWinners[0].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[0].mySortedCards[i].getSuitAsString());
+	}
+	
+	
+	
 	for(int i=0;i<localpossibleWinners.length;i++){
 		if(localpossibleWinners[i].testBooleans()<bestBoolean){ //go through pokerCard array and find best hand
 			bestBoolean=localpossibleWinners[i].testBooleans();
+			
 		}
 	}
 	
@@ -45,7 +53,7 @@ public Player winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ /
 	int winningPlayer=0;
 	
 	for(int i=0;i<localpossibleWinners.length;i++){ // now need to check for any other players with the same hand and use the highest card to determine the winner
-		if(localpossibleWinners[i].testBooleans()==bestBoolean && localpossibleWinners[i].getHighCard().getValue()>finalistsHighCardCount){
+		if(localpossibleWinners[i].testBooleans()==bestBoolean && (localpossibleWinners[i].getHighCard().getValue()>finalistsHighCardCount||localpossibleWinners[i].getHighCard().getValue()==0)){
 			finalistsHighCardCount = localpossibleWinners[i].getHighCard().getValue();
 			winningPlayer=i;
 		}

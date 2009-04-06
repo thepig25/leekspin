@@ -15,8 +15,8 @@ public class Player extends Pack {
 	int[] elements;
 	Card [] poolCards;
 	int allCombosLength;
-	int highestFirstPair=1;
-	int highestSecondPair=1;
+	int highestFirstPair=-1;
+	int highestSecondPair=-1;
 	int bestBoolean=20;
 	int highCard=2;
 	int highestLowest=0;
@@ -196,11 +196,16 @@ public class Player extends Pack {
 						//System.out.println(testHand.firstMatch);
 						//System.out.println(testHand.highestSecondPair);
 					}
-						if(testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
-							highestSecondPair=testHand.highestSecondPair;
-							highestFirstPair=testHand.firstMatch;
-							bestPokerHand = testHand;
-							//System.out.println("lower 2 pair code");
+						if(testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair || testHand.firstMatch == 0){
+							if (testHand.firstMatch>highestFirstPair) {
+								highestSecondPair=testHand.highestSecondPair;
+								highestFirstPair=testHand.firstMatch;
+								bestPokerHand = testHand;
+								
+								System.out.println("In "+bestBoolean+ "best hand is ");
+								bestPokerHand.printPokerHand();
+								System.out.println(" ");
+							}
 						}
 						
 						
@@ -236,10 +241,12 @@ public class Player extends Pack {
 			return bestPokerHand.getCard();
 		}
 	
-	public  PokerHand getBestPokerHand(){
+	/*public  PokerHand getBestPokerHand(){
 		getBestHand();
+		System.out.println("printing @ getBestPokerHand");
+		bestPokerHand.printPokerHand();
 		return bestPokerHand;
-	}
+	}*/
 		
 		
 		   // need to add the community and pocket card arrays together here!
@@ -255,7 +262,7 @@ public class Player extends Pack {
 		//System.out.println("showCards length: "+showCards.length);
 		for (int i=0;i<showCards.length;i++){
 			
-			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
+			System.out.println(showCards[i].getValue()+" of "+showCards[i].getSuitAsString());
 		}
 	}
 
