@@ -200,7 +200,7 @@ public class Player extends Pack {
 					if(testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair || (tempy[0].getValue()==0&&tempy[1].getValue()==0)){
 							
 						
-						if (testHand.firstMatch>highestFirstPair) {
+						if (testHand.firstMatch>highestFirstPair||testHand.firstMatch==0) {
 								highestSecondPair=testHand.highestSecondPair;
 								highestFirstPair=testHand.firstMatch;
 								bestPokerHand = testHand.getCard();
