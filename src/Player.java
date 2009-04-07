@@ -20,6 +20,7 @@ public class Player extends Pack {
 	int bestBoolean=20;
 	int highCard=2;
 	int highestLowest=0;
+	int highestGeneralPair=0;
 	
 	
 
@@ -54,6 +55,8 @@ public class Player extends Pack {
 					
 	}
 	
+	
+	
 	// this takes an array of dealt cards then adds them to the
 	// the private variable which holds the player's hand.
 	// This is just for the first two pocket cards a player gets
@@ -65,6 +68,16 @@ public class Player extends Pack {
 		}
 	}
 	
+public int getPlayerHighCard(){
+		Card [] temp = playerHand;
+		
+		if(temp [0].getValue()>temp [1].getValue()){
+			return temp [0].getValue();
+		}
+		else{
+			return temp [1].getValue();
+		}
+	}
 	
 	public void printPocketHand(){ // prints pocket pair
 	
@@ -194,16 +207,18 @@ public class Player extends Pack {
 						bestBoolean=testHand.testBooleans();
 						//System.out.println("upper 2 pair code");
 						//System.out.println(testHand.firstMatch);
-						//System.out.println(testHand.highestSecondPair);
+						
 					}
 						Card [] tempy = testHand.firstTwo();
-					if(testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair || (tempy[0].getValue()==0&&tempy[1].getValue()==0)){
-							
+
+					if((testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair) || (tempy[0].getValue()==0&&tempy[1].getValue()==0&&testHand.highestSecondPair>highestSecondPair)){
+							//if(testHand.getLastCardValue()>highCard&&bestBoolean==7){
 						
-						if (testHand.firstMatch>highestFirstPair||testHand.firstMatch==0) {
+						if (getPlayerHighCard()==testHand.getNonPair()) {
 								highestSecondPair=testHand.highestSecondPair;
 								highestFirstPair=testHand.firstMatch;
 								bestPokerHand = testHand.getCard();
+								highCard=testHand.getHighCard().getValue();
 								
 								System.out.println("In "+bestBoolean+ "best hand is ");
 								//bestPokerHand.printPokerHand();
@@ -214,10 +229,29 @@ public class Player extends Pack {
 						System.out.println("outside 2nd if loop");
 							//bestPokerHand.printPokerHand();
 							System.out.println(" ");
-						}
-						
+							//}
+							
+							}
+					
 						
 					}
+				
+				
+				if(testHand.testBooleans()==3){
+					if(testHand.testBooleans()<bestBoolean){
+						bestBoolean=testHand.testBooleans();
+					}
+					if(testHand.firstMatch>highestGeneralPair||testHand.firstMatch==0){
+						highestGeneralPair=testHand.firstMatch;
+						bestPokerHand = testHand.getCard();
+					}
+					if(testHand.highestSecondPair>highestGeneralPair||testHand.highestSecondPair==0){
+						highestGeneralPair=testHand.highestSecondPair;
+						bestPokerHand = testHand.getCard();
+						
+					}
+				}
+				
 				
 				
 				//System.out.println("Best Boolean is ");
@@ -231,10 +265,20 @@ public class Player extends Pack {
 					
 				}
 				
-				if(testHand.testBooleans()==bestBoolean&&testHand.getHighCard().getValue()>highCard&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=7){
+				
+				
+				
+				if(testHand.testBooleans()==bestBoolean&&(testHand.getHighCard().getValue()>highCard||testHand.getHighCard().getValue()==0)&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=7&&testHand.testBooleans()!=3){
 						
-						//System.out.println(testHand.testBooleans());
-						highCard=testHand.getHighCard().getValue();
+						System.out.println("above if "+highCard);
+												
+						if(testHand.getHighCard().getValue()==0){
+							highCard=30; // Ace is the top card so we won't get a higher card then that
+						}
+						else{
+							highCard=testHand.getHighCard().getValue();	
+						}
+						
 						bestPokerHand = testHand.getCard();
 						//System.out.println("Current best 5 are: ");
 						//Card bestCard = bestPokerHand[5];
@@ -270,7 +314,9 @@ public class Player extends Pack {
 	
 	public  void showBestHand(){
 		Card [] showCards = getBestHand();
-		System.out.println("Player's best hand is: ");
+		PokerHand newCard = new PokerHand(showCards);
+		showCards=newCard.getCard();
+		//System.out.println("Player's best hand is: ");
 		//System.out.println("showCards length: "+showCards.length);
 		for (int i=0;i<showCards.length;i++){
 			

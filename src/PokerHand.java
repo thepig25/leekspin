@@ -401,7 +401,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	}
 
 	public Card getHighCard(){
-		if (mySortedCards[0].getValue()==1){ // check for an ace which counts as a 1 numerically
+		if (mySortedCards[0].getValue()==0){ // check for an ace which counts as a 1 numerically
 			return mySortedCards[0];
 		}
 		else{
@@ -411,9 +411,9 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	
 	public Card getLowestHighCard()  {
 		
-		if(mySortedCards[0].getValue() == 1){
+		if(mySortedCards[0].getValue() == 0){
 			for(int i = 0; i < 5 ; i++){
-				if(mySortedCards[i].getValue() != 1){
+				if(mySortedCards[i].getValue() != 0){
 					return mySortedCards[i];
 				}
 			}
@@ -442,5 +442,21 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		myCard [1] =mySortedCards[1];
 		return myCard;
 		
+	}
+	
+	public int getLastCardValue(){
+		return mySortedCards[4].getValue();
+	}
+	
+	public int getNonPair(){
+		if(isTwoPair()){
+			for (int i=0;i<mySortedCards.length;i++){
+				if(mySortedCards[i].getValue()!= firstMatch&&mySortedCards[i].getValue()!= highestSecondPair){
+					return mySortedCards[i].getValue();
+				}
+			}
+		}
+		
+		return 0;
 	}
 }

@@ -34,9 +34,14 @@ public Player winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ /
 	
 	PokerHand[] localpossibleWinners = possibleWinners;
 	
-	System.out.println("Cards passed in are: ");
+	System.out.println("Cards passed for player 1 in are: ");
 	for(int i=0;i<localpossibleWinners[0].mySortedCards.length;i++){
 		System.out.println(localpossibleWinners[0].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[0].mySortedCards[i].getSuitAsString());
+	}
+	
+	System.out.println("Cards passed for player 2 in are: ");
+	for(int i=0;i<localpossibleWinners[1].mySortedCards.length;i++){
+		System.out.println(localpossibleWinners[1].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[1].mySortedCards[i].getSuitAsString());
 	}
 	
 	

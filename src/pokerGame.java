@@ -9,7 +9,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 		Player [] positions = new Player[NOplayer];
 		// code for deciding dealer goes here
 		gameOver = NOplayer;
-		positions[0] = new HumanPlayer("Hugh Man",startAmount,null);
+		positions[0] = new AI_Player("Hugh Man",startAmount,null);
 		positions[1] = new AI_Player ("Megatron",startAmount,null);
 		
 		
