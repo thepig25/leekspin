@@ -177,11 +177,11 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 				}
 				
 			}
-			for(int j=0;j<hand.length;j++){
-				System.out.println(hand[j].getValueAsString());
+			/*for(int j=0;j<hand.length;j++){
+				System.out.println(hand[j].getValueAsString());*/
 				
-			}
-			System.out.println(" ");
+			/*}
+			System.out.println(" ");*/
 		}
 		/*System.out.println("Sorted:");
 		for(int i=0;i<hand.length;i++){
@@ -435,5 +435,12 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		for (int i=0;i<mySortedCards.length;i++){
 			System.out.println(mySortedCards[i].getValueAsString()+" "+mySortedCards[i].getSuitAsString());
 		}
+	}
+	public Card[] firstTwo(){
+		Card [] myCard = new Card[2];
+		myCard [0] =mySortedCards[0];
+		myCard [1] =mySortedCards[1];
+		return myCard;
+		
 	}
 }

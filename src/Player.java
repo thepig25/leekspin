@@ -10,7 +10,7 @@ public class Player extends Pack {
 	Card[] communityCards = new Card[3];
 	int cardCount=0;
 	int cardPocketCount=0;
-	PokerHand bestPokerHand;
+	Card [] bestPokerHand;
 	CombinationGenerator x;
 	int[] elements;
 	Card [] poolCards;
@@ -119,7 +119,7 @@ public class Player extends Pack {
 			PokerHand testHand=new PokerHand(poolCards);
 			bestBoolean=testHand.testBooleans();
 			PokerHand test1Hand=new PokerHand(poolCards);
-			bestPokerHand=test1Hand;
+			bestPokerHand=test1Hand.getCard();
 			
 			return poolCards;
 			
@@ -190,22 +190,30 @@ public class Player extends Pack {
 				
 				PokerHand testHand=new PokerHand(testCard[j]);
 				if(testHand.testBooleans()==7){ // special case for two pair
-					if(testHand.testBooleans()<=bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
+					if(testHand.testBooleans()<bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
 						bestBoolean=testHand.testBooleans();
 						//System.out.println("upper 2 pair code");
 						//System.out.println(testHand.firstMatch);
 						//System.out.println(testHand.highestSecondPair);
 					}
-						if(testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair || testHand.firstMatch == 0){
-							if (testHand.firstMatch>highestFirstPair) {
+						Card [] tempy = testHand.firstTwo();
+					if(testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair || (tempy[0].getValue()==0&&tempy[1].getValue()==0)){
+							
+						
+						if (testHand.firstMatch>highestFirstPair) {
 								highestSecondPair=testHand.highestSecondPair;
 								highestFirstPair=testHand.firstMatch;
-								bestPokerHand = testHand;
+								bestPokerHand = testHand.getCard();
 								
 								System.out.println("In "+bestBoolean+ "best hand is ");
-								bestPokerHand.printPokerHand();
+								//bestPokerHand.printPokerHand();
 								System.out.println(" ");
 							}
+							
+						
+						System.out.println("outside 2nd if loop");
+							//bestPokerHand.printPokerHand();
+							System.out.println(" ");
 						}
 						
 						
@@ -219,16 +227,18 @@ public class Player extends Pack {
 					bestBoolean=testHand.testBooleans();
 					highCard=testHand.getHighCard().getValue();
 					highestLowest=testHand.getLowestHighCard().getValue();
-					bestPokerHand = testHand;
+					bestPokerHand = testHand.getCard();
+					
 				}
 				
 				if(testHand.testBooleans()==bestBoolean&&testHand.getHighCard().getValue()>highCard&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=7){
 						
 						//System.out.println(testHand.testBooleans());
 						highCard=testHand.getHighCard().getValue();
-						bestPokerHand = testHand;
+						bestPokerHand = testHand.getCard();
 						//System.out.println("Current best 5 are: ");
-						Card bestCard = bestPokerHand.getHighCard();
+						//Card bestCard = bestPokerHand[5];
+						
 						
 				}
 				
@@ -237,16 +247,18 @@ public class Player extends Pack {
 			}
 			
 			
-			
-			return bestPokerHand.getCard();
+			//System.out.println("printing @ end of getBestHand");
+			//bestPokerHand.printPokerHand();
+			return bestPokerHand;
 		}
 	
-	/*public  PokerHand getBestPokerHand(){
+	public  PokerHand getBestPokerHand(){
 		getBestHand();
-		System.out.println("printing @ getBestPokerHand");
-		bestPokerHand.printPokerHand();
-		return bestPokerHand;
-	}*/
+		//System.out.println("printing @ getBestPokerHand");
+		//bestPokerHand.printPokerHand();
+		PokerHand tempPokerHand = new PokerHand(bestPokerHand);
+		return tempPokerHand;
+	}
 		
 		
 		   // need to add the community and pocket card arrays together here!
@@ -262,7 +274,7 @@ public class Player extends Pack {
 		//System.out.println("showCards length: "+showCards.length);
 		for (int i=0;i<showCards.length;i++){
 			
-			System.out.println(showCards[i].getValue()+" of "+showCards[i].getSuitAsString());
+			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
 		}
 	}
 
