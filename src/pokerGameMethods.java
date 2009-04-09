@@ -30,7 +30,7 @@ public int chooseNextDealer(int amtPlayers, int currentDealer){
 }
 
 
-public Player winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ // this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
+public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ // this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
 	
 	PokerHand[] localpossibleWinners = possibleWinners;
 	
@@ -57,14 +57,31 @@ public Player winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ /
 	int finalistsHighCardCount=0;
 	int winningPlayer=0;
 	
+	int [] intWinners = new int[involvedPlayers.length];
+	Player [] playerWinners = new Player[involvedPlayers.length];
+	
 	for(int i=0;i<localpossibleWinners.length;i++){ // now need to check for any other players with the same hand and use the highest card to determine the winner
-		if(localpossibleWinners[i].testBooleans()==bestBoolean && (localpossibleWinners[i].getHighCard().getValue()>finalistsHighCardCount||localpossibleWinners[i].getHighCard().getValue()==0)){
+		if(localpossibleWinners[i].testBooleans()==bestBoolean && (localpossibleWinners[i].getHighCard().getValue()>=finalistsHighCardCount||localpossibleWinners[i].getHighCard().getValue()==0)){
 			finalistsHighCardCount = localpossibleWinners[i].getHighCard().getValue();
-			winningPlayer=i;
+			
 		}
 	}
 	
-	return involvedPlayers[winningPlayer];
+	for(int i=0;i<localpossibleWinners.length;i++){ // need to check for split pots
+		if(localpossibleWinners[i].testBooleans()==bestBoolean && localpossibleWinners[i].getHighCard().getValue()==finalistsHighCardCount){
+			int temp =i;
+			intWinners[i]=temp;
+			
+		}
+	}
+	
+	for(int i=0;i<localpossibleWinners.length;i++){
+		int temp2=intWinners[i];
+		playerWinners[i]=involvedPlayers[temp2];
+	}
+	
+	
+	return playerWinners;
 	
 }
 

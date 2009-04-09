@@ -124,8 +124,21 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			PokerHand [] winningCards = {positions[0].getBestPokerHand(),positions[1].getBestPokerHand()};
 			
-			Player winner = winner(positions,winningCards);
-			System.out.println ("Winner is:"+ winner.getName());
+			
+			Player [] winner = winner(positions,winningCards);
+			
+			if(winner.length>=2){
+				System.out.print ("Split pot between ");
+			}
+			else{
+				System.out.println ("Winner is: ");
+			}
+			
+			for(int i=0;i<winner.length;i++){
+				
+				System.out.print (winner[i].getName()+" ");
+			}
+			
 			
 		}
 	}
