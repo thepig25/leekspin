@@ -61,7 +61,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 		if(isStraightFlush()){
 			if(printedBoolean==false){
-				//System.out.println("Straight flush");
+				System.out.println("Straight flush");
 				printedBoolean=true;
 				SF++;
 			}
@@ -265,7 +265,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	public boolean isStraight(){
 		boolean smallStraight=false;
 		//Card[] theseSortedCards = sortedCards(theseCards);
-
+		
 
 		if(mySortedCards[0].getValue()==0&&mySortedCards[1].getValue()==9&&mySortedCards[2].getValue()==10
 				&& mySortedCards[3].getValue()==11 && mySortedCards[4].getValue()==12){
@@ -275,6 +275,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		for(int i=0;i<mySortedCards.length-1;i++){
 			if(((mySortedCards[i+1]).getValue())-((mySortedCards[i]).getValue())==1){
 				smallStraight=true; // holds true for every iteration of for loop if value is always greater than the next
+				//System.out.println("Testing for straight");
 			}
 
 			else{

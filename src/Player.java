@@ -21,6 +21,7 @@ public class Player extends Pack {
 	int highCard=2;
 	int highestLowest=0;
 	int highestGeneralPair=0;
+	int highStraightCard=0;
 	
 	
 
@@ -237,7 +238,7 @@ public int getPlayerHighCard(){
 					}
 				
 				
-				if(testHand.testBooleans()==3){
+				if(testHand.testBooleans()==3){ // full house
 					if(testHand.testBooleans()<bestBoolean){
 						bestBoolean=testHand.testBooleans();
 					}
@@ -252,6 +253,19 @@ public int getPlayerHighCard(){
 					}
 				}
 				
+				if(testHand.testBooleans()==5||testHand.testBooleans()==1){//straight and straight flush
+					System.out.println("in straight code");
+					if(testHand.testBooleans()<bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
+						bestBoolean=testHand.testBooleans();
+					}
+					
+					if(testHand.getLastCardValue()>highStraightCard&&testHand.testBooleans()==bestBoolean){
+						bestPokerHand = testHand.getCard();
+						highStraightCard=testHand.getLastCardValue();
+					}
+					
+					
+				}
 				
 				
 				//System.out.println("Best Boolean is ");
@@ -268,7 +282,7 @@ public int getPlayerHighCard(){
 				
 				
 				
-				if(testHand.testBooleans()==bestBoolean&&(testHand.getHighCard().getValue()>highCard||testHand.getHighCard().getValue()==0)&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=7&&testHand.testBooleans()!=3){
+				if(testHand.testBooleans()==bestBoolean&&(testHand.getHighCard().getValue()>highCard||testHand.getHighCard().getValue()==0)&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=7&&testHand.testBooleans()!=3&&testHand.testBooleans()!=5&&testHand.testBooleans()!=1){
 						
 						System.out.println("above if "+highCard);
 												
