@@ -4,6 +4,10 @@ import java.util.Random;
 public class pokerGameMethods extends Pack {
 
 	int bestBoolean=10;
+	int currentBet=0;
+	private int potTotal;
+	private Player [] involvedPlayers;
+	private int [] intInvolvedPlayers;
 	
 public int chooseFirstDealer(int amtPlayers){
 		
@@ -29,6 +33,9 @@ public int chooseNextDealer(int amtPlayers, int currentDealer){
 	}
 }
 
+public int returnPot(){
+	return potTotal;
+}
 
 public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ // this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
 	
@@ -85,7 +92,70 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
 	
 }
 
+public void bettingRound(Player [] tempPlayers){
+	setPlayers(tempPlayers);
+	getHighestBet();
+	setPot();
+}
 
+
+public void setPlayers(Player [] players){
+	involvedPlayers = new Player[players.length];
+	intInvolvedPlayers = new int[players.length];
+	involvedPlayers=players;
+}
+public Player [] getInvolvedPlayers(){
+	Player [] tempInvolvedPlayers = new Player[intInvolvedPlayers.length];
+	int tempInvolvedPlayersCount =0;
+	for(int i=0;i<involvedPlayers.length;i++){
+		for(int j=0;j<involvedPlayers.length;j++){
+			if(intInvolvedPlayers[i]==involvedPlayers[j].playerID){
+				tempInvolvedPlayers[tempInvolvedPlayersCount]=involvedPlayers[j];
+				tempInvolvedPlayersCount++;
+		}
+		
+			
+		}
+	}
+	return tempInvolvedPlayers;
+}
+
+public void getBetAndPot(){
+	getHighestBet();
+	setPot();
+}
+
+public int getHighestBet(){
 	
+	//currentBet=involvedPlayers[0].getBet();
+	//addToPot(currentBet);
+	
+	for(int i=0;i<involvedPlayers.length;i++){
+		if(involvedPlayers[i].getBet(currentBet)>currentBet){ // go back to first player if bet has increased
+			currentBet=involvedPlayers[i].getBet(currentBet);
+			getHighestBet();
+		}
+	}
+	return currentBet;
+}
+
+private void setPot(){
+	//int [] tempInvolvedPlayers = new int[involvedPlayers.length];
+	int tempInvolvedPlayersCount=0;
+	for(int i=0;i<involvedPlayers.length;i++){
+		if(involvedPlayers[i].getBet(currentBet)==currentBet){ // find players who are matching the current bet and get their ID
+			int temp=involvedPlayers[i].playerID;
+			System.out.println(temp);
+			intInvolvedPlayers[tempInvolvedPlayersCount] = temp;
+			tempInvolvedPlayersCount++;
+			addToPot(involvedPlayers[i].getBet(currentBet));
+		}
+	}
+	
+}
+
+private void addToPot(int playerBet){
+	potTotal = potTotal + playerBet;
+}
 }
 

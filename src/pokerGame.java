@@ -9,8 +9,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 		Player [] positions = new Player[NOplayer];
 		// code for deciding dealer goes here
 		gameOver = NOplayer;
-		positions[0] = new AI_Player("Hugh Man",startAmount,null);
-		positions[1] = new AI_Player ("Megatron",startAmount,null);
+		positions[0] = new HumanPlayer("Hugh Man",startAmount,null,0);
+		positions[1] = new AI_Player ("Megatron",startAmount,null,1);
 		
 		
 		
@@ -49,9 +49,16 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			System.out.print("Player "+positions[1].getName()+" has been dealt a ");
 			positions[1].printPocketHand();
 			
+			bettingRound(positions);
+			positions = getInvolvedPlayers();
 			
-			pot = positions[0].getBet(); // first round of betting
-			pot = pot+ positions[1].getBet();
+			System.out.println(positions[0].getName());
+			System.out.println(positions[1].getName());
+			System.out.println(returnPot());
+			
+			
+			//pot = positions[0].getBet(); // first round of betting
+			//pot = pot+ positions[1].getBet();
 			
 			deal = myPack.getCommmunitySpecial();
 			positions[0].receiveCommunityCards(deal); 
@@ -76,8 +83,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			
 			
-			pot = pot+ positions[0].getBet(); // 2nd round of betting
-			pot = pot+ positions[1].getBet(); // 2nd round of betting
+			//pot = pot+ positions[0].getBet(); // 2nd round of betting
+			//pot = pot+ positions[1].getBet(); // 2nd round of betting
 			
 			//deal = myPack.dealOneCardArray(); // deal 1 community card
 			
@@ -96,8 +103,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			
 			
-			pot = pot+ positions[0].getBet(); // 3rd round of betting
-			pot = pot+ positions[1].getBet(); // 3rd round of betting
+			//pot = pot+ positions[0].getBet(); // 3rd round of betting
+			//pot = pot+ positions[1].getBet(); // 3rd round of betting
 			
 			//deal = myPack.dealOneCardArray(); // deal final community card
 			
@@ -113,8 +120,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			System.out.println("Player "+positions[1].getName()+"'s best hand is:");
 			positions[1].showBestHand();
 			
-			pot = pot+ positions[0].getBet(); // final round of betting
-			pot = pot+ positions[1].getBet(); // final round of betting
+			//pot = pot+ positions[0].getBet(); // final round of betting
+			//pot = pot+ positions[1].getBet(); // final round of betting
 
 			
 			System.out.println("Pot is: " +pot);

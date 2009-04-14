@@ -22,13 +22,15 @@ public class Player extends Pack {
 	int highestLowest=0;
 	int highestGeneralPair=0;
 	int highStraightCard=0;
+	int playerID;
 	
 	
 
 	
-	public Player(String Name, int Chips, Card[] currentHand){ // constructor for player
+	public Player(String Name, int Chips, Card[] currentHand,int tempPlayerID){ // constructor for player
 		currentMoney=Chips; // initialise currentMoney to the starting amount
 		name = Name;
+		playerID = tempPlayerID;
 	}
 	
 	public String getName(){
@@ -101,7 +103,7 @@ public int getPlayerHighCard(){
 		return  decision; // 0=fold,1=check/call, 2=raise
 	}
 	
-	public int getBet(){
+	public int getBet(int currentBet){
 		if(decision!=0){
 			return bet;
 		}
