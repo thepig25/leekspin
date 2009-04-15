@@ -8,6 +8,8 @@ public class pokerGameMethods extends Pack {
 	private int potTotal;
 	private Player [] involvedPlayers;
 	private int [] intInvolvedPlayers;
+	private int BlindLevel=1;
+	int currentMoney;
 	
 	public void dealPocketCard(Pack myPack, Player [] positions){
 		Card[] deal;
@@ -267,5 +269,20 @@ public void resetCounters(Player [] players){
 		players[i].resetCounters();
 	}
 }
+public int dealBlinds(int currentDealer, int pokerGame,Player [] positions){
+	int smallBlind = currentMoney + positions[(currentDealer + 1) % 2]. TakeMoney(BlindLevel * 10);
+	int bigBlind = currentMoney + positions[(currentDealer + 2) % 2]. TakeMoney(BlindLevel * 20);
+	
+	for(int i = 0, i < dealBlinds, i++){
+		if(int i ==10){
+			BlindLevel++;
+			}						//counter for 10rounds so that the blinds will increse
+	
+		
+		}
+	return smallBlind+bigBlind;
+	}
+
+
 }
 
