@@ -126,7 +126,7 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
 			}
 		}
 		
-		// case for two pair
+		
 		
 		
 		
@@ -144,22 +144,32 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
 	
 	for(int i=0;i<localpossibleWinners.length;i++){ // need to check for split pots
 		
+		//pair
+		
 		if(localpossibleWinners[i].testBooleans()==bestBoolean && bestBoolean==8 && localpossibleWinners[i].firstMatch==finalistsHighCardCount){
+			int[] tempCopy = new int[(intWinners.length)];
+			System.arraycopy(intWinners, 0, tempCopy, 0, tempCopy.length);
+			intWinners = new int[(intWinners.length+1)];
+			System.arraycopy(tempCopy, 0,intWinners , 0, tempCopy.length);
+			
 			int temp =i;
 			intWinners[i]=temp;
 		}
 		
 		
 		if(localpossibleWinners[i].testBooleans()==bestBoolean && bestBoolean!=8 && localpossibleWinners[i].getHighCard().getValue()==finalistsHighCardCount){
-			int temp =i;
-			intWinners[i]=temp;
 			int[] tempCopy = new int[(intWinners.length)];
 			System.arraycopy(intWinners, 0, tempCopy, 0, tempCopy.length);
 			intWinners = new int[(intWinners.length+1)];
 			System.arraycopy(tempCopy, 0,intWinners , 0, tempCopy.length);
 			
+			int temp =i;
+			intWinners[i]=temp;
+
+			
 		}
 	}
+	System.out.println("length"+intWinners.length);
 	Player [] playerWinners = new Player[intWinners.length];
 	for(int i=0;i<intWinners.length;i++){
 		int temp2=intWinners[i];
