@@ -33,6 +33,13 @@ public class Player extends Pack {
 		playerID = tempPlayerID;
 	}
 	
+	public void rewardPlayer(int amount){
+		currentMoney=currentMoney+amount;
+	}
+	public void resetCounters(){
+		
+	}
+	
 	public String getName(){
 		return name;
 	}
@@ -338,6 +345,8 @@ public int getPlayerHighCard(){
 			
 			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
 		}
+		
+		
 	}
 
 }

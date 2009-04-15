@@ -15,8 +15,8 @@ public class AI_Player extends Player {
 		
 		if(askCount<1){
 		bet = 20;
-		if (highestCurrentBet>bet){
-			return highestCurrentBet;
+		if (highestCurrentBet>bet){ // <<<-------- this is where the AI coding needs to go
+			bet = highestCurrentBet;
 		}
 		currentMoney = currentMoney - bet;
 		askCount++;

@@ -9,6 +9,52 @@ public class pokerGameMethods extends Pack {
 	private Player [] involvedPlayers;
 	private int [] intInvolvedPlayers;
 	
+	public void dealPocketCard(Pack myPack, Player [] positions){
+		Card[] deal;
+		for(int i=0;i<positions.length;i++){
+			deal = myPack.dealOneCardArray();
+			positions[i].receivePocketCards(deal);
+		}
+		for(int i=0;i<positions.length;i++){
+			deal = myPack.dealOneCardArray();
+			positions[i].receivePocketCards(deal);
+		}
+		
+	}
+	
+	public void dealFlopCommunityCards(Pack myPack, Player [] positions){
+		Card[] deal = myPack.dealThreeCardArray();
+		for(int i=0;i<positions.length;i++){
+			positions[i].receiveCommunityCards(deal); 
+		}
+	}
+	
+	public void dealTurn(Pack myPack, Player [] positions){
+		Card[] deal = myPack.dealOneCardArray();
+		int printCount=0;
+		for(int i=0;i<positions.length;i++){
+			
+			positions[i].receiveCommunityCards(deal);
+			if(printCount<1){
+				System.out.println("Turn card is a "+deal[i].getValueAsString()+" of "+deal[i].getSuitAsString());
+				printCount++;
+			}
+		}
+		
+	}
+	
+	public void dealRiver(Pack myPack, Player [] positions){
+		Card[] deal = myPack.dealOneCardArray();
+		int printCount=0;
+		for(int i=0;i<positions.length;i++){
+			
+			positions[i].receiveCommunityCards(deal);
+			if(printCount<1){
+				System.out.println("River card is a "+deal[i].getValueAsString()+" of "+deal[i].getSuitAsString());
+				printCount++;
+			}
+		}
+	}
 public int chooseFirstDealer(int amtPlayers){
 		
 		Random rand = new Random();
@@ -41,14 +87,14 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
 	
 	PokerHand[] localpossibleWinners = possibleWinners;
 	
-	System.out.println("Cards passed for player 1 in are: ");
-	for(int i=0;i<localpossibleWinners[0].mySortedCards.length;i++){
-		System.out.println(localpossibleWinners[0].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[0].mySortedCards[i].getSuitAsString());
+	System.out.println("Cards passed for player 1 in are: "); // print statements
+	for(int i=0;i<localpossibleWinners[0].mySortedCards.length;i++){// print statements
+		System.out.println(localpossibleWinners[0].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[0].mySortedCards[i].getSuitAsString());// print statements
 	}
 	
-	System.out.println("Cards passed for player 2 in are: ");
-	for(int i=0;i<localpossibleWinners[1].mySortedCards.length;i++){
-		System.out.println(localpossibleWinners[1].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[1].mySortedCards[i].getSuitAsString());
+	System.out.println("Cards passed for player 2 in are: "); // print statements
+	for(int i=0;i<localpossibleWinners[1].mySortedCards.length;i++){// print statements
+		System.out.println(localpossibleWinners[1].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[1].mySortedCards[i].getSuitAsString());// print statements
 	}
 	
 	
@@ -56,7 +102,7 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
 	for(int i=0;i<localpossibleWinners.length;i++){
 		if(localpossibleWinners[i].testBooleans()<bestBoolean){ //go through pokerCard array and find best hand
 			bestBoolean=localpossibleWinners[i].testBooleans();
-			
+			System.out.println("Best boolean is:"+bestBoolean);
 		}
 	}
 	
@@ -64,25 +110,58 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
 	int finalistsHighCardCount=0;
 	int winningPlayer=0;
 	
-	int [] intWinners = new int[involvedPlayers.length];
-	Player [] playerWinners = new Player[involvedPlayers.length];
+	int [] intWinners = new int[1];
+	
 	
 	for(int i=0;i<localpossibleWinners.length;i++){ // now need to check for any other players with the same hand and use the highest card to determine the winner
-		if(localpossibleWinners[i].testBooleans()==bestBoolean && (localpossibleWinners[i].getHighCard().getValue()>=finalistsHighCardCount||localpossibleWinners[i].getHighCard().getValue()==0)){
-			finalistsHighCardCount = localpossibleWinners[i].getHighCard().getValue();
+		
+		// case for pairs
+		if(localpossibleWinners[i].testBooleans()==bestBoolean&&bestBoolean==8&&(localpossibleWinners[i].firstMatch>finalistsHighCardCount||localpossibleWinners[i].firstMatch==0)){
+			System.out.println("in 8 code");
+			if(localpossibleWinners[i].firstMatch==0){
+				finalistsHighCardCount=13;
+			}
+			else{
+				finalistsHighCardCount = localpossibleWinners[i].firstMatch;
+			}
+		}
+		
+		// case for two pair
+		
+		
+		
+		if(localpossibleWinners[i].testBooleans()==bestBoolean && localpossibleWinners[i].testBooleans()!=8 && (localpossibleWinners[i].getHighCard().getValue()>=finalistsHighCardCount||localpossibleWinners[i].getHighCard().getValue()==0)){
+			if(localpossibleWinners[i].getHighCard().getValue()==0){
+				finalistsHighCardCount=13;
+			}
+			else{
+				finalistsHighCardCount = localpossibleWinners[i].getHighCard().getValue();
+			}
+			
 			
 		}
 	}
 	
 	for(int i=0;i<localpossibleWinners.length;i++){ // need to check for split pots
-		if(localpossibleWinners[i].testBooleans()==bestBoolean && localpossibleWinners[i].getHighCard().getValue()==finalistsHighCardCount){
+		
+		if(localpossibleWinners[i].testBooleans()==bestBoolean && bestBoolean==8 && localpossibleWinners[i].firstMatch==finalistsHighCardCount){
 			int temp =i;
 			intWinners[i]=temp;
+		}
+		
+		
+		if(localpossibleWinners[i].testBooleans()==bestBoolean && bestBoolean!=8 && localpossibleWinners[i].getHighCard().getValue()==finalistsHighCardCount){
+			int temp =i;
+			intWinners[i]=temp;
+			int[] tempCopy = new int[(intWinners.length)];
+			System.arraycopy(intWinners, 0, tempCopy, 0, tempCopy.length);
+			intWinners = new int[(intWinners.length+1)];
+			System.arraycopy(tempCopy, 0,intWinners , 0, tempCopy.length);
 			
 		}
 	}
-	
-	for(int i=0;i<localpossibleWinners.length;i++){
+	Player [] playerWinners = new Player[intWinners.length];
+	for(int i=0;i<intWinners.length;i++){
 		int temp2=intWinners[i];
 		playerWinners[i]=involvedPlayers[temp2];
 	}
@@ -154,8 +233,29 @@ private void setPot(){
 	
 }
 
+public void checkPlayerMoney(Player [] positions){
+	for (int i=0;i<positions.length;i++){
+		System.out.println(positions[i].checkMoney());
+	}
+	
+}
+
 private void addToPot(int playerBet){
 	potTotal = potTotal + playerBet;
+}
+
+public void rewardWinners(Player [] winners, int total){
+	int individualAmount = total/winners.length;
+	for (int i=0;i<winners.length;i++){
+		winners[i].rewardPlayer(individualAmount);
+		System.out.println("Player "+winners[i].getName()+" now has "+winners[i].checkMoney());
+	}
+}
+
+public void resetCounters(Player [] players){
+	for (int i=0;i<players.length;i++){
+		players[i].resetCounters();
+	}
 }
 }
 
