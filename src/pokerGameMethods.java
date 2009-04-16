@@ -10,6 +10,11 @@ public class pokerGameMethods extends Pack {
 	private int [] intInvolvedPlayers;
 	private int BlindLevel=1;
 	int currentMoney;
+	int HighCard=0;
+	int winningPlayer=0;
+	int firstPair=0;
+	int secondPair=0;
+	int temp;
 	
 	public void dealPocketCard(Pack myPack, Player [] positions){
 		Card[] deal;
@@ -85,7 +90,8 @@ public int returnPot(){
 	return potTotal;
 }
 
-public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ // this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
+//this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
+public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners){ 
 	
 	PokerHand[] localpossibleWinners = possibleWinners;
 	
@@ -115,7 +121,7 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
 	int [] intWinners = new int[1];
 	
 	
-	for(int i=0;i<localpossibleWinners.length;i++){ // now need to check for any other players with the same hand and use the highest card to determine the winner
+	for(int i=0;i<localpossibleWinners.length;i++){ // now need to check for any other players with the same hand. Then use the highest card to determine the winner
 		
 		// case for pairs
 		if(localpossibleWinners[i].testBooleans()==bestBoolean&&bestBoolean==8&&(localpossibleWinners[i].firstMatch>finalistsHighCardCount||localpossibleWinners[i].firstMatch==0)){
