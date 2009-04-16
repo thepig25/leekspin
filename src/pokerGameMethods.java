@@ -322,9 +322,14 @@ public void resetCounters(Player [] players){
         players[i].resetCounters();
     }
 }
-public int dealBlinds(int currentDealer, int pokerGame, int takeMoney, Player [] positions){
+public int dealBlinds(int currentDealer, int pokerGame, int takeMoney, int HandLevel, Player [] positions){
 	 
 	//increase hands
+	for(int i = 0, i < HandLevel, i++){
+		if(inti ==10){
+			blindLevel++;
+		}
+	}
 	//if it is 10 hands
 	//increase blindlevel
 	
@@ -341,6 +346,6 @@ public int dealBlinds(int currentDealer, int pokerGame, int takeMoney, Player []
 //	
 //		
 //		}
-	return removeBlinds;
+	return smallBlind+bigBlind;
 	}
 }
