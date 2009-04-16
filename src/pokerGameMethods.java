@@ -326,14 +326,14 @@ public int dealBlinds(int currentDealer, int pokerGame, int takeMoney, int HandL
 	 
 	//increase hands
 	for(int i = 0, i < HandLevel, i++){
-		if(inti ==10){
+		if(int i ==10){
 			blindLevel++;
 		}
 	}
 	//if it is 10 hands
 	//increase blindlevel
 	
-	//int smallBlind = currentMoney +
+	//int smallBlind = currentMoney + 
 	positions[(currentDealer + 1) % 2].removeBlinds(BlindLevel * 10);
 	//int bigBlind = currentMoney + 
 	positions[(currentDealer + 2) % 2]. removeBlinds(BlindLevel * 20);
