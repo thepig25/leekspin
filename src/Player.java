@@ -36,6 +36,11 @@ public class Player extends Pack {
 	public void rewardPlayer(int amount){
 		currentMoney=currentMoney+amount;
 	}
+	public void removeBlinds(int amount){
+		currentMoney = currentMoney-amount;
+	}
+
+	
 	public void resetCounters(){
 		
 	}
