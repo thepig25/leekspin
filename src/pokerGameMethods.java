@@ -93,82 +93,64 @@ public int returnPot(){
 }
 
 //this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
-public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners){
+public Player [] winner(Player [] involvedPlayers){
    
-    PokerHand[] localpossibleWinners = possibleWinners;
    
-    System.out.println("Cards passed for player 1 in are: "); // print statements
-    for(int i=0;i<localpossibleWinners[0].mySortedCards.length;i++){// print statements
-        System.out.println(localpossibleWinners[0].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[0].mySortedCards[i].getSuitAsString());// print statements
-    }
+    System.out.println("Cards passed for player"+ involvedPlayers[0].getName()+" are: "); // print statements
+    involvedPlayers[0].showBestHand();
    
-    System.out.println("Cards passed for player 2 in are: "); // print statements
-    for(int i=0;i<localpossibleWinners[1].mySortedCards.length;i++){// print statements
-        System.out.println(localpossibleWinners[1].mySortedCards[i].getValueAsString()+" "+localpossibleWinners[1].mySortedCards[i].getSuitAsString());// print statements
-    }
+    System.out.println("Cards passed for player"+ involvedPlayers[1].getName()+" are: "); // print statements
+    involvedPlayers[1].showBestHand();
    
    
    
-    for(int i=0;i<localpossibleWinners.length;i++){
-        if(localpossibleWinners[i].testBooleans()<bestBoolean){ //go through pokerCard array and find best hand
-            bestBoolean=localpossibleWinners[i].testBooleans();
+    for(int i=0;i<involvedPlayers.length;i++){ //go through pokerCard array and find best hand type
+
+        if(involvedPlayers[i].getBestPokerHand().testBooleans()<bestBoolean){ 
+            bestBoolean=involvedPlayers[i].getBestPokerHand().testBooleans();
             System.out.println("Best boolean is:"+bestBoolean);
         }
     }
-   
-    //PokerHand[] finalists = new PokerHand[involvedPlayers.length];
-
-   
-    int [] intWinners = new int[0];
+    Player [] finalWinners = new Player[0];
    
    
-    for(int i=0;i<localpossibleWinners.length;i++){ // now need to check for any other players with the same hand. Then use the highest card to determine the winner
+    for(int i=0;i<involvedPlayers.length;i++){ // now need to check for any other players with the same hand. Then use the highest card to determine the winner
        
-        // case for pairs
-        /*if(localpossibleWinners[i].testBooleans()==bestBoolean&&bestBoolean==8&&(localpossibleWinners[i].firstMatch>finalistsHighCardCount||localpossibleWinners[i].firstMatch==0)){
-            System.out.println("in 8 code");
-            if(localpossibleWinners[i].firstMatch==0){
-                finalistsHighCardCount=13;
-            }
-            else{
-                finalistsHighCardCount = localpossibleWinners[i].firstMatch;
-            }
-        }*/
-       
-        if(localpossibleWinners[i].testBooleans()==bestBoolean){
+        
+        if(involvedPlayers[i].getBestPokerHand().testBooleans()==bestBoolean){
            
             if(bestBoolean==9){
-                if(localpossibleWinners[i].getHighCard().getValue()>HighCard||localpossibleWinners[i].getHighCard().getValue()==0){
-                    if(localpossibleWinners[i].getHighCard().getValue()==0){
+                if(involvedPlayers[i].getBestPokerHand().getHighCard().getValue()>HighCard||involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==0){
+                    if(involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==0){
                         HighCard = 30; // ace is highest so can't touch it
                     }
                     else{
-                        HighCard = localpossibleWinners[i].getHighCard().getValue();
+                        HighCard = involvedPlayers[i].getBestPokerHand().getHighCard().getValue();
                     }
                 }
             }
            
             if(bestBoolean==8){
-                if(localpossibleWinners[i].firstMatch>firstPair||localpossibleWinners[i].firstMatch==0){
-                    if(localpossibleWinners[i].firstMatch==0){
+                if(involvedPlayers[i].getBestPokerHand().firstMatch>firstPair||involvedPlayers[i].getBestPokerHand().firstMatch==0){
+                    if(involvedPlayers[i].getBestPokerHand().firstMatch==0){
                         firstPair = 30;
                     }
                     else{
-                        firstPair = localpossibleWinners[i].firstMatch;
+                        firstPair = involvedPlayers[i].getBestPokerHand().firstMatch;
                     }
                    
                 }
             }
            
             if(bestBoolean==7){
-                if((localpossibleWinners[i].firstMatch>firstPair||localpossibleWinners[i].firstMatch==0)&&(localpossibleWinners[i].highestSecondPair>secondPair)){
-                    if(localpossibleWinners[i].firstMatch==0){
+                if((involvedPlayers[i].getBestPokerHand().firstMatch>firstPair||involvedPlayers[i].getBestPokerHand().firstMatch==0)&&(involvedPlayers[i].getBestPokerHand().highestSecondPair>secondPair)){
+                    if(involvedPlayers[i].getBestPokerHand().firstMatch==0){
                         firstPair=30;
-                        secondPair=localpossibleWinners[i].highestSecondPair;
+                        secondPair=involvedPlayers[i].getBestPokerHand().highestSecondPair;
                     }
                     else{
-                        firstPair=localpossibleWinners[i].firstMatch;
-                        secondPair=localpossibleWinners[i].highestSecondPair;
+                        firstPair=involvedPlayers[i].getBestPokerHand().firstMatch;
+                        secondPair=involvedPlayers[i].getBestPokerHand().highestSecondPair;
                     }
                 }
             }
@@ -176,63 +158,60 @@ public Player [] winner(Player [] involvedPlayers, PokerHand [] possibleWinners)
            
            
         }
-       
-       
-       
-/*        if(localpossibleWinners[i].testBooleans()==bestBoolean && localpossibleWinners[i].testBooleans()!=8 && (localpossibleWinners[i].getHighCard().getValue()>=finalistsHighCardCount||localpossibleWinners[i].getHighCard().getValue()==0)){
-            if(localpossibleWinners[i].getHighCard().getValue()==0){
-                finalistsHighCardCount=13;
-            }
-            else{
-                finalistsHighCardCount = localpossibleWinners[i].getHighCard().getValue();
-            }
-           
-           
-        }*/
     }
     int count=0;
    
-    for(int i=0;i<localpossibleWinners.length;i++){ // need to check for split pots
+    for(int i=0;i<involvedPlayers.length;i++){ // need to check for split pots
        
         //pair
        
-        if(localpossibleWinners[i].testBooleans()==bestBoolean){
+        if(involvedPlayers[i].getBestPokerHand().testBooleans()==bestBoolean){
            
-            int[] tempCopy = new int[(intWinners.length)];
-            System.arraycopy(intWinners, 0, tempCopy, 0, tempCopy.length);
-            intWinners = new int[(intWinners.length+1)];
-            System.arraycopy(tempCopy, 0,intWinners , 0, tempCopy.length);
+            if(bestBoolean==9&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==HighCard){
+            	Player[] tempCopy = new Player[(finalWinners.length)];
+                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+                finalWinners = new Player[(finalWinners.length+1)];
+                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+            	finalWinners[count]=involvedPlayers[i];
+            	 count++;
+            }
+            
            
+            if(bestBoolean==8&&involvedPlayers[i].getBestPokerHand().firstMatch==firstPair){
+            	Player[] tempCopy = new Player[(finalWinners.length)];
+                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+                finalWinners = new Player[(finalWinners.length+1)];
+                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+            	finalWinners[count]=involvedPlayers[i];
+            	 count++;
+            }
+            
            
-           
-           
-            if(bestBoolean==9&&localpossibleWinners[i].getHighCard().getValue()==HighCard){
-                temp =i;
-                intWinners[i]=temp;
+            if(bestBoolean==7&&involvedPlayers[i].getBestPokerHand().firstMatch==firstPair&&involvedPlayers[i].getBestPokerHand().highestSecondPair==secondPair){
+            	Player[] tempCopy = new Player[(finalWinners.length)];
+                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+                finalWinners = new Player[(finalWinners.length+1)];
+                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+            	finalWinners[count]=involvedPlayers[i];
+                count++;
+            }
+            
+            if (bestBoolean<7){
+            	Player[] tempCopy = new Player[(finalWinners.length)];
+                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+                finalWinners = new Player[(finalWinners.length+1)];
+                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+            	finalWinners[count]=involvedPlayers[i];
+            	 count++;
             }
            
-            if(bestBoolean==8&&localpossibleWinners[i].firstMatch==firstPair){
-                temp =i;
-                intWinners[i]=temp;
-            }
-           
-            if(bestBoolean==7&&localpossibleWinners[i].firstMatch==firstPair&&localpossibleWinners[i].highestSecondPair==secondPair){
-                temp=i;
-                intWinners[i]=temp;
-            }
-
         }
 
     }
-    System.out.println("length"+intWinners.length);
-    Player [] playerWinners = new Player[intWinners.length];
-    for(int i=0;i<intWinners.length;i++){
-        int temp2=intWinners[i];
-        playerWinners[i]=involvedPlayers[temp2];
-    }
+    System.out.println("length"+finalWinners.length);
    
    
-    return playerWinners;
+    return finalWinners;
    
 }
 
@@ -322,7 +301,7 @@ public void resetCounters(Player [] players){
         players[i].resetCounters();
     }
 }
-public int dealBlinds(int currentDealer, int pokerGame, int takeMoney, int HandLevel, Player [] positions){
+/*public int dealBlinds(int currentDealer, int pokerGame, int takeMoney, int HandLevel, Player [] positions){
 	 
 	//increase hands
 	for(int i = 0, i < HandLevel, i++){
@@ -347,5 +326,5 @@ public int dealBlinds(int currentDealer, int pokerGame, int takeMoney, int HandL
 //		
 //		}
 	return smallBlind+bigBlind;
-	}
+	}*/
 }

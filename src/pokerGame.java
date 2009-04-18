@@ -89,7 +89,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			PokerHand [] winningCards = {reducedPositions[0].getBestPokerHand(),reducedPositions[1].getBestPokerHand()};
 			
 			
-			Player [] winner = winner(reducedPositions,winningCards);
+			Player [] winner = winner(reducedPositions);
 			
 			if(winner.length>=2){
 				System.out.print ("Split pot between ");
