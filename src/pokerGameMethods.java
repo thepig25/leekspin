@@ -167,7 +167,7 @@ public Player [] winner(Player [] involvedPlayers){
        
         if(involvedPlayers[i].getBestPokerHand().testBooleans()==bestBoolean){
            
-            if(bestBoolean==9&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==HighCard){
+            if((bestBoolean==9&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==HighCard)||(bestBoolean==9&&HighCard==30&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==0)){
             	Player[] tempCopy = new Player[(finalWinners.length)];
                 System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
                 finalWinners = new Player[(finalWinners.length+1)];
@@ -177,7 +177,7 @@ public Player [] winner(Player [] involvedPlayers){
             }
             
            
-            if(bestBoolean==8&&involvedPlayers[i].getBestPokerHand().firstMatch==firstPair){
+            if((bestBoolean==8&&involvedPlayers[i].getBestPokerHand().firstMatch==firstPair)||(bestBoolean==8&&firstPair==30&&involvedPlayers[i].getBestPokerHand().firstMatch==0)){
             	Player[] tempCopy = new Player[(finalWinners.length)];
                 System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
                 finalWinners = new Player[(finalWinners.length+1)];
@@ -319,10 +319,10 @@ public void dealBlinds(int currentDealer, Player [] positions){
 	}
 public int incrementDealer(int currentDealer, Player [] positions){
 	
-		if(handCounter > 1){
-			positions[(currentDealer + 1) % 2];
+	if(handCounter > 1){
+		positions[(currentDealer + 1) % 2];
 
-		}
 	}
+}
 
 }
