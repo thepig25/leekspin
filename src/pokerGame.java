@@ -4,6 +4,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 	
 	int gameOver;
 	private int pot;
+	int Dealer;
 	
 	public pokerGame(int NOplayer, int startAmount, int bigBlind){
 		Player [] positions = new Player[NOplayer];
@@ -24,7 +25,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			myPack.createPack();
 			myPack.Shuffle();
 			
-			int Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
+			Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
 			System.out.println("Dealer is player: "+Dealer);
 			dealBlinds(Dealer, positions);
 			System.out.println(positions[0].checkMoney());
@@ -108,6 +109,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			rewardWinners(winner,returnPot());
 			resetCounters(positions);
+			int temp = incrementDealer(Dealer, positions);
+			Dealer=temp;
 		}
 	}
 	
