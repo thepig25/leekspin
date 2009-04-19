@@ -26,7 +26,9 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			int Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
 			System.out.println("Dealer is player: "+Dealer);
-			
+			dealBlinds(Dealer, positions);
+			System.out.println(positions[0].checkMoney());
+			System.out.println(positions[1].checkMoney());
 			dealPocketCard(myPack, positions);
 			
 			for(int i=0;i<positions.length;i++){
