@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 public class MenuWindow extends Activity {
 	
 	private ImageButton start;
+	private ImageButton saved;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -25,9 +26,16 @@ public class MenuWindow extends Activity {
         
         start = (ImageButton)this.findViewById(R.id.b_start);
         start.setOnClickListener(l_start);
+        saved = (ImageButton)this.findViewById(R.id.b_saved);
+        saved.setOnClickListener(l_saved);
     }
     
     private OnClickListener l_start = new OnClickListener() {
+        public void onClick(View v) {
+        	startActivityForResult(new Intent("com.poker.action.GAME", null),0);
+        }
+    };
+    private OnClickListener l_saved = new OnClickListener() {
         public void onClick(View v) {
         	startActivityForResult(new Intent("com.poker.action.GAME", null),0);
         }

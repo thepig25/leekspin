@@ -13,19 +13,19 @@
 	</ImageView>
 	<ImageButton
 	android:id="@+id/b_start"
+    android:src="@drawable/new_button"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:text="Start Game"
-	android:src="@drawable/new_button"
 	android:layout_x="50px"
 	android:layout_y="300px">
 	</ImageButton>
 	<ImageButton
 	android:id="@+id/b_saved"
+    android:src="@drawable/saved_button"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:text="Start Game"
-	android:src="@drawable/saved_button"
+	android:text="Saved Game"
 	android:layout_y="300px"
 	android:layout_x="190px">
 	</ImageButton>

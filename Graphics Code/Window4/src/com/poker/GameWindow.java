@@ -51,7 +51,6 @@ public class GameWindow extends Activity{
         //card = (ImageView)this.findViewById(R.id.card2);
         //card.setImageResource(R.id.card2);
         //card.setLayoutParams(new Gallery.LayoutParams(20, 50));
-
         //card.setImageBitmap(bm);
         /**
         //card = (ImageView)this.findViewById(R.id.card1);

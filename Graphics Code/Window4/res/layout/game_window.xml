@@ -53,10 +53,6 @@
 	android:layout_height="wrap_content"
 	android:layout_y="270px" android:layout_x="180px">
 	</ImageView>
-	<ImageView
-	android:id="@+id/card2"
-	android:src="@drawable/card2">
-	</ImageView>
 	<TextView
 	android:id="@+id/tv1"
 	android:layout_width="fill_parent"
