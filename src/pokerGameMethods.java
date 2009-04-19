@@ -311,7 +311,7 @@ public void dealBlinds(int currentDealer, Player [] positions){
 	positions[(currentDealer + 1) % 2].removeBlinds(BlindLevel * 10);
 	addToPot(BlindLevel * 10);
 
-	positions[(currentDealer + 2) % 2]. removeBlinds(BlindLevel * 20);
+	positions[(currentDealer + 2) % 2].removeBlinds(BlindLevel * 20);
 	addToPot(BlindLevel * 20);
 	
 
@@ -319,8 +319,10 @@ public void dealBlinds(int currentDealer, Player [] positions){
 	}
 public int incrementDealer(int currentDealer, Player [] positions){
 	
-	positions[(currentDealer + 1) % 2];
-}
+	if(handCounter > 1){
+		positions[(currentDealer + 1) % 2];
 
+	}
+}
 
 }
