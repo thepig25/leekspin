@@ -9,7 +9,6 @@ public class pokerGameMethods extends Pack {
     private Player [] involvedPlayers;
     private int [] intInvolvedPlayers;
     private int BlindLevel=1;
-    private int HandLevel=1;
     int currentMoney;
     int HighCard=0;
     int winningPlayer=0;
