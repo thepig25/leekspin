@@ -317,4 +317,10 @@ public void dealBlinds(int currentDealer, Player [] positions){
 
 	handCounter++;
 	}
+public int incrementDealer(int currentDealer, Player [] positions){
+	
+	positions[(currentDealer + 1) % 2];
+}
+
+
 }

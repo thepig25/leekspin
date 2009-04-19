@@ -39,8 +39,9 @@ public class Player extends Pack {
 	public void removeBlinds(int amount){
 		currentMoney = currentMoney-amount;
 	}
-
-	
+	public void incrementDealer(){
+		
+	}
 	public void resetCounters(){
 		
 	}
