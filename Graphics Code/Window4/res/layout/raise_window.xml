@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+  	android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="6dip"
+    android:paddingRight="6dip"
+    android:paddingBottom="3dip">
+    <TextView
+	android:id="@+id/rby1"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="Raise By:">
+	</TextView>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+  	android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+	<Spinner
+	android:id="@+id/spin1"
+	android:layout_width="200px"
+	android:layout_height="wrap_content"
+    android:layout_gravity="left">
+	</Spinner>
+    <Button
+    android:id="@+id/ok"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:layout_gravity="right"
+    android:text="ok" />
+    </LinearLayout>
+</LinearLayout>
