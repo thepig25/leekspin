@@ -319,10 +319,10 @@ public void dealBlinds(int currentDealer, Player [] positions){
 	}
 public int incrementDealer(int currentDealer, Player [] positions){
 	
-	if(handCounter > 1){
-		positions[(currentDealer + 1) % 2];
+		if(handCounter > 1){
+			positions[(currentDealer + 1) % 2];
 
+		}
 	}
-}
 
 }
