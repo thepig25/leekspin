@@ -308,10 +308,10 @@ public void dealBlinds(int currentDealer, Player [] positions){
 			handCounter=0;
 		}
  
-	positions[(currentDealer + 1) % 2].removeBlinds(BlindLevel * 10);
+	positions[(currentDealer + 1) % positions.length].removeBlinds(BlindLevel * 10);
 	addToPot(BlindLevel * 10);
 
-	positions[(currentDealer + 2) % 2].removeBlinds(BlindLevel * 20);
+	positions[(currentDealer + 2) % positions.length].removeBlinds(BlindLevel * 20);
 	addToPot(BlindLevel * 20);
 	
 
