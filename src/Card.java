@@ -19,9 +19,8 @@ public class Card {
 	private final int value;
 	
 	public Card(int theValue, int theSuit) {
-	value = theValue;
-	suit = theSuit;
-	
+		value = theValue;
+		suit = theSuit;
 	}
 
 	public String getPngName() {
@@ -33,7 +32,7 @@ public class Card {
 		char suit_char = suit_str.charAt(0);
 		
 		// Get value as two char's.
-		String value_str = Integer.toString(suit);
+		String value_str = Integer.toString(value);
 		if(value_str.length() == 1){
 			value_char1 = '0';
 			value_char2 = value_str.charAt(0);
