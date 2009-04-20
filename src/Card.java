@@ -1,3 +1,7 @@
+import java.lang.reflect.Field;
+
+//import com.poker.R;
+
 
 public class Card {
 
@@ -20,6 +24,35 @@ public class Card {
 	
 	}
 
+	public String getPngName() {
+		char value_char1;
+		char value_char2;
+		
+		// Get suit as a char.
+		String suit_str = Integer.toString(suit);
+		char suit_char = suit_str.charAt(0);
+		
+		// Get value as two char's.
+		String value_str = Integer.toString(suit);
+		if(value_str.length() == 1){
+			value_char1 = '0';
+			value_char2 = value_str.charAt(0);
+		}else{
+			value_char1 = value_str.charAt(0);
+			value_char2 = value_str.charAt(1);
+		}
+		
+		return new String(new char[]{suit_char,value_char1,value_char2});
+	}
+	/**
+	public int getImageResourceId(){
+        Field f;
+        int id = -1;
+        f = R.drawable.class.getDeclaredField(getPngName());
+        id = f.getInt(null);
+        return id;
+	}
+	*/
 	public int getSuit() {
 	      return suit;
 	   }
