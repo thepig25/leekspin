@@ -12,46 +12,55 @@
 	>
 	</ImageView>
 	<ImageView
-	android:id="@+id/card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card1"
+    android:layout_x="15px"
+    android:layout_y="170px"
+    />
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card2"
+    android:layout_x="75px"
+    android:layout_y="170px"
+    />
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card3"
+    android:layout_x="135px"
+    android:layout_y="170px"
+    />
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card4"
+    android:layout_x="195px"
+    android:layout_y="170px"
+    />
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"  
+    android:id="@+id/card5"
+    android:layout_x="255px"
+    android:layout_y="170px"
+    />
+	<ImageView
+	android:id="@+id/card_a"
 	android:src="@drawable/card"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:layout_y="170px" android:layout_x="15px">
+	android:layout_x="180px"
+	android:layout_y="270px">
 	</ImageView>
 	<ImageView
-	android:id="@+id/card"
+	android:id="@+id/card_b"
 	android:src="@drawable/card"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:layout_y="170px" android:layout_x="75px">
-	</ImageView>
-	<ImageView
-	android:id="@+id/card"
-	android:src="@drawable/card"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_y="170px" android:layout_x="135px">
-	</ImageView>
-	<ImageView
-	android:id="@+id/card"
-	android:src="@drawable/card"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_y="170px" android:layout_x="195px">
-	</ImageView>
-	<ImageView
-	android:id="@+id/card"
-	android:src="@drawable/card"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_y="170px" android:layout_x="255px">
-	</ImageView>
-	<ImageView
-	android:id="@+id/card1"
-	android:src="@drawable/card"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_y="270px" android:layout_x="180px">
+	android:layout_x="240px"
+	android:layout_y="270px">
 	</ImageView>
 	<TextView
 	android:id="@+id/tv1"
