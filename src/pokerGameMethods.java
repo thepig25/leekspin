@@ -20,26 +20,36 @@ public class pokerGameMethods extends Pack {
    
     public void dealPocketCard(Pack myPack, Player [] positions){
         Card[] deal;
-        for(int i=0;i<positions.length;i++){
+        /*for(int i=0;i<positions.length;i++){
             deal = myPack.dealOneCardArray();
             positions[i].receivePocketCards(deal);
         }
         for(int i=0;i<positions.length;i++){
             deal = myPack.dealOneCardArray();
             positions[i].receivePocketCards(deal);
-        }
+        }*/
+        deal = myPack.getFirstPocketSpecial();
+        positions[0].receivePocketCards(deal);
+        deal = myPack.getSecondPocketSpecial();
+        positions[1].receivePocketCards(deal);
+        deal = myPack.getThirdPocketSpecial();
+        positions[0].receivePocketCards(deal);
+        deal = myPack.getFourthPocketSpecial();
+        positions[1].receivePocketCards(deal);
        
     }
    
     public void dealFlopCommunityCards(Pack myPack, Player [] positions){
-        Card[] deal = myPack.dealThreeCardArray();
+        //Card[] deal = myPack.dealThreeCardArray();
+    	Card[] deal = myPack.getCommmunitySpecial();
         for(int i=0;i<positions.length;i++){
             positions[i].receiveCommunityCards(deal);
         }
     }
    
     public void dealTurn(Pack myPack, Player [] positions){
-        Card[] deal = myPack.dealOneCardArray();
+        //Card[] deal = myPack.dealOneCardArray();
+    	Card[] deal = myPack.getTurnSpecial();
         int printCount=0;
         for(int i=0;i<positions.length;i++){
            
@@ -53,7 +63,8 @@ public class pokerGameMethods extends Pack {
     }
    
     public void dealRiver(Pack myPack, Player [] positions){
-        Card[] deal = myPack.dealOneCardArray();
+    	Card[] deal = myPack.getRiverSpecial();
+    	//Card[] deal = myPack.dealOneCardArray();
         int printCount=0;
         for(int i=0;i<positions.length;i++){
            
@@ -115,43 +126,36 @@ public Player [] winner(Player [] involvedPlayers){
    
    
     for(int i=0;i<involvedPlayers.length;i++){ // now need to check for any other players with the same hand. Then use the highest card to determine the winner
-       
+    	
         
         if(involvedPlayers[i].getBestPokerHand().testBooleans()==bestBoolean){
-           
+        	
+        	
             if(bestBoolean==9){
-                if(involvedPlayers[i].getBestPokerHand().getHighCard().getValue()>HighCard||involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==0){
-                    if(involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==0){
-                        HighCard = 30; // ace is highest so can't touch it
-                    }
-                    else{
+                if(involvedPlayers[i].getBestPokerHand().getHighCard().getValue()>HighCard){
+                    
                         HighCard = involvedPlayers[i].getBestPokerHand().getHighCard().getValue();
-                    }
+                    
                 }
             }
            
             if(bestBoolean==8){
-                if(involvedPlayers[i].getBestPokerHand().firstMatch>firstPair||involvedPlayers[i].getBestPokerHand().firstMatch==0){
-                    if(involvedPlayers[i].getBestPokerHand().firstMatch==0){
-                        firstPair = 30;
-                    }
-                    else{
-                        firstPair = involvedPlayers[i].getBestPokerHand().firstMatch;
-                    }
-                   
+            	
+                if(involvedPlayers[i].highestFirstPair>firstPair){
+
+                        firstPair = involvedPlayers[i].highestFirstPair;
                 }
             }
            
             if(bestBoolean==7){
-                if((involvedPlayers[i].getBestPokerHand().firstMatch>firstPair||involvedPlayers[i].getBestPokerHand().firstMatch==0)&&(involvedPlayers[i].getBestPokerHand().highestSecondPair>secondPair)){
-                    if(involvedPlayers[i].getBestPokerHand().firstMatch==0){
-                        firstPair=30;
-                        secondPair=involvedPlayers[i].getBestPokerHand().highestSecondPair;
-                    }
-                    else{
-                        firstPair=involvedPlayers[i].getBestPokerHand().firstMatch;
-                        secondPair=involvedPlayers[i].getBestPokerHand().highestSecondPair;
-                    }
+                if(involvedPlayers[i].highestFirstPair>firstPair){
+                	firstPair=involvedPlayers[i].getBestPokerHand().firstMatch;
+                	
+                	if((involvedPlayers[i].highestSecondPair>secondPair)){
+                		secondPair=involvedPlayers[i].getBestPokerHand().highestSecondPair;
+                	}
+                        
+                        
                 }
             }
            
@@ -167,7 +171,7 @@ public Player [] winner(Player [] involvedPlayers){
        
         if(involvedPlayers[i].getBestPokerHand().testBooleans()==bestBoolean){
            
-            if((bestBoolean==9&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==HighCard)||(bestBoolean==9&&HighCard==30&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==0)){
+            if((bestBoolean==9&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==HighCard)){
             	Player[] tempCopy = new Player[(finalWinners.length)];
                 System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
                 finalWinners = new Player[(finalWinners.length+1)];
@@ -177,7 +181,7 @@ public Player [] winner(Player [] involvedPlayers){
             }
             
            
-            if((bestBoolean==8&&involvedPlayers[i].getBestPokerHand().firstMatch==firstPair)||(bestBoolean==8&&firstPair==30&&involvedPlayers[i].getBestPokerHand().firstMatch==0)){
+            if((bestBoolean==8&&involvedPlayers[i].highestFirstPair==firstPair)){
             	Player[] tempCopy = new Player[(finalWinners.length)];
                 System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
                 finalWinners = new Player[(finalWinners.length+1)];
@@ -187,13 +191,16 @@ public Player [] winner(Player [] involvedPlayers){
             }
             
            
-            if(bestBoolean==7&&involvedPlayers[i].getBestPokerHand().firstMatch==firstPair&&involvedPlayers[i].getBestPokerHand().highestSecondPair==secondPair){
-            	Player[] tempCopy = new Player[(finalWinners.length)];
-                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
-                finalWinners = new Player[(finalWinners.length+1)];
-                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
-            	finalWinners[count]=involvedPlayers[i];
-                count++;
+            if(bestBoolean==7&&involvedPlayers[i].highestFirstPair==firstPair&&involvedPlayers[i].getBestPokerHand().highestSecondPair==secondPair){
+            
+            		Player[] tempCopy = new Player[(finalWinners.length)];
+                    System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+                    finalWinners = new Player[(finalWinners.length+1)];
+                    System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+                	finalWinners[count]=involvedPlayers[i];
+                    count++;
+            	
+            	
             }
             
             if (bestBoolean<7){
@@ -208,6 +215,12 @@ public Player [] winner(Player [] involvedPlayers){
         }
 
     }
+    
+    if(finalWinners.length>1){ // now need to check when there is a split pot, can we determine 1 winner
+    
+    }
+    
+    
     System.out.println("length"+finalWinners.length);
    
    
@@ -215,6 +228,20 @@ public Player [] winner(Player [] involvedPlayers){
    
 }
 
+/*private Player getWinnerRecursively(Player [] splitPotPlayers){
+
+	int downCounter=4;
+	
+	if(bestBoolean==9){
+		if(splitPotPlayers.length==4){
+			
+		if(splitPotPlayers[i].getBestHand()[downCounter].getValue()>
+	}
+	
+	
+	}
+}
+*/
 public void bettingRound(Player [] tempPlayers){
     setPlayers(tempPlayers);
     getHighestBet();

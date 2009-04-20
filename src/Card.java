@@ -40,19 +40,20 @@ public class Card {
 	public String getValueAsString() {
 	      
 	         switch ( value ) {
-	         case 0:   return "Ace";
-	         case 1:   return "2";
-	         case 2:   return "3";
-	         case 3:   return "4";
-	         case 4:   return "5";
-	         case 5:   return "6";
-	         case 6:   return "7";
-	         case 7:   return "8";
-	         case 8:   return "9";
-	         case 9:  return "10";
-	         case 10:  return "Jack";
-	         case 11:  return "Queen";
-	         case 12:  return "King";
+	         //case 0:   return "Ace";
+	         case 0:   return "2";
+	         case 1:   return "3";
+	         case 2:   return "4";
+	         case 3:   return "5";
+	         case 4:   return "6";
+	         case 5:   return "7";
+	         case 6:   return "8";
+	         case 7:   return "9";
+	         case 8:  return "10";
+	         case 9:  return "Jack";
+	         case 10:  return "Queen";
+	         case 11:  return "King";
+	         case 12:  return "Ace";
 	         default:  return "Card Not Found";
 	         
 	      }

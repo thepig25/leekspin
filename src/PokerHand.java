@@ -22,7 +22,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	int threeCard;
 	int fourCard;
 	int matchCardCount=0;
-	int firstMatch;
+	int firstMatch=0;
 	int secondMatch;
 	int flushCount=0;
 	int flushSuit;
@@ -196,7 +196,9 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		for(int i=0;i<mySortedCards.length-1;i++){
 
 			if((mySortedCards[i]).getValue()==(mySortedCards[i+1].getValue())){
+				
 				firstMatch = mySortedCards[i].getValue();
+				//System.out.println("Pair is:"+firstMatch);
 				return true;
 			}
 
@@ -267,21 +269,24 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		//Card[] theseSortedCards = sortedCards(theseCards);
 		
 
-		if(mySortedCards[0].getValue()==0&&mySortedCards[1].getValue()==9&&mySortedCards[2].getValue()==10
-				&& mySortedCards[3].getValue()==11 && mySortedCards[4].getValue()==12){
+		if(mySortedCards[0].getValue()==0&&mySortedCards[1].getValue()==1&&mySortedCards[2].getValue()==2
+				&& mySortedCards[3].getValue()==3 && mySortedCards[4].getValue()==12){
 			smallStraight=true;
 			return smallStraight;
 		}
-		for(int i=0;i<mySortedCards.length-1;i++){
-			if(((mySortedCards[i+1]).getValue())-((mySortedCards[i]).getValue())==1){
-				smallStraight=true; // holds true for every iteration of for loop if value is always greater than the next
-				//System.out.println("Testing for straight");
-			}
+		else{
+			for(int i=0;i<mySortedCards.length-1;i++){
+				if(((mySortedCards[i+1]).getValue())-((mySortedCards[i]).getValue())==1){
+					smallStraight=true; // holds true for every iteration of for loop if value is always greater than the next
+					//System.out.println("Testing for straight");
+				}
 
-			else{
-				smallStraight=false;
-				break; // no point in keeping checking if it breaks down once
-			}
+				else{
+					smallStraight=false;
+					break; // no point in keeping checking if it breaks down once
+				}
+		}
+		
 		}
 
 		return smallStraight;
@@ -325,7 +330,7 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	}
 
 	public boolean isRoyalFlush(){
-		if(mySortedCards[0].getValue()==0&&mySortedCards[1].getValue()==9&&mySortedCards[2].getValue()==10
+		if(mySortedCards[0].getValue()==8&&mySortedCards[1].getValue()==9&&mySortedCards[2].getValue()==10
 				&& mySortedCards[3].getValue()==11 && mySortedCards[4].getValue()==12&&isFlush()){
 			return true;
 		}
@@ -402,12 +407,9 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	}
 
 	public Card getHighCard(){
-		if (mySortedCards[0].getValue()==0){ // check for an ace which counts as a 1 numerically
-			return mySortedCards[0];
-		}
-		else{
+		
 			return mySortedCards[4];
-		}
+		
 	}
 	
 	public Card getLowestHighCard()  {
@@ -459,5 +461,9 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 		}
 		
 		return 0;
+	}
+	
+	public int getFirstPair(){
+		return firstMatch;
 	}
 }

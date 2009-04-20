@@ -65,37 +65,52 @@ public class Pack {
 		
 	}
 	
-	public Card[] getFirstPocketSpecial(){
-		Card [] special = new Card [2];
-		special[0] = thisPack[0];
-		special[1] = thisPack[1];
-		return special;
-	}
-	
-	public Card[] getSecondPocketSpecial(){
-		Card [] special = new Card [2];
-		special[0] = thisPack[8];
-		special[1] = thisPack[10];
-		return special;
-	}
+	 public Card[] getFirstPocketSpecial(){ // player 0
+	        Card [] special = new Card [1];
+	        special[0] = thisPack[12];
+	        
+	        return special;
+	    }
+	    
+	    public Card[] getSecondPocketSpecial(){ // player 1
+	        Card [] special = new Card [1];
+	        special[0] = thisPack[24];
+	        
+	        return special;
+	    }
+	    
+	    public Card[] getThirdPocketSpecial(){ // player 0
+	        Card [] special = new Card [1];
+	        special[0] = thisPack[16];
+	        return special;
+	        
+	    }
+	    public Card[] getFourthPocketSpecial(){ // player 1
+	        Card [] special = new Card [1];
+	        special[0] = thisPack[8];
+	        return special;
+	        
+	        
+	    }
+
 
 	public Card[] getCommmunitySpecial(){
 		Card [] special = new Card [3];
-		special[0] = thisPack[2];
-		special[1] = thisPack[3];
-		special[2] = thisPack[4];
+		special[0] = thisPack[5];
+		special[1] = thisPack[19];
+		special[2] = thisPack[1];
 	return special;
 	}
 	
 	public Card[] getTurnSpecial(){
 		Card [] special = new Card [1];
-		special[0] = thisPack[5];
+		special[0] = thisPack[27];
 		return special;
 	}
 	
 	public Card[] getRiverSpecial(){
 		Card [] special = new Card [1];
-		special[0] = thisPack[6];
+		special[0] = thisPack[43];
 		return special;
 	}
 	

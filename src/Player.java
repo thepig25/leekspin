@@ -218,6 +218,21 @@ public int getPlayerHighCard(){
 				}
 				
 				PokerHand testHand=new PokerHand(testCard[j]);
+				
+				
+				if(testHand.testBooleans()==8){ // pair
+					if(testHand.testBooleans()<bestBoolean){
+						bestBoolean=testHand.testBooleans();
+					}
+					if(testHand.firstMatch>highestFirstPair&&bestBoolean==8){
+						highestFirstPair=testHand.firstMatch;
+					}
+				}
+				
+				
+				
+				
+				
 				if(testHand.testBooleans()==7){ // special case for two pair
 					if(testHand.testBooleans()<bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
 						bestBoolean=testHand.testBooleans();
@@ -227,7 +242,7 @@ public int getPlayerHighCard(){
 					}
 						Card [] tempy = testHand.firstTwo();
 
-					if((testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair) || (tempy[0].getValue()==0&&tempy[1].getValue()==0&&testHand.highestSecondPair>highestSecondPair)){
+					if((testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair)){
 							//if(testHand.getLastCardValue()>highCard&&bestBoolean==7){
 						
 						if (getPlayerHighCard()==testHand.getNonPair()) {
@@ -257,11 +272,11 @@ public int getPlayerHighCard(){
 					if(testHand.testBooleans()<bestBoolean){
 						bestBoolean=testHand.testBooleans();
 					}
-					if(testHand.firstMatch>highestGeneralPair||testHand.firstMatch==0){
+					if(testHand.firstMatch>highestGeneralPair){
 						highestGeneralPair=testHand.firstMatch;
 						bestPokerHand = testHand.getCard();
 					}
-					if(testHand.highestSecondPair>highestGeneralPair||testHand.highestSecondPair==0){
+					if(testHand.highestSecondPair>highestGeneralPair){
 						highestGeneralPair=testHand.highestSecondPair;
 						bestPokerHand = testHand.getCard();
 						
@@ -297,16 +312,14 @@ public int getPlayerHighCard(){
 				
 				
 				
-				if(testHand.testBooleans()==bestBoolean&&(testHand.getHighCard().getValue()>highCard||testHand.getHighCard().getValue()==0)&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=7&&testHand.testBooleans()!=3&&testHand.testBooleans()!=5&&testHand.testBooleans()!=1){
+				if(testHand.testBooleans()==bestBoolean&&(testHand.getHighCard().getValue()>highCard)&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=8&&testHand.testBooleans()!=7&&testHand.testBooleans()!=3&&testHand.testBooleans()!=5&&testHand.testBooleans()!=1){
 						
 						System.out.println("above if "+highCard);
 												
-						if(testHand.getHighCard().getValue()==0){
-							highCard=30; // Ace is the top card so we won't get a higher card then that
-						}
-						else{
+						
+						
 							highCard=testHand.getHighCard().getValue();	
-						}
+						
 						
 						bestPokerHand = testHand.getCard();
 						//System.out.println("Current best 5 are: ");

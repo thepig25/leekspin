@@ -23,7 +23,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 //			}
 			Pack myPack = new Pack();
 			myPack.createPack();
-			myPack.Shuffle();
+			//myPack.Shuffle();
 			
 			Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
 			System.out.println("Dealer is player: "+Dealer);
