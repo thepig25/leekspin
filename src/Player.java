@@ -10,13 +10,13 @@ public class Player extends Pack {
 	Card[] communityCards = new Card[3];
 	int cardCount=0;
 	int cardPocketCount=0;
-	Card [] bestPokerHand;
 	CombinationGenerator x;
 	int[] elements;
 	Card [] poolCards;
 	int allCombosLength;
 	int highestFirstPair=-1;
 	int highestSecondPair=-1;
+	Card [] bestPokerHand;
 	int bestBoolean=20;
 	int highCard=2;
 	int highestLowest=0;
@@ -85,7 +85,7 @@ public class Player extends Pack {
 		}
 	}
 	
-public int getPlayerHighCard(){
+public int getPlayerHighHoleCard(){
 		Card [] temp = playerHand;
 		
 		if(temp [0].getValue()>temp [1].getValue()){
@@ -94,7 +94,23 @@ public int getPlayerHighCard(){
 		else{
 			return temp [1].getValue();
 		}
+}
+
+public int getPlayerLowHoleCard(){
+	Card [] temp = playerHand;
+	
+	if(temp [0].getValue()<temp [1].getValue()){
+		return temp [0].getValue();
 	}
+	else{
+		return temp [1].getValue();
+	}
+}
+
+public Card [] getPlayersCards(){
+	Card [] temp = playerHand;
+	return temp;
+}
 	
 	public void printPocketHand(){ // prints pocket pair
 	
