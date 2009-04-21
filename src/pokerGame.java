@@ -11,8 +11,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 		Player [] reducedPositions;
 		// code for deciding dealer goes here
 		gameOver = NOplayer;
-		positions[0] = new HumanPlayer("Hugh Man",startAmount,null,0);
-		positions[1] = new AI_Player ("Megatron",startAmount,null,1);
+		positions[0] = new HumanPlayer("Hugh Man",startAmount,null,1);
+		positions[1] = new AI_Player ("Megatron",startAmount,null,2);
 
 //		while(gameOver>1){ // loop which keeps game going
 //			for (int i=0;i<positions.length;i++{ // checks at start of hand if any players are out of chips
@@ -30,6 +30,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			dealBlinds(Dealer, positions);
 			System.out.println(positions[0].checkMoney());
 			System.out.println(positions[1].checkMoney());
+			
+			
 			dealPocketCard(myPack, positions);
 			
 			for(int i=0;i<positions.length;i++){
