@@ -1,22 +1,17 @@
 package com.poker;
 
+import java.lang.reflect.Field;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.AbsoluteLayout;
-import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,22 +19,25 @@ import com.poker.R.id;
 
 public class GameWindow extends Activity{
 
+	private static int bet = -1;
 	private ImageButton call;
     private ImageButton check;
     private ImageButton raise;
     private ImageButton fold;
-    public TextView console;
+    public static TextView console;
+    
     private ImageView card;
-
-    private ImageView p1c1Img;
-    private ImageView p1c2Img;
-    private ImageView p1c3Img;
-    private ImageView p1c4Img;
-    private ImageView p1c5Img;
-
-    Card c_1 = new Card(8,0);
-    Card c_2 = new Card(4,1);
-    Card c_3 = new Card(10,2);
+    private static ImageView c1Img;
+    private static ImageView c2Img;
+    private static ImageView c3Img;
+    private static ImageView c4Img;
+    private static ImageView c5Img;
+    
+    private static Card c_1 = new Card(8,0);
+    private static Card c_2 = new Card(4,1);
+    private static Card c_3 = new Card(10,2);
+    private static Card c_4 = new Card(11,0);
+    private static Card c_5 = new Card(3,3);
     
     /** Called when the activity is first created. */
     @Override
@@ -60,18 +58,38 @@ public class GameWindow extends Activity{
         fold.setOnClickListener(l_fold);
         
         console = (TextView)this.findViewById(R.id.tv1);
+        console.setMovementMethod(new ScrollingMovementMethod()); 
         
-        p1c1Img = (ImageView) findViewById(id.card1);
-        p1c2Img = (ImageView) findViewById(id.card2);
-        p1c3Img = (ImageView) findViewById(id.card3);
-        p1c4Img = (ImageView) findViewById(id.card4);
-        p1c5Img = (ImageView) findViewById(id.card5);
+        c1Img = (ImageView) findViewById(id.card1);
+        c2Img = (ImageView) findViewById(id.card2);
+        c3Img = (ImageView) findViewById(id.card3);
+        c4Img = (ImageView) findViewById(id.card4);
+        c5Img = (ImageView) findViewById(id.card5);
+        
+        int id = 0;
+        Field f;
+        try {
+			f = R.drawable.class.getDeclaredField("card_back");
+	        id = f.getInt(null);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 
-        int resId = c_1.getImageResourceId();
-        p1c1Img.setImageResource(resId);
+		c1Img.setImageResource(id);
+		c2Img.setImageResource(id);
+		c3Img.setImageResource(id);
+		c4Img.setImageResource(id);
+		c5Img.setImageResource(id);
         
-        int resId2 = c_2.getImageResourceId();
-        p1c2Img.setImageResource(resId2);
+		startActivityForResult(new Intent("com.poker.action.START", null),0);
+        // Start a new poker game.
+        pokerGame test = new pokerGame(2, 2500, 50);
         
     }
     
@@ -79,7 +97,6 @@ public class GameWindow extends Activity{
     private OnClickListener l_raise = new OnClickListener() {
         public void onClick(View v) {
         	startActivityForResult(new Intent("com.poker.action.RAISE", null),0);
-        	
         }
     };
     private OnClickListener l_call = new OnClickListener() {
@@ -90,13 +107,13 @@ public class GameWindow extends Activity{
     private OnClickListener l_fold = new OnClickListener() {
         public void onClick(View v) {
         	int resId3 = c_3.getImageResourceId();
-            p1c2Img.setImageResource(resId3);
+            c2Img.setImageResource(resId3);
         }
     };
     private OnClickListener l_check = new OnClickListener() {
         public void onClick(View v) {
         	int resId2 = c_2.getImageResourceId();
-            p1c2Img.setImageResource(resId2);
+            c2Img.setImageResource(resId2);
         }
     };
     
@@ -134,11 +151,50 @@ public class GameWindow extends Activity{
         	String s = "\nRaised by ";
         	String sst = s + st;
         	console.append(sst);
+        	bet = resultCode;
         }
     }
     
-    public void setConsoleText(String st){
+    public static void setConsoleText(String st){
     	console.append(st);
+    	console.computeScroll();
     }
 
+    public static void setCards(String st){
+    	for(;;){
+    		Card card = new Card(8,0);
+        	int resIda = card.getImageResourceId();
+            c1Img.setImageResource(resIda);
+            
+            
+            int resId = c_1.getImageResourceId();
+            c1Img.setImageResource(resId);
+            
+            int resId2 = c_2.getImageResourceId();
+            c2Img.setImageResource(resId2);
+            
+            int resId3 = c_3.getImageResourceId();
+            c3Img.setImageResource(resId3);
+            
+            int resId4 = c_4.getImageResourceId();
+            c4Img.setImageResource(resId4);
+            
+            int resId5 = c_5.getImageResourceId();
+            c5Img.setImageResource(resId5);
+    	}
+    }
+    
+    public static int getBet(){
+    	int temp_bet=0;
+    	//long startTime = System.currentTimeMillis();
+    	//long curTime;
+    	for(;;){
+    		//curTime = System.currentTimeMillis();
+    		if(bet >= 0){
+    			temp_bet = bet;
+        		break;
+    		}
+    	}
+    	return temp_bet;
+    }
 }
