@@ -1,0 +1,247 @@
+=======================================================================================
+Reported by paddy 19-04-08
+Player Hugh Man has been dealt a Ace of Spades
+Ace of Hearts
+Player Megatron has been dealt a 9 of Spades
+Queen of Hearts
+
+community Cards are :5 of Hearts
+community Cards are :9 of Hearts
+community Cards are :6 of Hearts
+Turn card is a 6 of Spades
+River card is a 7 of Spades
+
+hu
+as,ah,6h,6s,9h
+
+meg
+9s,9h,qh,6h,6s
+
+
+Console:
+Dealer is player: 0
+2480
+2490
+Player Hugh Man has been dealt a Ace of Spades
+Ace of Hearts
+Player Megatron has been dealt a 9 of Spades
+Queen of Hearts
+1
+Hugh Man
+Megatron
+50
+community Cards are :5 of Hearts
+community Cards are :9 of Hearts
+community Cards are :6 of Hearts
+Player Megatron's best hand is:
+5 of Hearts
+6 of Hearts
+9 of Spades
+9 of Hearts
+Queen of Hearts
+Player Hugh Man's best hand is:
+Ace of Spades
+Ace of Hearts
+5 of Hearts
+6 of Hearts
+9 of Hearts
+1
+Turn card is a 6 of Spades
+Player Megatron's best hand is:
+In 7best hand is 
+ 
+outside 2nd if loop
+ 
+6 of Hearts
+6 of Spades
+9 of Spades
+9 of Hearts
+Queen of Hearts
+Player Hugh Man's best hand is:
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+Ace of Spades
+Ace of Hearts
+5 of Hearts
+6 of Spades
+9 of Hearts
+1
+River card is a 7 of Spades
+Player Megatron's best hand is:
+6 of Hearts
+6 of Spades
+9 of Spades
+9 of Hearts
+Queen of Hearts
+Player Hugh Man's best hand is:
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+Ace of Spades
+Ace of Hearts
+5 of Hearts
+6 of Spades
+9 of Hearts
+1
+Pot is: 110
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+Dealer was 0
+Cards passed for playerMegatron are: 
+6 of Hearts
+6 of Spades
+9 of Spades
+9 of Hearts
+Queen of Hearts
+Cards passed for playerHugh Man are: 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+Ace of Spades
+Ace of Hearts
+5 of Hearts
+6 of Spades
+9 of Hearts
+Best boolean is:7
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+outside 2nd if loop
+ 
+length1
+Winner is: 
+Megatron Player Megatron now has 2520
+
+
+=======================================================================================
+Reported by paddy 19-04-08
+Error when 3 of a kind detected but it thinks there is a flush for some reason
+Players hand
+
+Hu		Meg
+6s 4d	kh 2s
+
+3d,7d,ad,3c,3s
+
+Should be Megatrons hand with
+A,3,3,3,K 
+
+Code from console:
+Dealer is player: 1
+2490
+2480
+Player Hugh Man has been dealt a 6 of Spades
+4 of Diamonds
+Player Megatron has been dealt a King of Hearts
+2 of Spades
+0
+1
+Hugh Man
+Megatron
+70
+community Cards are :3 of Diamonds
+community Cards are :7 of Diamonds
+community Cards are :Ace of Diamonds
+Player Hugh Man's best hand is:
+Ace of Diamonds
+3 of Diamonds
+4 of Diamonds
+6 of Spades
+7 of Diamonds
+Player Megatron's best hand is:
+Ace of Diamonds
+2 of Spades
+3 of Diamonds
+7 of Diamonds
+King of Hearts
+0
+1
+Turn card is a 3 of Clubs
+Player Hugh Man's best hand is:
+above if 2
+3 of Diamonds
+3 of Clubs
+4 of Diamonds
+6 of Spades
+7 of Diamonds
+Player Megatron's best hand is:
+above if 2
+above if 12
+Ace of Diamonds
+3 of Diamonds
+3 of Clubs
+7 of Diamonds
+King of Hearts
+0
+1
+River card is a 3 of Spades
+Player Hugh Man's best hand is:
+3 of Diamonds
+3 of Clubs
+3 of Spades
+4 of Diamonds
+6 of Spades
+Player Megatron's best hand is:
+above if 12
+above if 30
+Ace of Diamonds
+3 of Diamonds
+3 of Clubs
+3 of Spades
+7 of Diamonds
+0
+1
+Pot is: 190
+above if 30
+above if 30
+Dealer was 1
+Cards passed for playerHugh Man are: 
+3 of Diamonds
+3 of Clubs
+3 of Spades
+4 of Diamonds
+6 of Spades
+Cards passed for playerMegatron are: 
+above if 30
+above if 30
+Ace of Diamonds
+3 of Diamonds
+3 of Clubs
+3 of Spades
+7 of Diamonds
+Best boolean is:3
+above if 30
+above if 30
+above if 30
+above if 30
+above if 30
+above if 30
+length2
+Split pot between Hugh Man Megatron Player Hugh Man now has 2505
+Player Megatron now has 2495
+=======================================================================================

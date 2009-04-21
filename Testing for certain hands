@@ -1,0 +1,58 @@
+	public Card[] getSpecial(){ // for testing out with particular hands
+		Card [] special = new Card [5];
+		special[0] = thisPack[0];
+		special[1] = thisPack[13];
+		special[2] = thisPack[26];
+		special[3] = thisPack[11];
+		special[4] = thisPack[31];
+		return special;
+		
+	}
+	
+	public Card[] getFirstPocketSpecial(){ // player 0
+		Card [] special = new Card [1];
+		special[0] = thisPack[0];
+		
+		return special;
+	}
+	
+	public Card[] getSecondPocketSpecial(){ // player 1
+		Card [] special = new Card [1];
+		special[0] = thisPack[8];
+		
+		return special;
+	}
+	
+	public Card[] getThirdPocketSpecial(){ // player 0
+		Card [] special = new Card [1];
+		special[0] = thisPack[0];
+		return special;
+		
+	}
+	public Card[] getFourthPocketSpecial(){ // player 1
+		Card [] special = new Card [1];
+		special[0] = thisPack[0];
+		return special;
+		
+		
+	}
+
+	public Card[] getCommmunitySpecial(){
+		Card [] special = new Card [3];
+		special[0] = thisPack[13];
+		special[1] = thisPack[21];
+		special[2] = thisPack[18];
+	return special;
+	}
+	
+	public Card[] getTurnSpecial(){
+		Card [] special = new Card [1];
+		special[0] = thisPack[5];
+		return special;
+	}
+	
+	public Card[] getRiverSpecial(){
+		Card [] special = new Card [1];
+		special[0] = thisPack[6];
+		return special;
+	}
