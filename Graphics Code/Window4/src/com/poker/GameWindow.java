@@ -19,6 +19,7 @@ import com.poker.R.id;
 
 public class GameWindow extends Activity{
 
+	private static int blank_card_id;
 	private static int bet = -1;
 	private ImageButton call;
     private ImageButton check;
@@ -32,12 +33,8 @@ public class GameWindow extends Activity{
     private static ImageView c3Img;
     private static ImageView c4Img;
     private static ImageView c5Img;
-    
-    private static Card c_1 = new Card(8,0);
-    private static Card c_2 = new Card(4,1);
-    private static Card c_3 = new Card(10,2);
-    private static Card c_4 = new Card(11,0);
-    private static Card c_5 = new Card(3,3);
+    private static ImageView pc1Img;
+    private static ImageView pc2Img;
     
     /** Called when the activity is first created. */
     @Override
@@ -66,11 +63,15 @@ public class GameWindow extends Activity{
         c4Img = (ImageView) findViewById(id.card4);
         c5Img = (ImageView) findViewById(id.card5);
         
-        int id = 0;
+        pc1Img = (ImageView) findViewById(id.pcard1);
+        pc2Img = (ImageView) findViewById(id.pcard2);
+        
+        // Get the ID of the blank_card image.
+        blank_card_id = 0;
         Field f;
         try {
 			f = R.drawable.class.getDeclaredField("card_back");
-	        id = f.getInt(null);
+			blank_card_id = f.getInt(null);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
@@ -81,16 +82,29 @@ public class GameWindow extends Activity{
 			e.printStackTrace();
 		}
 
-		c1Img.setImageResource(id);
-		c2Img.setImageResource(id);
-		c3Img.setImageResource(id);
-		c4Img.setImageResource(id);
-		c5Img.setImageResource(id);
+		// Draw all card images as blank.
+		c1Img.setImageResource(blank_card_id);
+		c2Img.setImageResource(blank_card_id);
+		c3Img.setImageResource(blank_card_id);
+		c4Img.setImageResource(blank_card_id);
+		c5Img.setImageResource(blank_card_id);
         
-		startActivityForResult(new Intent("com.poker.action.START", null),0);
+		pokerGame test = new pokerGame(2, 2500, 50);
+		//startGame();
+    }
+    
+    public void startGame(){
+    	// Let the window load for 1/2 a second.
+		long startTime = System.currentTimeMillis();
+		long curTime;
+		for(;;){
+			curTime = System.currentTimeMillis();
+			if(curTime > (startTime+500)){
+				break;
+			}
+		}
         // Start a new poker game.
         pokerGame test = new pokerGame(2, 2500, 50);
-        
     }
     
     /** Handles Main button selections */
@@ -106,14 +120,10 @@ public class GameWindow extends Activity{
     };
     private OnClickListener l_fold = new OnClickListener() {
         public void onClick(View v) {
-        	int resId3 = c_3.getImageResourceId();
-            c2Img.setImageResource(resId3);
         }
     };
     private OnClickListener l_check = new OnClickListener() {
         public void onClick(View v) {
-        	int resId2 = c_2.getImageResourceId();
-            c2Img.setImageResource(resId2);
         }
     };
     
@@ -160,28 +170,64 @@ public class GameWindow extends Activity{
     	console.computeScroll();
     }
 
-    public static void setCards(String st){
-    	for(;;){
-    		Card card = new Card(8,0);
-        	int resIda = card.getImageResourceId();
-            c1Img.setImageResource(resIda);
-            
-            
-            int resId = c_1.getImageResourceId();
+    public static void drawCardImgs(Card[] cards){
+    	
+    	if(cards.length == 3){
+        	Card c1 = cards[0];
+        	Card c2 = cards[1];
+        	Card c3 = cards[2];
+        	int resId = c1.getImageResourceId();
             c1Img.setImageResource(resId);
-            
-            int resId2 = c_2.getImageResourceId();
-            c2Img.setImageResource(resId2);
-            
-            int resId3 = c_3.getImageResourceId();
-            c3Img.setImageResource(resId3);
-            
-            int resId4 = c_4.getImageResourceId();
-            c4Img.setImageResource(resId4);
-            
-            int resId5 = c_5.getImageResourceId();
-            c5Img.setImageResource(resId5);
+            resId = c2.getImageResourceId();
+            c2Img.setImageResource(resId);
+            resId = c3.getImageResourceId();
+            c3Img.setImageResource(resId);
+            c4Img.setImageResource(blank_card_id);
+            c5Img.setImageResource(blank_card_id);
     	}
+    	
+    	if(cards.length == 4){
+        	Card c1 = cards[0];
+        	Card c2 = cards[1];
+        	Card c3 = cards[2];
+        	Card c4 = cards[3];
+        	int resId = c1.getImageResourceId();
+            c1Img.setImageResource(resId);
+            resId = c2.getImageResourceId();
+            c2Img.setImageResource(resId);
+            resId = c3.getImageResourceId();
+            c3Img.setImageResource(resId);
+            resId = c4.getImageResourceId();
+            c4Img.setImageResource(resId);
+            c5Img.setImageResource(blank_card_id);
+    	}
+    	
+    	if(cards.length == 5){
+        	Card c1 = cards[0];
+        	Card c2 = cards[1];
+        	Card c3 = cards[2];
+        	Card c4 = cards[3];
+        	Card c5 = cards[4];
+        	int resId = c1.getImageResourceId();
+            c1Img.setImageResource(resId);
+            resId = c2.getImageResourceId();
+            c2Img.setImageResource(resId);
+            resId = c3.getImageResourceId();
+            c3Img.setImageResource(resId);
+            resId = c4.getImageResourceId();
+            c4Img.setImageResource(resId);
+            resId = c5.getImageResourceId();
+            c5Img.setImageResource(resId);
+    	}
+    }
+    
+    public static void drawPocketCardImgs(Card[] cards){
+    	Card c1 = cards[0];
+    	Card c2 = cards[1];
+    	int resId = c1.getImageResourceId();
+        pc1Img.setImageResource(resId);
+        resId = c2.getImageResourceId();
+        pc2Img.setImageResource(resId);
     }
     
     public static int getBet(){
