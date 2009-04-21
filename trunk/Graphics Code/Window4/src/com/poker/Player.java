@@ -97,11 +97,12 @@ public int getPlayerHighCard(){
 	}
 	
 	public void printPocketHand(){ // prints pocket pair
-	
+		GameWindow.setConsoleText("Poket Hand: ");
 		for(int i = 0; i < 2; i++){
 			GameWindow.setConsoleText(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString() + ", ");
 		}
 		GameWindow.setConsoleText("\n");
+		GameWindow.drawPocketCardImgs(playerHand);
 	}
 	
 	public void printCommunity(){ // prints the community cards
@@ -110,6 +111,7 @@ public int getPlayerHighCard(){
 			GameWindow.setConsoleText(communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString()+ ", ");
 		}
 		GameWindow.setConsoleText("\n");
+		GameWindow.drawCardImgs(communityCards);
 	}
 	
 	
@@ -361,6 +363,7 @@ public int getPlayerHighCard(){
 		showCards=newCard.getCard();
 		//System.out.println("Player's best hand is: ");
 		//System.out.println("showCards length: "+showCards.length);
+		GameWindow.setConsoleText("Best Hand: ");
 		for (int i=0;i<showCards.length;i++){
 			GameWindow.setConsoleText(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString()+", ");
 		}
