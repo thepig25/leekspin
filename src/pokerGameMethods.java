@@ -124,100 +124,24 @@ public Player [] winner(Player [] involvedPlayers){
     }
     Player [] finalWinners = new Player[0];
    
-   
+   int count =0;
     for(int i=0;i<involvedPlayers.length;i++){ // now need to check for any other players with the same hand. Then use the highest card to determine the winner
     	
+        if(involvedPlayers[i].bestBoolean==bestBoolean){
+        	Player[] tempCopy = new Player[(finalWinners.length)];
+            System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+            finalWinners = new Player[(finalWinners.length+1)];
+            System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+        	finalWinners[count]=involvedPlayers[i];
+        	count++;
+        }
         
-        if(involvedPlayers[i].getBestPokerHand().testBooleans()==bestBoolean){
-        	
-        	
-            if(bestBoolean==9){
-                if(involvedPlayers[i].getBestPokerHand().getHighCard().getValue()>HighCard){
-                    
-                        HighCard = involvedPlayers[i].getBestPokerHand().getHighCard().getValue();
-                    
-                }
-            }
-           
-            if(bestBoolean==8){
-            	
-                if(involvedPlayers[i].highestFirstPair>firstPair){
-
-                        firstPair = involvedPlayers[i].highestFirstPair;
-                }
-            }
-           
-            if(bestBoolean==7){
-                if(involvedPlayers[i].highestFirstPair>firstPair){
-                	firstPair=involvedPlayers[i].getBestPokerHand().firstMatch;
-                	
-                	if((involvedPlayers[i].highestSecondPair>secondPair)){
-                		secondPair=involvedPlayers[i].getBestPokerHand().highestSecondPair;
-                	}
-                        
-                        
-                }
-            }
-           
-           
-           
-        }
-    }
-    int count=0;
-   
-    for(int i=0;i<involvedPlayers.length;i++){ // need to check for split pots
-       
-        //pair
-       
-        if(involvedPlayers[i].getBestPokerHand().testBooleans()==bestBoolean){
-           
-            if((bestBoolean==9&&involvedPlayers[i].getBestPokerHand().getHighCard().getValue()==HighCard)){
-            	Player[] tempCopy = new Player[(finalWinners.length)];
-                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
-                finalWinners = new Player[(finalWinners.length+1)];
-                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
-            	finalWinners[count]=involvedPlayers[i];
-            	 count++;
-            }
-            
-           
-            if((bestBoolean==8&&involvedPlayers[i].highestFirstPair==firstPair)){
-            	Player[] tempCopy = new Player[(finalWinners.length)];
-                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
-                finalWinners = new Player[(finalWinners.length+1)];
-                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
-            	finalWinners[count]=involvedPlayers[i];
-            	 count++;
-            }
-            
-           
-            if(bestBoolean==7&&involvedPlayers[i].highestFirstPair==firstPair&&involvedPlayers[i].getBestPokerHand().highestSecondPair==secondPair){
-            
-            		Player[] tempCopy = new Player[(finalWinners.length)];
-                    System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
-                    finalWinners = new Player[(finalWinners.length+1)];
-                    System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
-                	finalWinners[count]=involvedPlayers[i];
-                    count++;
-            	
-            	
-            }
-            
-            if (bestBoolean<7){
-            	Player[] tempCopy = new Player[(finalWinners.length)];
-                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
-                finalWinners = new Player[(finalWinners.length+1)];
-                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
-            	finalWinners[count]=involvedPlayers[i];
-            	 count++;
-            }
-           
-        }
-
     }
     
-    if(finalWinners.length>1){ // now need to check when there is a split pot, can we determine 1 winner
-    
+    if(bestBoolean==9){
+    	int bla;
+    	// paddy's code goes here
+    	
     }
     
     
@@ -228,20 +152,89 @@ public Player [] winner(Player [] involvedPlayers){
    
 }
 
-/*private Player getWinnerRecursively(Player [] splitPotPlayers){
-
-	int downCounter=4;
-	
+private Player [] getWinnerRecursively(Player [] splitPotPlayers){
+	Player [] finalWinners=new Player[0];
+	int winnerCount=0;
+	//int highCardCounter=12;
 	if(bestBoolean==9){
-		if(splitPotPlayers.length==4){
+		int highestCard=0;
+		
+		
+		int positive = 0;
+	
+		while(positive==0) {
+		
+			for(int j=4;j>0;j--){
+				for (int highCardCounter=12;highCardCounter>0;highCardCounter--){
+					for(int i=0;i<splitPotPlayers.length;i++){
+						if(splitPotPlayers[i].getBestHand()[j].getValue()==highCardCounter){
+							Player[] tempCopy = new Player[(finalWinners.length)];
+			                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+			                finalWinners = new Player[(finalWinners.length+1)];
+			                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+			                finalWinners[winnerCount]=splitPotPlayers[i];
+			                winnerCount++;
+			                positive++;
+			                
+						}
+						if(i==splitPotPlayers.length-1&&positive>0){
+						break;
+						} // close if
+				
+					}	// close going thru players
 			
-		if(splitPotPlayers[i].getBestHand()[downCounter].getValue()>
-	}
+				} // close going thru Card countdown
+			
+			
+			} // close going through card array
+		
+		} // close going through while loop
 	
 	
+	
+	
+	} // close going thru if
+	int highestSecondPair=0;
+	Player [] ultimateWinners = new Player[0];
+	int ultimateWinnerCount=0;
+	if(bestBoolean==7){
+		System.out.println("In getWinnerRecursively, length is: "+splitPotPlayers.length);
+		for(int z=0;z<splitPotPlayers.length;z++){ // check for highest second pair
+			if(splitPotPlayers[z].highestFirstPair>highestSecondPair){
+				highestSecondPair=splitPotPlayers[z].highestSecondPair;
+			}
+		}
+		for(int z=0;z<splitPotPlayers.length;z++){ // find player with highest second pair
+			if(splitPotPlayers[z].highestFirstPair==highestSecondPair){
+				Player[] tempCopy = new Player[(finalWinners.length)];
+                System.arraycopy(finalWinners, 0, tempCopy, 0, tempCopy.length);
+                finalWinners = new Player[(finalWinners.length+1)];
+                System.arraycopy(tempCopy, 0,finalWinners , 0, tempCopy.length);
+                finalWinners[winnerCount]=splitPotPlayers[z];
+                winnerCount++;
+			}
+		}
+		int nonPair=0;
+		if(finalWinners.length>1){ // need to see if high non pair card can decide a winner
+			for(int p=0;p<finalWinners.length;p++){
+				if(finalWinners[p].nonPair>nonPair){
+					nonPair= finalWinners[p].nonPair;
+				}
+			}
+			for(int p=0;p<finalWinners.length;p++){
+				if(finalWinners[p].nonPair==nonPair){
+					ultimateWinners[ultimateWinnerCount]=finalWinners[p];
+					ultimateWinnerCount++;
+				}
+			}
+			return ultimateWinners;
+		}
 	}
+	
+	return finalWinners;
+	
 }
-*/
+
 public void bettingRound(Player [] tempPlayers){
     setPlayers(tempPlayers);
     getHighestBet();
@@ -328,8 +321,6 @@ public void resetCounters(Player [] players){
         players[i].resetCounters();
     }
 }
-
-
 public void dealBlinds(int currentDealer, Player [] positions){
 
 		if(handCounter ==10){
@@ -337,10 +328,10 @@ public void dealBlinds(int currentDealer, Player [] positions){
 			handCounter=0;
 		}
  
-	positions[(currentDealer + 1) % positions.length].removeBlinds(BlindLevel * 10);
+	positions[(currentDealer + 1) % 2].removeBlinds(BlindLevel * 10);
 	addToPot(BlindLevel * 10);
 
-	positions[(currentDealer + 2) % positions.length].removeBlinds(BlindLevel * 20);
+	positions[(currentDealer + 2) % 2].removeBlinds(BlindLevel * 20);
 	addToPot(BlindLevel * 20);
 	
 

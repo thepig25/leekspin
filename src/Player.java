@@ -23,6 +23,7 @@ public class Player extends Pack {
 	int highestGeneralPair=0;
 	int highStraightCard=0;
 	int playerID;
+	int nonPair;
 	
 	
 
@@ -241,25 +242,31 @@ public int getPlayerHighCard(){
 						
 					}
 						Card [] tempy = testHand.firstTwo();
+						nonPair=testHand.getNonPair();
 
 					if((testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair)){
 							//if(testHand.getLastCardValue()>highCard&&bestBoolean==7){
+						highestSecondPair=testHand.highestSecondPair;
+						highestFirstPair=testHand.firstMatch;
 						
-						if (getPlayerHighCard()==testHand.getNonPair()) {
+						if (testHand.getNonPair()>nonPair) {
+								nonPair=testHand.getNonPair();
 								highestSecondPair=testHand.highestSecondPair;
+								System.out.println("2nd pair is: "+highestSecondPair);
 								highestFirstPair=testHand.firstMatch;
 								bestPokerHand = testHand.getCard();
 								highCard=testHand.getHighCard().getValue();
 								
-								System.out.println("In "+bestBoolean+ "best hand is ");
-								//bestPokerHand.printPokerHand();
+								//System.out.println("In "+bestBoolean+ "best hand is ");
+								testHand.printPokerHand();
+								//bestPokerHand;
 								System.out.println(" ");
 							}
 							
 						
-						System.out.println("outside 2nd if loop");
+						//System.out.println("outside 2nd if loop");
 							//bestPokerHand.printPokerHand();
-							System.out.println(" ");
+							//System.out.println(" ");
 							//}
 							
 							}
