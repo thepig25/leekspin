@@ -143,10 +143,6 @@ public Player [] winner(Player [] involvedPlayers){
     
     if(bestBoolean==9){
     	
-    	
-    	/*
-    }
-    	
     	int k = involvedPlayers[0].getBestHand().length;
     	Player [] highestCarders = new Player[0];
     	int highestCardersCount =0;
@@ -176,7 +172,7 @@ public Player [] winner(Player [] involvedPlayers){
     
     	
     	
-    }*/
+    }
     
     
     System.out.println("length"+finalWinners.length);
