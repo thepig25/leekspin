@@ -152,26 +152,10 @@ public class GameWindow extends Activity{
         		//mHandler.post(mCompleteRunnable);
         	}
         };
-        t.start();
-        
-        //*/
+        runOnUiThread(t);
+        //t.start();
     }
     
-    /**
-    private final Runnable mCompleteRunnable = new Runnable() {
-    	public void run() {
-    		onThreadCompleted();
-    	}
-    };
-    
-    public static void runGameThread(){// throws InterruptedException{
-    	new pokerGame(2, 2500, 50);
-    }
-    /**
-    private void onThreadCompleted() {
-    	// start end animation.
-    }
-    */
     /** Handles Main button selections */
     private OnClickListener l_start = new OnClickListener() {
         public void onClick(View v) {
