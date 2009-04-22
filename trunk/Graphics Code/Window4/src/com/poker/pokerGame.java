@@ -27,14 +27,13 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			//myPack.Shuffle();
 			
 			Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
-			System.out.println("Dealer is player: "+Dealer);
+//			GameWindow.setConsoleText("Dealer is player: "+Dealer+"\n");
 			dealBlinds(Dealer, positions);
 			System.out.println(positions[0].checkMoney());
 			System.out.println(positions[1].checkMoney());
 			dealPocketCard(myPack, positions);
-			
 			for(int i=0;i<positions.length;i++){
-				System.out.print("Player "+positions[i].getName()+" has been dealt a ");
+//				GameWindow.setConsoleText("Player "+positions[i].getName()+" has been dealt a ");
 				positions[i].printPocketHand();
 			}
 			
@@ -42,9 +41,9 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			reducedPositions = getInvolvedPlayers();
 			resetCounters(reducedPositions);
 			
-			System.out.println(positions[0].getName());
-			System.out.println(positions[1].getName());
-			System.out.println(returnPot());
+//			GameWindow.setConsoleText(positions[0].getName()+"\n");
+//			GameWindow.setConsoleText(positions[1].getName()+"\n");
+//			GameWindow.setConsoleText(returnPot()+"\n");
 			
 	
 			
@@ -53,11 +52,11 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			reducedPositions[0].printCommunity();
 			
-			System.out.println("Player "+reducedPositions[0].getName()+"'s best hand is:");
+//			GameWindow.setConsoleText("Player "+reducedPositions[0].getName()+"'s best hand is:\n");
 			
 			reducedPositions[0].showBestHand();
 			
-			System.out.println("Player "+reducedPositions[1].getName()+"'s best hand is:");
+//			GameWindow.setConsoleText("Player "+reducedPositions[1].getName()+"'s best hand is:\n");
 			reducedPositions[1].showBestHand();
 			
 			bettingRound(reducedPositions); // 2nd betting round
@@ -65,10 +64,10 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			resetCounters(reducedPositions);
 		
 			dealTurn(myPack, reducedPositions);			
-			System.out.println("Player "+reducedPositions[0].getName()+"'s best hand is:");
+//			GameWindow.setConsoleText("Player "+reducedPositions[0].getName()+"'s best hand is: ");
 			reducedPositions[0].showBestHand();
 			
-			System.out.println("Player "+reducedPositions[1].getName()+"'s best hand is:");
+//			GameWindow.setConsoleText("Player "+reducedPositions[1].getName()+"'s best hand is: ");
 			reducedPositions[1].showBestHand();
 			
 			bettingRound(reducedPositions); // 3rd betting round
@@ -77,17 +76,17 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			resetCounters(reducedPositions);
 			
 			
-			System.out.println("Player "+reducedPositions[0].getName()+"'s best hand is:");
+//			GameWindow.setConsoleText("Player "+reducedPositions[0].getName()+"'s best hand is: ");
 			reducedPositions[0].showBestHand();
 			
-			System.out.println("Player "+reducedPositions[1].getName()+"'s best hand is:");
+//			GameWindow.setConsoleText("Player "+reducedPositions[1].getName()+"'s best hand is: ");
 			reducedPositions[1].showBestHand();
 			
 			bettingRound(reducedPositions); // 4th betting round
 			reducedPositions = getInvolvedPlayers();
 			resetCounters(reducedPositions);
 			
-			System.out.println("Pot is: " +returnPot());
+//			GameWindow.setConsoleText("Pot is: " +returnPot()+" ");
 			
 			
 			PokerHand [] winningCards = {reducedPositions[0].getBestPokerHand(),reducedPositions[1].getBestPokerHand()};
@@ -96,23 +95,24 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			Player [] winner = winner(reducedPositions);
 			
 			if(winner.length>=2){
-				System.out.print ("Split pot between ");
+//				GameWindow.setConsoleText("Split pot between ");
 				
 			}
 			else{
-				System.out.println ("Winner is: ");
+//				GameWindow.setConsoleText("Winner is: ");
 			}
 			
 			for(int i=0;i<winner.length;i++){
 				
-				System.out.print (winner[i].getName()+" ");
+//				GameWindow.setConsoleText(winner[i].getName()+" ");
 			}
 			
 			rewardWinners(winner,returnPot());
 			resetCounters(positions);
 			int temp = incrementDealer(Dealer, positions);
 			Dealer=temp;
-		}
+//		}
 	}
+}
 	
 

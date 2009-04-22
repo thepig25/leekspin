@@ -56,7 +56,7 @@ public class pokerGameMethods extends Pack {
            
             positions[i].receiveCommunityCards(deal);
             if(printCount<1){
-                System.out.println("Turn card is a "+deal[i].getValueAsString()+" of "+deal[i].getSuitAsString());
+//            	GameWindow.setConsoleText("Turn card is a "+deal[i].getValueAsString()+" of "+deal[i].getSuitAsString()+"\n");
                 printCount++;
             }
         }
@@ -71,56 +71,48 @@ public class pokerGameMethods extends Pack {
            
             positions[i].receiveCommunityCards(deal);
             if(printCount<1){
-                System.out.println("River card is a "+deal[i].getValueAsString()+" of "+deal[i].getSuitAsString());
+ //           	GameWindow.setConsoleText("River card is a "+deal[i].getValueAsString()+" of "+deal[i].getSuitAsString()+"\n");
                 printCount++;
             }
         }
     }
-public int chooseFirstDealer(int amtPlayers){
+    public int chooseFirstDealer(int amtPlayers){
        
         Random rand = new Random();
         int min=0;
         int max=amtPlayers;
-
-       
         int randomNum = rand.nextInt(max - min ) + min;
-
-       
         return randomNum;
-       
     }
 
-public int chooseNextDealer(int amtPlayers, int currentDealer){
+    public int chooseNextDealer(int amtPlayers, int currentDealer){
    
-    if(currentDealer==amtPlayers-1){ //if current dealer is last person in player array, go back to the first person
-        return 0;
+    	if(currentDealer==amtPlayers-1){ //if current dealer is last person in player array, go back to the first person
+    		return 0;
+    	}
+    	else{
+    		return currentDealer+1; // otherwise dealer is previous dealer +1
+    	}
     }
-    else{
-        return currentDealer+1; // otherwise dealer is previous dealer +1
+
+    public int returnPot(){
+    	return potTotal;
     }
-}
 
-public int returnPot(){
-    return potTotal;
-}
-
-//this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
-public Player [] winner(Player [] involvedPlayers){
+    //this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
+    public Player [] winner(Player [] involvedPlayers){
    
+//    	GameWindow.setConsoleText("Cards passed for player"+ involvedPlayers[0].getName()+" are: "); // print statements
+    	involvedPlayers[0].showBestHand();
    
-    System.out.println("Cards passed for player"+ involvedPlayers[0].getName()+" are: "); // print statements
-    involvedPlayers[0].showBestHand();
-   
-    System.out.println("Cards passed for player"+ involvedPlayers[1].getName()+" are: "); // print statements
-    involvedPlayers[1].showBestHand();
-   
-   
+//    	GameWindow.setConsoleText("Cards passed for player"+ involvedPlayers[1].getName()+" are: "); // print statements
+    	involvedPlayers[1].showBestHand();
    
     for(int i=0;i<involvedPlayers.length;i++){ //go through pokerCard array and find best hand type
 
         if(involvedPlayers[i].getBestPokerHand().testBooleans()<bestBoolean){ 
             bestBoolean=involvedPlayers[i].getBestPokerHand().testBooleans();
-            System.out.println("Best boolean is:"+bestBoolean);
+//            GameWindow.setConsoleText("Best boolean is:"+bestBoolean+"\n");
         }
     }
     Player [] finalWinners = new Player[0];
@@ -212,18 +204,14 @@ public Player [] winner(Player [] involvedPlayers){
             	finalWinners[count]=involvedPlayers[i];
             	 count++;
             }
-           
         }
-
     }
     
     if(finalWinners.length>1){ // now need to check when there is a split pot, can we determine 1 winner
     
     }
     
-    
-    System.out.println("length"+finalWinners.length);
-   
+//    GameWindow.setConsoleText("length"+finalWinners.length+"\n");
    
     return finalWinners;
    
@@ -296,7 +284,7 @@ private void setPot(){
     for(int i=0;i<involvedPlayers.length;i++){
         if(involvedPlayers[i].getBet(currentBet)==currentBet){ // find players who are matching the current bet and get their ID
             int temp=involvedPlayers[i].playerID;
-            System.out.println(temp);
+//            GameWindow.setConsoleText(Integer.toString(temp)+" ");
             intInvolvedPlayers[tempInvolvedPlayersCount] = temp;
             tempInvolvedPlayersCount++;
             addToPot(involvedPlayers[i].getBet(currentBet));
@@ -307,7 +295,7 @@ private void setPot(){
 
 public void checkPlayerMoney(Player [] positions){
     for (int i=0;i<positions.length;i++){
-        System.out.println(positions[i].checkMoney());
+//    	GameWindow.setConsoleText(Integer.toString(positions[i].checkMoney())+" ");
     }
    
 }
@@ -320,7 +308,7 @@ public void rewardWinners(Player [] winners, int total){
     int individualAmount = total/winners.length;
     for (int i=0;i<winners.length;i++){
         winners[i].rewardPlayer(individualAmount);
-        System.out.println("Player "+winners[i].getName()+" now has "+winners[i].checkMoney());
+//        GameWindow.setConsoleText("Player "+winners[i].getName()+" now has "+winners[i].checkMoney()+"\n");
     }
 }
 
