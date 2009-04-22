@@ -1,7 +1,6 @@
 package com.poker;
 import java.util.Random;
 
-
 public class Pack {
 
 	Card[] thisPack;

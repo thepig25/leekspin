@@ -97,21 +97,21 @@ public int getPlayerHighCard(){
 	}
 	
 	public void printPocketHand(){ // prints pocket pair
-		GameWindow.setConsoleText("Poket Hand: ");
+		//GameWindow.setConsoleText("Poket Hand: ");
 		for(int i = 0; i < 2; i++){
-			GameWindow.setConsoleText(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString() + ", ");
+		//	GameWindow.setConsoleText(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString() + ", ");
 		}
-		GameWindow.setConsoleText("\n");
-		GameWindow.drawPocketCardImgs(playerHand);
+//		//GameWindow.setConsoleText("\n");
+		//GameWindow.drawPocketCardImgs(playerHand);
 	}
 	
 	public void printCommunity(){ // prints the community cards
-		GameWindow.setConsoleText("Community Cards are : ");
+//		GameWindow.setConsoleText("Community Cards are : ");
 		for(int i = 0; i < communityCards.length; i++){
-			GameWindow.setConsoleText(communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString()+ ", ");
+//			GameWindow.setConsoleText(communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString()+ ", ");
 		}
-		GameWindow.setConsoleText("\n");
-		GameWindow.drawCardImgs(communityCards);
+//		GameWindow.setConsoleText("\n");
+//		GameWindow.drawCardImgs(communityCards);
 	}
 	
 	
@@ -363,11 +363,11 @@ public int getPlayerHighCard(){
 		showCards=newCard.getCard();
 		//System.out.println("Player's best hand is: ");
 		//System.out.println("showCards length: "+showCards.length);
-		GameWindow.setConsoleText("Best Hand: ");
+//		GameWindow.setConsoleText("Best Hand: ");
 		for (int i=0;i<showCards.length;i++){
-			GameWindow.setConsoleText(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString()+", ");
+//			GameWindow.setConsoleText(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString()+", ");
 		}
-		GameWindow.setConsoleText("\n");
+//		GameWindow.setConsoleText("\n");
 	}
 
 }

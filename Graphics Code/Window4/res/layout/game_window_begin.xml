@@ -75,33 +75,9 @@
 	android:focusableInTouchMode="true"
 	android:maxLines="100">
 	</TextView>
-	<ImageButton
-	android:id="@+id/but_check"
-	android:layout_width="wrap_content"
+	<Button
+	android:id="@+id/but_start"
 	android:layout_height="wrap_content"
-	android:src="@drawable/check_button"
-	android:layout_y="415px"
-	android:layout_x="243px">
-	</ImageButton>
-	<ImageButton
-	android:id="@+id/but_fold"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:src="@drawable/fold_button"
-	android:layout_y="415px" android:layout_x="166px">
-	</ImageButton>
-	<ImageButton
-	android:id="@+id/but_call"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:src="@drawable/call_button"
-	android:layout_y="415px" android:layout_x="88px">
-	</ImageButton>
-	<ImageButton
-	android:id="@+id/but_raise"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:src="@drawable/raise_button"
-	android:layout_x="10px" android:layout_y="415px">
-	</ImageButton>
+	android:layout_x="10px" android:layout_y="415px" android:text="Start Game" android:layout_width="300px">
+	</Button>
 </AbsoluteLayout>
