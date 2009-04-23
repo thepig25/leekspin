@@ -11,6 +11,12 @@
 	android:src="@drawable/table1"
 	>
 	</ImageView>
+	<TextView
+	android:id="@+id/tvpot"
+	android:background="@drawable/white"
+	android:text="Pot: 100"
+	android:textColor="#ff000000"
+	android:maxLines="1" android:layout_y="50px" android:layout_x="120px" android:lines="1" android:layout_height="25px" android:layout_width="90px"/>
 	<ImageView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

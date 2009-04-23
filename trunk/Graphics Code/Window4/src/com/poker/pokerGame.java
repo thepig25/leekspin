@@ -1,5 +1,7 @@
 package com.poker;
 
+import android.os.Handler;
+
 public class pokerGame extends pokerGameMethods { // this is test code for dealing - not a final implementation. 
 	//Want to be able to deal with more than 2 players in future. for now we'll just use 2
 	
@@ -39,7 +41,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			bettingRound(positions); // 1st betting round
 			reducedPositions = getInvolvedPlayers();
-			resetCounters(reducedPositions);
+			
 			
 //			GameWindow.setConsoleText(positions[0].getName()+"\n");
 //			GameWindow.setConsoleText(positions[1].getName()+"\n");

@@ -24,8 +24,9 @@ public class RaiseWindow extends Activity implements View.OnClickListener{
         raiseby = (Spinner)this.findViewById(R.id.spin1);
         ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_dropdown_item,
-                    new String[] { "2", "5", "10" });
-            raiseby.setAdapter(spinnerArrayAdapter);
+                //    new String[] { "40", "60", "100"} );
+                GameWindow.bets);
+        raiseby.setAdapter(spinnerArrayAdapter);
     }
     
     /** Handles Ok button selection */
@@ -37,7 +38,7 @@ public class RaiseWindow extends Activity implements View.OnClickListener{
         	finish();
         }
     };
-
+    
     /** Not used. */
 	@Override
 	public void onClick(View v) {
