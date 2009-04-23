@@ -21,6 +21,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 //					gameOver--; // one closer to a game over situation
 //				}
 //			}
+		
 			Pack myPack = new Pack();
 			myPack.createPack();
 			//myPack.Shuffle();
@@ -40,8 +41,16 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			}
 			
 			bettingRound(positions); // 1st betting round
-			reducedPositions = getInvolvedPlayers();
-			resetCounters(reducedPositions);
+			reducedPositions = returnPlayersHack();
+			System.out.println("reduced"+reducedPositions.length);
+			if(reducedPositions.length==1){
+				
+				System.out.println("Pot is "+returnPot());
+				rewardWinners(reducedPositions,returnPot());
+				
+			}
+			else{
+			resetCounters(positions);
 			
 			System.out.println(positions[0].getName());
 			System.out.println(positions[1].getName());
@@ -103,7 +112,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			else{
 				System.out.println ("Winner is: ");
 			}
-			
+			System.out.println(winner.length);
 			for(int i=0;i<winner.length;i++){
 				
 				System.out.print (winner[i].getName()+" ");
@@ -113,7 +122,11 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			resetCounters(positions);
 			int temp = incrementDealer(Dealer, positions);
 			Dealer=temp;
-		}
+			}
+
+	
+	}
+	
 	}
 	
 
