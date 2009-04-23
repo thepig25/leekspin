@@ -453,8 +453,8 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	}
 	
 	public int getNonPair(){
-		if(isTwoPair()){
-			for (int i=0;i<mySortedCards.length;i++){
+		if(isTwoPair()||isOnePair()){
+			for (int i=mySortedCards.length-1;i>0;i--){
 				if(mySortedCards[i].getValue()!= firstMatch&&mySortedCards[i].getValue()!= highestSecondPair){
 					return mySortedCards[i].getValue();
 				}

@@ -1,6 +1,7 @@
 package com.poker;
 import java.util.Random;
 
+
 public class Pack {
 
 	Card[] thisPack;
@@ -67,7 +68,7 @@ public class Pack {
 	
 	 public Card[] getFirstPocketSpecial(){ // player 0
 	        Card [] special = new Card [1];
-	        special[0] = thisPack[12];
+	        special[0] = thisPack[19];
 	        
 	        return special;
 	    }
@@ -81,13 +82,13 @@ public class Pack {
 	    
 	    public Card[] getThirdPocketSpecial(){ // player 0
 	        Card [] special = new Card [1];
-	        special[0] = thisPack[16];
+	        special[0] = thisPack[20];
 	        return special;
 	        
 	    }
 	    public Card[] getFourthPocketSpecial(){ // player 1
 	        Card [] special = new Card [1];
-	        special[0] = thisPack[8];
+	        special[0] = thisPack[47];
 	        return special;
 	        
 	        
@@ -96,15 +97,15 @@ public class Pack {
 
 	public Card[] getCommmunitySpecial(){
 		Card [] special = new Card [3];
-		special[0] = thisPack[5];
-		special[1] = thisPack[19];
+		special[0] = thisPack[12];
+		special[1] = thisPack[25];
 		special[2] = thisPack[1];
 	return special;
 	}
 	
 	public Card[] getTurnSpecial(){
 		Card [] special = new Card [1];
-		special[0] = thisPack[27];
+		special[0] = thisPack[28];
 		return special;
 	}
 	
