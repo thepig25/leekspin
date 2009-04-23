@@ -50,7 +50,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 				
 			}
 			else{
-			resetCounters(positions);
+			resetCounters(reducedPositions);
 			
 			System.out.println(positions[0].getName());
 			System.out.println(positions[1].getName());
@@ -71,7 +71,16 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			reducedPositions[1].showBestHand();
 			
 			bettingRound(reducedPositions); // 2nd betting round
-			reducedPositions = getInvolvedPlayers();
+			reducedPositions = returnPlayersHack();
+			System.out.println("reduced"+reducedPositions.length);
+			if(reducedPositions.length==1){
+				
+				System.out.println("Pot is "+returnPot());
+				rewardWinners(reducedPositions,returnPot());
+				
+			}
+			else{
+			
 			resetCounters(reducedPositions);
 		
 			dealTurn(myPack, reducedPositions);			
@@ -82,9 +91,19 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			reducedPositions[1].showBestHand();
 			
 			bettingRound(reducedPositions); // 3rd betting round
-			reducedPositions = getInvolvedPlayers();
-			dealRiver(myPack, reducedPositions);
+			reducedPositions = returnPlayersHack();
+			System.out.println("reduced"+reducedPositions.length);
+			if(reducedPositions.length==1){
+				
+				System.out.println("Pot is "+returnPot());
+				rewardWinners(reducedPositions,returnPot());
+				
+			}
+			else{
+			
 			resetCounters(reducedPositions);
+			dealRiver(myPack, reducedPositions);
+			
 			
 			
 			System.out.println("Player "+reducedPositions[0].getName()+"'s best hand is:");
@@ -94,8 +113,18 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			reducedPositions[1].showBestHand();
 			
 			bettingRound(reducedPositions); // 4th betting round
-			reducedPositions = getInvolvedPlayers();
+			reducedPositions = returnPlayersHack();
+			System.out.println("reduced"+reducedPositions.length);
+			if(reducedPositions.length==1){
+				
+				System.out.println("Pot is "+returnPot());
+				rewardWinners(reducedPositions,returnPot());
+				
+			}
+			else{
+			
 			resetCounters(reducedPositions);
+			
 			
 			System.out.println("Pot is: " +returnPot());
 			
@@ -123,7 +152,9 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			int temp = incrementDealer(Dealer, positions);
 			Dealer=temp;
 			}
-
+			}
+			}
+			}
 	
 	}
 	
