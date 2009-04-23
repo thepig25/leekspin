@@ -326,7 +326,7 @@ public void getBetAndPot(){
 }
 
 
-public boolean getPlayersWhoWantToPlay(){
+public void getPlayersWhoWantToPlay(){
 	Player[] tempPlayer = new Player[0];
 	int playerCount=0;
 	for(int i=0;i<involvedPlayers.length;i++){
@@ -344,12 +344,12 @@ public boolean getPlayersWhoWantToPlay(){
 	}
 	involvedPlayers=tempPlayer;
 	if(involvedPlayers.length==1){
-		return false;
+		
 	}
 	else{
 		getHighestBet();
 		setPot();
-		return true;
+		
 	}
 	
 	//resetCounters();

@@ -24,8 +24,16 @@ public int getDecision(){
 	
 	
 	public int getBet(int currentBet){
-		if(askCount<1){
+		if(currentBet>bet){
+			//int oldBet= bet;
 			bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Current Bet is: "+currentBet+" Enter amount here"));
+			if(bet<currentBet){
+				getBet(currentBet);
+			}
+			else{
+				finaliseBet(bet);
+			}
+			
 			
 			askCount++;
 		}
@@ -37,7 +45,7 @@ public int getDecision(){
 	}
 	
 	public void finaliseBet(int currentBet){
-		currentMoney = currentMoney - bet;
+		currentMoney = currentMoney - (bet);
 	}
 	
 	public void resetCounters(){
