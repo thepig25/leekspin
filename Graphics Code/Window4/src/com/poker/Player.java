@@ -1,5 +1,7 @@
 package com.poker;
 
+import android.os.Message;
+
 public class Player extends Pack {
 
 	int decision;
@@ -51,6 +53,10 @@ public class Player extends Pack {
 		return name;
 	}
 	
+	public void foldPlayer(){
+		
+	}
+	
 	// this takes an array of dealt cards then adds them to the
 	// players hand. using cardCount to make sure its in the 
 	// position
@@ -97,12 +103,17 @@ public int getPlayerHighCard(){
 	}
 	
 	public void printPocketHand(){ // prints pocket pair
-		//GameWindow.setConsoleText("Poket Hand: ");
-		for(int i = 0; i < 2; i++){
-		//	GameWindow.setConsoleText(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString() + ", ");
-		}
-//		//GameWindow.setConsoleText("\n");
-		//GameWindow.drawPocketCardImgs(playerHand);
+//		GameWindow.setConsoleText("Poket Hand: ");
+		
+//		GameWindow.setConsoleText("\n");
+		
+		
+		
+		//Message m = new Message();
+        //m.what = GameWindow.DRAWPLAYERCARDS;
+        //m.obj = (Card[]) (communityCards);
+        //GameWindow.myViewUpdateHandler.sendMessage(m);
+//		GameWindow.drawPocketCardImgs(playerHand);
 	}
 	
 	public void printCommunity(){ // prints the community cards
@@ -111,6 +122,10 @@ public int getPlayerHighCard(){
 //			GameWindow.setConsoleText(communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString()+ ", ");
 		}
 //		GameWindow.setConsoleText("\n");
+		Message m = new Message();
+        m.what = GameWindow.DRAWCOMMUNITYCARDS;
+        m.obj = (Card[]) (communityCards);
+        GameWindow.myViewUpdateHandler.sendMessage(m);
 //		GameWindow.drawCardImgs(communityCards);
 	}
 	

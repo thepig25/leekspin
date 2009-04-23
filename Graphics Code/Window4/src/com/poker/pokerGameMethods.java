@@ -232,9 +232,22 @@ public class pokerGameMethods extends Pack {
 }
 */
 public void bettingRound(Player [] tempPlayers){
-    setPlayers(tempPlayers);
+	while(GameWindow.getAnyPressed()!= true){
+		// do nothing
+	}
+	/**
+	if(GameWindow.command==1){
+		setPlayers(tempPlayers);
+		RemovePlayer(0);
+		setPlayers(tempPlayers);
+	}
+	if(GameWindow.command==0){
+	setPlayers(tempPlayers);
     getHighestBet();
     setPot();
+    resetCounters(involvedPlayers);
+	}
+	*/
 }
 
 
@@ -257,6 +270,21 @@ public Player [] getInvolvedPlayers(){
         }
     }
     return tempInvolvedPlayers;
+}
+
+public void RemovePlayer(int playerID){
+	Player[] tempPlayer = new Player[involvedPlayers.length-1];
+	int playerCount=0;
+	for(int i=0;i<involvedPlayers.length;i++){
+		if(playerID == involvedPlayers[i].playerID){
+			involvedPlayers[i].foldPlayer();
+		}
+		if(playerID != involvedPlayers[i].playerID){
+			tempPlayer[playerCount]=involvedPlayers[i];
+			playerCount++;
+		}
+	}
+	involvedPlayers=tempPlayer;
 }
 
 public void getBetAndPot(){
