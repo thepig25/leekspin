@@ -4,7 +4,7 @@ import android.os.Message;
 
 public class Player extends Pack {
 
-	int decision;
+	private int decision;
 	int bet=0;
 	int currentMoney;
 	String name;
@@ -26,6 +26,8 @@ public class Player extends Pack {
 	int highestGeneralPair=0;
 	int highStraightCard=0;
 	int playerID;
+	int nonPair;
+	int nonPairForEight;
 	
 	
 
@@ -37,6 +39,7 @@ public class Player extends Pack {
 	}
 	
 	public void rewardPlayer(int amount){
+		System.out.println("amount is "+amount);
 		currentMoney=currentMoney+amount;
 	}
 	public void removeBlinds(int amount){
@@ -51,10 +54,6 @@ public class Player extends Pack {
 	
 	public String getName(){
 		return name;
-	}
-	
-	public void foldPlayer(){
-		
 	}
 	
 	// this takes an array of dealt cards then adds them to the
@@ -103,36 +102,28 @@ public int getPlayerHighCard(){
 	}
 	
 	public void printPocketHand(){ // prints pocket pair
-//		GameWindow.setConsoleText("Poket Hand: ");
-		
-//		GameWindow.setConsoleText("\n");
-		
-		
-		
-		//Message m = new Message();
-        //m.what = GameWindow.DRAWPLAYERCARDS;
-        //m.obj = (Card[]) (communityCards);
-        //GameWindow.myViewUpdateHandler.sendMessage(m);
-//		GameWindow.drawPocketCardImgs(playerHand);
+	
+		for(int i = 0; i < 2; i++){
+			System.out.println(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString());
+			Message m = new Message();
+	        m.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m.obj = (String) (playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString()+ " ");
+	        GameWindow.myViewUpdateHandler.sendMessage(m);
+		}
 	}
 	
 	public void printCommunity(){ // prints the community cards
-//		GameWindow.setConsoleText("Community Cards are : ");
+		
 		for(int i = 0; i < communityCards.length; i++){
-//			GameWindow.setConsoleText(communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString()+ ", ");
+			System.out.println("community Cards are :" +communityCards[i].getValueAsString()+ " of " + communityCards[i].getSuitAsString());
+
 		}
-//		GameWindow.setConsoleText("\n");
-		Message m = new Message();
-        m.what = GameWindow.DRAWCOMMUNITYCARDS;
-        m.obj = (Card[]) (communityCards);
-        GameWindow.myViewUpdateHandler.sendMessage(m);
-//		GameWindow.drawCardImgs(communityCards);
 	}
 	
 	
-	public int getDecision(){ // public methods for OOP to get our decision and amount to bet (if any)
+	/*public int getDecision(){ // public methods for OOP to get our decision and amount to bet (if any)
 		return  decision; // 0=fold,1=check/call, 2=raise
-	}
+	}*/
 	
 	public int getBet(int currentBet){
 		if(decision!=0){
@@ -142,9 +133,11 @@ public int getPlayerHighCard(){
 		
 	}
 	
-	//private makeDecision(thisHand){ // where we decide what to do - keep private!
+	/*public int makeDecision(){ // where we decide what to do 
+	
+		return decision;
 		
-//	}
+	}*/
 	
 	private int makeBet(){ // where we decide what to bet(if any) - keep private!
 		return bet;
@@ -245,6 +238,9 @@ public int getPlayerHighCard(){
 					if(testHand.firstMatch>highestFirstPair&&bestBoolean==8){
 						highestFirstPair=testHand.firstMatch;
 					}
+					if(testHand.getNonPair()>nonPairForEight){
+						nonPairForEight=testHand.getNonPair();
+					}
 				}
 				
 				
@@ -259,25 +255,32 @@ public int getPlayerHighCard(){
 						
 					}
 						Card [] tempy = testHand.firstTwo();
+						nonPair=testHand.getNonPair();
+						
 
 					if((testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair)){
 							//if(testHand.getLastCardValue()>highCard&&bestBoolean==7){
+						highestSecondPair=testHand.highestSecondPair;
+						highestFirstPair=testHand.firstMatch;
 						
-						if (getPlayerHighCard()==testHand.getNonPair()) {
+						if (testHand.getNonPair()>nonPair) {
+								nonPair=testHand.getNonPair();
 								highestSecondPair=testHand.highestSecondPair;
+								System.out.println("2nd pair is: "+highestSecondPair);
 								highestFirstPair=testHand.firstMatch;
 								bestPokerHand = testHand.getCard();
 								highCard=testHand.getHighCard().getValue();
 								
-								System.out.println("In "+bestBoolean+ "best hand is ");
-								//bestPokerHand.printPokerHand();
+								//System.out.println("In "+bestBoolean+ "best hand is ");
+								testHand.printPokerHand();
+								//bestPokerHand;
 								System.out.println(" ");
 							}
 							
 						
-						System.out.println("outside 2nd if loop");
+						//System.out.println("outside 2nd if loop");
 							//bestPokerHand.printPokerHand();
-							System.out.println(" ");
+							//System.out.println(" ");
 							//}
 							
 							}
@@ -378,11 +381,21 @@ public int getPlayerHighCard(){
 		showCards=newCard.getCard();
 		//System.out.println("Player's best hand is: ");
 		//System.out.println("showCards length: "+showCards.length);
-//		GameWindow.setConsoleText("Best Hand: ");
 		for (int i=0;i<showCards.length;i++){
-//			GameWindow.setConsoleText(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString()+", ");
+			
+			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
 		}
-//		GameWindow.setConsoleText("\n");
+		
+		
+	}
+
+	public int getDecision() {
+		// TODO Auto-generated method stub
+		return decision;
+	}
+	
+	public void makeDecision(){
+		
 	}
 
 }

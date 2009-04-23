@@ -24,8 +24,8 @@ public class GameWindow extends Activity{
 	
 	/** True if the raise amount has been chosen. */
 	private static boolean pressed;
-	private static boolean any_pressed;
-	private static int command;
+	static boolean any_pressed;
+	static int command;
 	
 	/** Used to communicate between threads. */
     protected static final int GUIUPDATEIDENTIFIER = 0x101;
@@ -36,7 +36,7 @@ public class GameWindow extends Activity{
     protected static final int SETPOTTEXT = 0x106;
 	
     /** Choice of bets. */
-    public static String[] bets = {"Not Yet Initialised","",""};
+    public static String[] bets = {"20","40","60"};
     
 	private static int blank_card_id;
 	private static int bet = 0;
@@ -163,7 +163,7 @@ public class GameWindow extends Activity{
         Thread t = new Thread() {
         	public void run() {
         		// Start a new game in a separate thread.
-//        		myGame = new pokerGame(2, 2500, 50);
+        		myGame = new pokerGame(2, 2500, 50);
         	}
         };
         t.start();
