@@ -2,7 +2,6 @@ package com.poker;
 
 import android.os.Message;
 
-
 public class HumanPlayer extends Player {
 	int askCount=0;
 	int bet=0;
@@ -11,7 +10,6 @@ public class HumanPlayer extends Player {
 
 	public HumanPlayer(String Name, int Chips, Card[] currentHand, int tempPlayerID) {
 		super(Name, Chips, currentHand, tempPlayerID);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void receiveCommunityCards(Card[] received){ // method for receiving community cards. 
@@ -38,9 +36,9 @@ public class HumanPlayer extends Player {
 	
 	
 	
-	// this takes an array of dealt cards then adds them to the
-	// the private variable which holds the player's hand.
-	// This is just for the first two pocket cards a player gets
+	/** This takes an array of dealt cards then adds them to the
+	the private variable which holds the player's hand.
+	This is just for the first two pocket cards a player gets. */
 	public void receivePocketCards(Card[] received){
 		Card[] temp = received;
 		for(int i = 0;i <temp.length;i++){
@@ -53,15 +51,8 @@ public class HumanPlayer extends Player {
 	        m.what = GameWindow.DRAWPLAYERCARDS;
 	        m.obj = (Card[]) (playerHand);
 	        GameWindow.myViewUpdateHandler.sendMessage(m);
-		}
-		
+		}	
 	}
-	
-	
-	
-	
-	
-	
 	
 	public void makeDecision(){
 		
@@ -71,25 +62,28 @@ public class HumanPlayer extends Player {
 		}
 		
 		decision = GameWindow.command;
+		GameWindow.any_pressed = false;
 		
 		switch (decision) {
-        	case 0:
-        		//
+        	case 0: // Raise
+        		int tempBet = GameWindow.getBet();
+        		// send new bet somewhere...
         		break;
              
-        	case 1:
-        		//
+        	case 1: // Fold
+        		//makeDecision();
+        		/* call makeDecision(); again if we don't want
+        		fold button to do anything. */
         		break;
              
-        	case 2:
-        		//
+        	case 2: // Call
+        		// ?
         		break;
         		
-        	case 3:
-        		//
+        	case 3: // Check
+        		
         		break;
 		}
-		
 	}
 	
 	public int getDecision(){

@@ -33,7 +33,8 @@ public class pokerGameMethods extends Pack {
             positions[i].receivePocketCards(deal);
         }*/
         deal = myPack.getFirstPocketSpecial();
-        positions[0].receivePocketCards(deal);
+        positions[0].makeDecision();//receivePocketCards(deal);
+        positions[0].receivePocketCards(deal); 					// Temp fix.
         deal = myPack.getSecondPocketSpecial();
         positions[1].receivePocketCards(deal);
         deal = myPack.getThirdPocketSpecial();
@@ -333,6 +334,8 @@ public void getPlayersWhoWantToPlay(){
 	for(int i=0;i<involvedPlayers.length;i++){
 		involvedPlayers[i].makeDecision();
 		//System.out.println(involvedPlayers[i].getName()+involvedPlayers[i].getDecision());
+		
+		/** What to do if the player doesn't fold. */
 		if(involvedPlayers[i].getDecision()!=1){
 			Player[] tempCopy = new Player[(tempPlayer.length)];
             System.arraycopy(tempPlayer, 0, tempCopy, 0, tempCopy.length);
