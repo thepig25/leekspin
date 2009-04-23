@@ -1,7 +1,7 @@
 
 public class Player extends Pack {
 
-	int decision;
+	private int decision;
 	int bet=0;
 	int currentMoney;
 	String name;
@@ -10,13 +10,13 @@ public class Player extends Pack {
 	Card[] communityCards = new Card[3];
 	int cardCount=0;
 	int cardPocketCount=0;
+	Card [] bestPokerHand;
 	CombinationGenerator x;
 	int[] elements;
 	Card [] poolCards;
 	int allCombosLength;
 	int highestFirstPair=-1;
 	int highestSecondPair=-1;
-	Card [] bestPokerHand;
 	int bestBoolean=20;
 	int highCard=2;
 	int highestLowest=0;
@@ -24,6 +24,7 @@ public class Player extends Pack {
 	int highStraightCard=0;
 	int playerID;
 	int nonPair;
+	int nonPairForEight;
 	
 	
 
@@ -35,6 +36,7 @@ public class Player extends Pack {
 	}
 	
 	public void rewardPlayer(int amount){
+		System.out.println("amount is "+amount);
 		currentMoney=currentMoney+amount;
 	}
 	public void removeBlinds(int amount){
@@ -85,7 +87,7 @@ public class Player extends Pack {
 		}
 	}
 	
-public int getPlayerHighHoleCard(){
+public int getPlayerHighCard(){
 		Card [] temp = playerHand;
 		
 		if(temp [0].getValue()>temp [1].getValue()){
@@ -94,23 +96,7 @@ public int getPlayerHighHoleCard(){
 		else{
 			return temp [1].getValue();
 		}
-}
-
-public int getPlayerLowHoleCard(){
-	Card [] temp = playerHand;
-	
-	if(temp [0].getValue()<temp [1].getValue()){
-		return temp [0].getValue();
 	}
-	else{
-		return temp [1].getValue();
-	}
-}
-
-public Card [] getPlayersCards(){
-	Card [] temp = playerHand;
-	return temp;
-}
 	
 	public void printPocketHand(){ // prints pocket pair
 	
@@ -129,9 +115,9 @@ public Card [] getPlayersCards(){
 	}
 	
 	
-	public int getDecision(){ // public methods for OOP to get our decision and amount to bet (if any)
+	/*public int getDecision(){ // public methods for OOP to get our decision and amount to bet (if any)
 		return  decision; // 0=fold,1=check/call, 2=raise
-	}
+	}*/
 	
 	public int getBet(int currentBet){
 		if(decision!=0){
@@ -141,9 +127,11 @@ public Card [] getPlayersCards(){
 		
 	}
 	
-	//private makeDecision(thisHand){ // where we decide what to do - keep private!
+	/*public int makeDecision(){ // where we decide what to do 
+	
+		return decision;
 		
-//	}
+	}*/
 	
 	private int makeBet(){ // where we decide what to bet(if any) - keep private!
 		return bet;
@@ -244,6 +232,9 @@ public Card [] getPlayersCards(){
 					if(testHand.firstMatch>highestFirstPair&&bestBoolean==8){
 						highestFirstPair=testHand.firstMatch;
 					}
+					if(testHand.getNonPair()>nonPairForEight){
+						nonPairForEight=testHand.getNonPair();
+					}
 				}
 				
 				
@@ -259,6 +250,7 @@ public Card [] getPlayersCards(){
 					}
 						Card [] tempy = testHand.firstTwo();
 						nonPair=testHand.getNonPair();
+						
 
 					if((testHand.firstMatch>highestFirstPair&&testHand.highestSecondPair>highestSecondPair)){
 							//if(testHand.getLastCardValue()>highCard&&bestBoolean==7){
@@ -388,6 +380,15 @@ public Card [] getPlayersCards(){
 			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
 		}
 		
+		
+	}
+
+	public int getDecision() {
+		// TODO Auto-generated method stub
+		return decision;
+	}
+	
+	public void makeDecision(){
 		
 	}
 
