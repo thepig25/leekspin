@@ -105,10 +105,10 @@ public int getPlayerHighCard(){
 	
 		for(int i = 0; i < 2; i++){
 			System.out.println(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString());
-			Message m = new Message();
-	        m.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m.obj = (String) (playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString()+ " ");
-	        GameWindow.myViewUpdateHandler.sendMessage(m);
+			//Message m = new Message();
+	        //m.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        //m.obj = (String) (playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString()+ " ");
+	        //GameWindow.myViewUpdateHandler.sendMessage(m);
 		}
 	}
 	
@@ -382,8 +382,11 @@ public int getPlayerHighCard(){
 		//System.out.println("Player's best hand is: ");
 		//System.out.println("showCards length: "+showCards.length);
 		for (int i=0;i<showCards.length;i++){
-			
 			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
+			Message m = new Message();
+	        m.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m.obj = (String) (showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString()+", ");
+	        GameWindow.myViewUpdateHandler.sendMessage(m);
 		}
 		
 		

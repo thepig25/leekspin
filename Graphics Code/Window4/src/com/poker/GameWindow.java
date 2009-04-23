@@ -169,6 +169,7 @@ public class GameWindow extends Activity{
         t.start();
     }
     
+    /** Handles messages from the game thread. */
     static Handler myViewUpdateHandler = new Handler(){
          @Override
          public void handleMessage(Message msg) {
@@ -222,6 +223,8 @@ public class GameWindow extends Activity{
     };
     private OnClickListener l_call = new OnClickListener() {
         public void onClick(View v) {
+        	command = 2;
+        	any_pressed = true;
         }
     };
     private OnClickListener l_fold = new OnClickListener() {
@@ -232,6 +235,8 @@ public class GameWindow extends Activity{
     };
     private OnClickListener l_check = new OnClickListener() {
         public void onClick(View v) {
+        	command = 3;
+        	any_pressed = true;
         }
     };
     

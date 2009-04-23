@@ -13,15 +13,11 @@
 	</ImageView>
 	<TextView
 	android:id="@+id/tvpot"
-	android:text="Pot: 100"
 	android:textColor="#ffff00"
 	android:maxLines="1"
-	android:layout_y="50px"
-	android:layout_x="120px"
 	android:lines="1"
 	android:layout_height="25px"
-	android:layout_width="90px"
-	/>
+	android:layout_width="90px" android:textSize="18sp" android:text="100" android:layout_x="140px" android:layout_y="46px"/>
 	<ImageView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
