@@ -1,6 +1,8 @@
 package com.poker;
 import java.util.Random;
 
+import android.os.Message;
+
 
 public class pokerGameMethods extends Pack {
 
@@ -24,24 +26,31 @@ public class pokerGameMethods extends Pack {
    
     public void dealPocketCard(Pack myPack, Player [] positions){
         Card[] deal;
-        /*for(int i=0;i<positions.length;i++){
+        for(int i=0;i<positions.length;i++){
             deal = myPack.dealOneCardArray();
             positions[i].receivePocketCards(deal);
         }
         for(int i=0;i<positions.length;i++){
             deal = myPack.dealOneCardArray();
             positions[i].receivePocketCards(deal);
-        }*/
-        deal = myPack.getFirstPocketSpecial();
-        positions[0].makeDecision();//receivePocketCards(deal);
+        }
+        /*deal = myPack.getFirstPocketSpecial();
+        //receivePocketCards(deal);
         positions[0].receivePocketCards(deal); 					// Temp fix.
         deal = myPack.getSecondPocketSpecial();
         positions[1].receivePocketCards(deal);
         deal = myPack.getThirdPocketSpecial();
         positions[0].receivePocketCards(deal);
         deal = myPack.getFourthPocketSpecial();
-        positions[1].receivePocketCards(deal);
+        positions[1].receivePocketCards(deal);*/
+        
        
+        Message m = new Message();
+        m.what = GameWindow.DRAWPLAYERCARDS;
+        m.obj = (Card[]) (positions[0].playerHand);
+        GameWindow.myViewUpdateHandler.sendMessage(m);
+        positions[0].makeDecision();
+        
     }
    
     public void dealFlopCommunityCards(Pack myPack, Player [] positions){
@@ -111,7 +120,7 @@ public int returnPot(){
 //this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
 public Player [] winner(Player [] involvedPlayers){
    
-   
+   // set cards to flip over here
     System.out.println("Cards passed for player"+ involvedPlayers[0].getName()+" are: "); // print statements
     involvedPlayers[0].showBestHand();
    

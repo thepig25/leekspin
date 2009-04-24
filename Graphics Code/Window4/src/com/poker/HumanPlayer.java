@@ -6,8 +6,8 @@ public class HumanPlayer extends Player {
 	int askCount=0;
 	int bet=0;
 	private int decision;
-	boolean alreadyBet = false;
-
+	public boolean alreadyBet = false;
+	
 	public HumanPlayer(String Name, int Chips, Card[] currentHand, int tempPlayerID) {
 		super(Name, Chips, currentHand, tempPlayerID);
 	}
@@ -46,12 +46,12 @@ public class HumanPlayer extends Player {
 			cardPocketCount++;
 		}
 		System.out.println("cardPocketCount is"+cardPocketCount);
-		if(cardPocketCount==2){
+		/*if(cardPocketCount==2){
 			Message m = new Message();
 	        m.what = GameWindow.DRAWPLAYERCARDS;
 	        m.obj = (Card[]) (playerHand);
 	        GameWindow.myViewUpdateHandler.sendMessage(m);
-		}	
+		}	*/
 	}
 	
 	public void makeDecision(){
@@ -66,7 +66,9 @@ public class HumanPlayer extends Player {
 		
 		switch (decision) {
         	case 0: // Raise
-        		int tempBet = GameWindow.getBet();
+        		bet = GameWindow.getBet();
+        		//askCount++;
+        		//alreadyBet=true;
         		// send new bet somewhere...
         		break;
              
@@ -84,6 +86,7 @@ public class HumanPlayer extends Player {
         		
         		break;
 		}
+		GameWindow.any_pressed=false;
 	}
 	
 	public int getDecision(){
@@ -91,9 +94,28 @@ public class HumanPlayer extends Player {
 		return decision;
 	}
 	
-	
 	public int getBet(int currentBet){
 		
+		if(askCount>0){
+			return bet;
+		}
+			
+		
+		
+		/*if (decision==0&&alreadyBet==true){
+			alreadyBet=false;
+			return bet;
+		}*/
+		if(decision==2){
+			return currentBet;
+		}
+		else{
+			
+		while(GameWindow.raised_done != true){
+			// wait
+		}
+				
+		GameWindow.raised_done = false;
 		
 		System.out.println(currentBet);
 		String as,bs,cs;
@@ -111,15 +133,15 @@ public class HumanPlayer extends Player {
         m1.obj = (String[]) (bets);
         GameWindow.myViewUpdateHandler.sendMessage(m1);
 		
-		if(currentBet>bet){
+		
 			//int oldBet= bet;
 			Message m2 = new Message();
 	        m2.what = GameWindow.GUIUPDATEIDENTIFIER;
 	        m2.obj = (String) (" >> Press Raise to bet. <<\n");
 	        GameWindow.myViewUpdateHandler.sendMessage(m2);
-			while(GameWindow.getAnyPressed() != true){
+			//while(GameWindow.getAnyPressed() != true){
 				// wait
-			}
+			//}
 			bet = GameWindow.getBet();
 			//bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Current Bet is: "+currentBet+" Enter amount here"));
 			
