@@ -36,6 +36,9 @@ public class GameWindow extends Activity{
     protected static final int SETBET = 0x104;
     protected static final int DRAWBLANKCARDS = 0x105;
     protected static final int SETPOTTEXT = 0x106;
+    protected static final int HIGHLIGHTCARDS = 0x107;
+    protected static final int DRAWOPPONENTCARDS = 0x108;
+    protected static final int DRAWOPPONENTNAME = 0x109;
 	
     /** Choice of bets. */
     public static String[] bets = {"20","40","60"};
@@ -57,6 +60,13 @@ public class GameWindow extends Activity{
     private static ImageView c5Img;
     private static ImageView pc1Img;
     private static ImageView pc2Img;
+    private static ImageView p2card1Img;
+    private static ImageView p2card2Img;
+    private static ImageView p3card1Img;
+    private static ImageView p3card2Img;
+    private static ImageView p4card1Img;
+    private static ImageView p4card2Img;
+    
     public pokerGame myGame;
     
     /** Called when the Activity (UI) is first created. */
@@ -128,6 +138,14 @@ public class GameWindow extends Activity{
         pc1Img = (ImageView) findViewById(id.pcard1);
         pc2Img = (ImageView) findViewById(id.pcard2);
         
+        // Create opponent card images. (Empty until end of game)
+        p2card1Img = (ImageView) findViewById(id.p2card1);
+        p2card2Img = (ImageView) findViewById(id.p2card2);
+        p3card1Img = (ImageView) findViewById(id.p3card1);
+        p3card2Img = (ImageView) findViewById(id.p3card2);
+        p4card1Img = (ImageView) findViewById(id.p4card1);
+        p4card2Img = (ImageView) findViewById(id.p4card2);
+        
         // Get the ID of the blank_card image.
         blank_card_id = 0;
         Field f;
@@ -191,6 +209,18 @@ public class GameWindow extends Activity{
                        drawPocketCardImgs(temp_player_cards);
                        break;
                        
+                   case GameWindow.DRAWOPPONENTCARDS:
+                       Card[] temp_oppenent_cards = (Card[])msg.obj;
+                       int id = (int)msg.arg1;
+                       drawOpponentCardImgs(temp_oppenent_cards, id);
+                       break;
+                       
+                   case GameWindow.DRAWOPPONENTNAME:
+                       String temp_oppenent_name = (String)msg.obj;
+                       int id2 = (int)msg.arg1;
+                       // print it
+                       break;
+                       
                    case GameWindow.SETBET:
                        String[] temp_strings = (String[])msg.obj;
                        bets = temp_strings;
@@ -204,6 +234,11 @@ public class GameWindow extends Activity{
                    case GameWindow.SETPOTTEXT:
                 	   String temp_string1 = (String)msg.obj;
                 	   pot_tv.setText(temp_string1);
+                       break;
+                       
+                   case GameWindow.HIGHLIGHTCARDS:
+                	   int[] h_cards = (int[])msg.obj;
+                	   HighlightCards(h_cards);
                        break;
               }
               super.handleMessage(msg);
@@ -355,6 +390,26 @@ public class GameWindow extends Activity{
         resId = c2.getImageResourceId();
         pc2Img.setImageResource(resId);
     }
+    
+    /** Draws the players pocket cards to screen. */
+    public static void drawOpponentCardImgs(Card[] cards, int id){
+    	Card c1 = cards[0];
+    	Card c2 = cards[1];
+    	int resId1 = c1.getImageResourceId();
+    	int resId2 = c2.getImageResourceId();
+    	if(id==1){
+            p2card1Img.setImageResource(resId1);
+            p2card2Img.setImageResource(resId2);
+    	}
+    	if(id==2){
+            p3card1Img.setImageResource(resId1);
+            p3card2Img.setImageResource(resId2);
+    	}
+    	if(id==3){
+            p4card1Img.setImageResource(resId1);
+            p4card2Img.setImageResource(resId2);
+    	}
+    }
 
     /** Tells if the raise button has been pressed */
     public static boolean getRaisedPressed(){
@@ -369,7 +424,8 @@ public class GameWindow extends Activity{
     /** Prints text to screen. */
     public static void setConsoleText(String st){
     	console.append(st);
-    	console.computeScroll();
+    	//console.computeScroll();
+    	AdjustScroll(console);
     }
     
     /** Returns the bet obtained from RaiseWindow. */
@@ -378,6 +434,25 @@ public class GameWindow extends Activity{
     	return bet;
     }
     
+    private static void HighlightCards(int[] cds){
+    	
+    }
+    
+    public static void AdjustScroll(TextView in_oTextView){
+    	
+        int l_nLineCount = in_oTextView.getLineCount();
+        int l_nViewHeight = in_oTextView.getHeight();
+        int l_nPixelsPerLine = in_oTextView.getLineHeight();
+
+        //The difference between view height and total text height
+        int l_nDifference = ( l_nLineCount * l_nPixelsPerLine ) - l_nViewHeight;
+        if( l_nDifference < 1 ){
+        	return;
+        }
+        
+        in_oTextView.scrollTo( 0, l_nDifference );
+    } 
+    
     /** Saves the game if its interrupted by a phone call. 
     @Override
     protected void onPause() {  
@@ -385,7 +460,7 @@ public class GameWindow extends Activity{
     	// save game
     }
     
-    /** Loads the previously interrupted game. 
+    /** Loads the previously interrupted game.
     @Override
     protected void onResume() {  
     	super.onResume();  

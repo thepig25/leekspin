@@ -16,8 +16,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 		gameOver = NOplayer;
 		positions[0] = new HumanPlayer("Hugh Man",startAmount,null,1);
 		positions[1] = new AI_Player ("Megatron",startAmount,null,2);
-		positions[2] = new AI_Player ("Optimus Prime",startAmount,null,2);
-		positions[3] = new AI_Player ("Roomba",startAmount,null,2);
+		positions[2] = new AI_Player ("Optimus Prime",startAmount,null,3);
+		positions[3] = new AI_Player ("Roomba",startAmount,null,4);
 
 //		while(gameOver>1){ // loop which keeps game going
 //			for (int i=0;i<positions.length;i++{ // checks at start of hand if any players are out of chips
@@ -93,6 +93,9 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 	        GameWindow.myViewUpdateHandler.sendMessage(m2);
 	        
 			reducedPositions[1].showBestHand();
+			reducedPositions[2].showBestHand();
+			reducedPositions[3].showBestHand();
+			
 			
 			bettingRound(reducedPositions); // 2nd betting round
 			reducedPositions = returnPlayersHack();
@@ -159,14 +162,14 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			Player [] winner = winner(reducedPositions);
 			
 			if(winner.length>=2){
-				System.out.print ("Split pot between ");
+				System.out.print ("\nSplit pot between: ");
 				Message m5 = new Message();
 		        m5.what = GameWindow.GUIUPDATEIDENTIFIER;
 		        m5.obj = (String) ("Split pot between ");
 		        GameWindow.myViewUpdateHandler.sendMessage(m5);
 			}
 			else{
-				System.out.println ("Winner is: ");
+				System.out.println ("\nWinner is: ");
 				Message m3 = new Message();
 		        m3.what = GameWindow.GUIUPDATEIDENTIFIER;
 		        m3.obj = (String) ("Winner is: ");
