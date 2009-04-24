@@ -25,6 +25,8 @@ public class GameWindow extends Activity{
 	/** True if the raise amount has been chosen. */
 	private static boolean pressed;
 	static boolean any_pressed;
+	static boolean first = true;
+	static boolean raised_done = false;
 	static int command;
 	
 	/** Used to communicate between threads. */
@@ -163,7 +165,7 @@ public class GameWindow extends Activity{
         Thread t = new Thread() {
         	public void run() {
         		// Start a new game in a separate thread.
-        		myGame = new pokerGame(2, 2500, 50);
+        		myGame = new pokerGame(4, 2500, 50);
         	}
         };
         t.start();
@@ -216,9 +218,15 @@ public class GameWindow extends Activity{
     };
     private OnClickListener l_raise = new OnClickListener() {
         public void onClick(View v) {
-        	startActivityForResult(new Intent("com.poker.action.RAISE", null),0);
-        	command = 0;
-        	any_pressed = true;
+        	if(first==true){
+        		command = 0;
+            	any_pressed = true;
+            	first = false;
+        	}else{
+        		startActivityForResult(new Intent("com.poker.action.RAISE", null),0);
+        		command = 0;
+        		any_pressed = true;
+        	}
         }
     };
     private OnClickListener l_call = new OnClickListener() {
