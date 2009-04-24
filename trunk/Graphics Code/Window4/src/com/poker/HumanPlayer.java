@@ -10,6 +10,9 @@ public class HumanPlayer extends Player {
 	
 	public HumanPlayer(String Name, int Chips, Card[] currentHand, int tempPlayerID) {
 		super(Name, Chips, currentHand, tempPlayerID);
+	
+		isHuman=true;
+	
 	}
 	
 	public void receiveCommunityCards(Card[] received){ // method for receiving community cards. 
@@ -57,6 +60,11 @@ public class HumanPlayer extends Player {
 	public void makeDecision(){
 		
 		//decision = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter decision here. Fold=1"));
+		
+		Message m1 = new Message();
+        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+        m1.obj = (String) ("\nMake Choice to continue..\n");
+        GameWindow.myViewUpdateHandler.sendMessage(m1);
 		while(GameWindow.getAnyPressed() != true){
 			// wait
 		}
@@ -71,13 +79,13 @@ public class HumanPlayer extends Player {
         		//alreadyBet=true;
         		// send new bet somewhere...
         		break;
-             
+            
         	case 1: // Fold
-        		//makeDecision();
-        		/* call makeDecision(); again if we don't want
-        		fold button to do anything. */
+        		Message m = new Message();
+                m.what = GameWindow.DRAWBLANKCARDS;
+                GameWindow.myViewUpdateHandler.sendMessage(m);
         		break;
-             
+            
         	case 2: // Call
         		// ?
         		break;
@@ -110,10 +118,14 @@ public class HumanPlayer extends Player {
 			return currentBet;
 		}
 		else{
-			
-		while(GameWindow.raised_done != true){
-			// wait
-		}
+		
+			Message m1 = new Message();
+	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m1.obj = (String) ("\nMake Choice to continue..\n");
+	        GameWindow.myViewUpdateHandler.sendMessage(m1);
+	        while(GameWindow.raised_done != true){
+	        	// wait
+	        }
 				
 		GameWindow.raised_done = false;
 		
@@ -128,17 +140,17 @@ public class HumanPlayer extends Player {
 		bets[1] = bs;
 		bets[2] = cs;
 		
-		Message m1 = new Message();
-        m1.what = GameWindow.SETBET;
-        m1.obj = (String[]) (bets);
-        GameWindow.myViewUpdateHandler.sendMessage(m1);
+		Message m2 = new Message();
+        m2.what = GameWindow.SETBET;
+        m2.obj = (String[]) (bets);
+        GameWindow.myViewUpdateHandler.sendMessage(m2);
 		
 		
 			//int oldBet= bet;
-			Message m2 = new Message();
-	        m2.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m2.obj = (String) (" >> Press Raise to bet. <<\n");
-	        GameWindow.myViewUpdateHandler.sendMessage(m2);
+			Message m3 = new Message();
+	        m3.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m3.obj = (String) (" >> Press Raise to bet. <<\n");
+	        GameWindow.myViewUpdateHandler.sendMessage(m3);
 			//while(GameWindow.getAnyPressed() != true){
 				// wait
 			//}

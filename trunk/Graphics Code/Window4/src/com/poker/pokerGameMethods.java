@@ -113,21 +113,35 @@ public int chooseNextDealer(int amtPlayers, int currentDealer){
     }
 }
 
-public int returnPot(){
-    return potTotal;
-}
-
+	public int returnPot(){
+		return potTotal;
+	}
+	
 //this takes in an array of pokerHands (which are the best 5 cards of a player) and determines the winning player
 public Player [] winner(Player [] involvedPlayers){
    
-   // set cards to flip over here
+	for(int i=0;i<involvedPlayers.length;i++){
+		if(involvedPlayers[i].isHuman==false){
+			int id = involvedPlayers[i].playerID;
+			Message m = new Message();
+		    m.what = GameWindow.DRAWOPPONENTCARDS;
+		    m.arg1 = id;
+		    m.obj = (Card[]) (involvedPlayers[i].playerHand);
+		    GameWindow.myViewUpdateHandler.sendMessage(m);
+		    Message m1 = new Message();
+		    m1.what = GameWindow.DRAWOPPONENTNAME;
+		    m1.arg1 = id;
+		    m1.obj = (String) (involvedPlayers[i].name);
+		    GameWindow.myViewUpdateHandler.sendMessage(m1);
+		}
+	}
+	
+    // set cards to flip over here
     System.out.println("Cards passed for player"+ involvedPlayers[0].getName()+" are: "); // print statements
     involvedPlayers[0].showBestHand();
    
     System.out.println("Cards passed for player"+ involvedPlayers[1].getName()+" are: "); // print statements
     involvedPlayers[1].showBestHand();
-   
-   
    
     for(int i=0;i<involvedPlayers.length;i++){ //go through pokerCard array and find best hand type
 
@@ -315,6 +329,7 @@ public void setPlayers(Player [] players){
     intInvolvedPlayers = new int[players.length];
     involvedPlayers=players;
 }
+
 public Player [] getInvolvedPlayers(){
     Player [] tempInvolvedPlayers = new Player[intInvolvedPlayers.length];
     int tempInvolvedPlayersCount =0;
@@ -394,7 +409,11 @@ private void setPot(){
             addToPot(involvedPlayers[i].getBet(currentBet));
         }
     }
-   
+    String pot_s = Integer.toString(potTotal);
+    Message m = new Message();
+    m.what = GameWindow.SETPOTTEXT;
+    m.obj = (String) (pot_s);
+    GameWindow.myViewUpdateHandler.sendMessage(m);
 }
 
 public void checkPlayerMoney(Player [] positions){
