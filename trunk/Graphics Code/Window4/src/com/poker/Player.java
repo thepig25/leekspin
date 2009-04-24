@@ -105,10 +105,10 @@ public int getPlayerHighCard(){
 	
 		for(int i = 0; i < 2; i++){
 			System.out.println(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString());
-			//Message m = new Message();
-	        //m.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        //m.obj = (String) (playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString()+ " ");
-	        //GameWindow.myViewUpdateHandler.sendMessage(m);
+			Message m = new Message();
+	        m.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m.obj = (String) (playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString()+ " ");
+	        GameWindow.myViewUpdateHandler.sendMessage(m);
 		}
 	}
 	
