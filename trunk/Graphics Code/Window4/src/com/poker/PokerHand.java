@@ -243,22 +243,22 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 			}
 			if(temp == true){
-				for(int i=0;i<mySortedCards.length-1;i++){
-					if(mySortedCards[i]).getValue()!=threeCard){
-						firstNon=mySortedCards[i]).getValue();
+				for(int ij=0;ij<mySortedCards.length-1;ij++){
+					if(mySortedCards[ij].getValue()!=threeCard){
+						firstNon=mySortedCards[ij].getValue();
 					}
 					
 				}
-				for(int i=0;i<mySortedCards.length-1;i++){
-					if(mySortedCards[i]).getValue()!=threeCard&&mySortedCards[i]).getValue()!=firstNon){
-						secondNon=mySortedCards[i]).getValue();
+				for(int ik=0;ik<mySortedCards.length-1;ik++){
+					if(mySortedCards[ik].getValue()!=threeCard&&mySortedCards[ik].getValue()!=firstNon){
+						secondNon=mySortedCards[ik].getValue();
 					}
 				
 			}
 
 		}
-
-		return false;
+		}
+		return temp;
 
 	}
 	public boolean isFourOfAKind(){
