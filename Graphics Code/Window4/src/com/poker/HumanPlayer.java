@@ -104,7 +104,7 @@ public class HumanPlayer extends Player {
 	
 	public int getBet(int currentBet){
 		
-		if(askCount>0){
+		if(askCount>0&&bet==currentBet){
 			return bet;
 		}
 			
@@ -114,14 +114,25 @@ public class HumanPlayer extends Player {
 			alreadyBet=false;
 			return bet;
 		}*/
-		if(decision==2){
+		if(decision==2&&bet==currentBet){
 			return currentBet;
 		}
+		if(decision==2&&currentBet>bet){
+			Message m1 = new Message();
+	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m1.obj = (String) ("\Player has raised to "+currentBet+". Press raise or call to continue\n");
+	        GameWindow.myViewUpdateHandler.sendMessage(m1);
+			makeDecision();
+			if(decision==2){
+				return currentBet;
+			}
+		}
+		
 		else{
 		
 			Message m1 = new Message();
 	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m1.obj = (String) ("\nMake Choice to continue..\n");
+	        m1.obj = (String) ("\Player has raised to "+currentBet+". Press raise to continue\n");
 	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 	        while(GameWindow.raised_done != true){
 	        	// wait
@@ -154,6 +165,7 @@ public class HumanPlayer extends Player {
 			//while(GameWindow.getAnyPressed() != true){
 				// wait
 			//}
+	        int oldBet=bet;
 			bet = GameWindow.getBet();
 			//bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Current Bet is: "+currentBet+" Enter amount here"));
 			
@@ -170,6 +182,10 @@ public class HumanPlayer extends Player {
 
 		return bet;
 				
+	}
+	
+	public void finaliseCallBet(int currentBet){
+		currentMoney = currentMoney - (bet);
 	}
 	
 	public void finaliseBet(int currentBet){
