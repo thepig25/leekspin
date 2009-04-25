@@ -14,11 +14,18 @@
 	android:textSize="16sp">
 	</TextView>
 	<TextView
+	android:id="@+id/player_cash"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:lines="2"
+	android:textSize="16sp">
+	</TextView>
+	<TextView
 	android:id="@+id/best"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:text="Best Hand:"
-	android:textSize="15sp">
+	android:textSize="16sp">
 	</TextView>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
   	android:layout_width="wrap_content" 

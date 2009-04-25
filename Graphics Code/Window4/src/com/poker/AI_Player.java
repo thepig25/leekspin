@@ -12,7 +12,6 @@ public class AI_Player extends Player {
 		
 	}
 	
-	
 	public int getBet(int highestCurrentBet){
 		
 		if(askCount<1){

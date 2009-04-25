@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlayerWindow"
-                  android:label="Player:"
+                  android:label="Player Info:"
                   android:theme="@android:style/Theme.Dialog">
             <intent-filter>
                 <action android:name="com.poker.action.PLAYER" />

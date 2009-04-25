@@ -47,9 +47,21 @@ public class Player extends Pack {
 	public void rewardPlayer(int amount){
 		System.out.println("amount is "+amount);
 		currentMoney=currentMoney+amount;
+		
+		Message m = new Message();
+        m.what = GameWindow.SETPLAYERMONEY;
+        m.arg1 = this.playerID;
+        m.obj = (String) (Integer.toString(currentMoney));
+        GameWindow.myViewUpdateHandler.sendMessage(m);
 	}
 	public void removeBlinds(int amount){
 		currentMoney = currentMoney-amount;
+		
+		Message m = new Message();
+        m.what = GameWindow.SETPLAYERMONEY;
+        m.arg1 = this.playerID;
+        m.obj = (String) (Integer.toString(currentMoney));
+        GameWindow.myViewUpdateHandler.sendMessage(m);
 	}
 	public void incrementDealer(){
 		
@@ -80,7 +92,10 @@ public class Player extends Pack {
 			communityCards[cardCount] = temp[i];
 			cardCount++;
 		}
-					
+		Message m = new Message();
+        m.what = GameWindow.DRAWCOMMUNITYCARDS;
+        m.obj = (Card[]) (communityCards);
+        GameWindow.myViewUpdateHandler.sendMessage(m);
 	}
 	
 	
@@ -96,7 +111,7 @@ public class Player extends Pack {
 		}
 	}
 	
-public int getPlayerHighCard(){
+	public int getPlayerHighCard(){
 		Card [] temp = playerHand;
 		
 		if(temp [0].getValue()>temp [1].getValue()){

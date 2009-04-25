@@ -18,7 +18,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 		positions[1] = new AI_Player ("Megatron",startAmount,null,2);
 		positions[2] = new AI_Player ("Optimus Prime",startAmount,null,3);
 		positions[3] = new AI_Player ("Roomba",startAmount,null,4);
-
+		
 		for(int i = 0; i < positions.length; i++){
 			
 	        Message m5 = new Message();
@@ -35,7 +35,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 //					gameOver--; // one closer to a game over situation
 //				}
 //			}
-		
+			
 			Pack myPack = new Pack();
 			myPack.createPack();
 			//myPack.Shuffle();

@@ -36,6 +36,10 @@ public class GameWindow extends Activity{
 	static String player2_name = "";
 	static String player3_name = "";
 	static String player4_name = "";
+	static String player1_cash = "";
+	static String player2_cash = "";
+	static String player3_cash = "";
+	static String player4_cash = "";
 	static Card[] player1_hand;
 	static Card[] player2_hand;
 	static Card[] player3_hand;
@@ -48,7 +52,7 @@ public class GameWindow extends Activity{
     protected static final int SETBET = 0x104;
     protected static final int DRAWBLANKCARDS = 0x105;
     protected static final int SETPOTTEXT = 0x106;
-    protected static final int HIGHLIGHTCARDS = 0x107;
+    protected static final int SETPLAYERMONEY = 0x107;
     protected static final int DRAWOPPONENTCARDS = 0x108;
     protected static final int DRAWOPPONENTNAME = 0x109;
     protected static final int SETPLAYERSBESTHAND = 0x110;
@@ -136,7 +140,12 @@ public class GameWindow extends Activity{
     	
     	setContentView(R.layout.game_window);
     	
-    	pressed = false;
+    	// Initialise Game Booleans.
+    	first = true;
+    	p1Folded = false;
+    	game_over = false;
+    	raised_done = false;
+    	commCardsDealt = false;
     	
         console = (TextView)this.findViewById(R.id.tv1);
         console.setMovementMethod(new ScrollingMovementMethod());
@@ -181,24 +190,26 @@ public class GameWindow extends Activity{
 		c3Img.setImageResource(blank_card_id);
 		c4Img.setImageResource(blank_card_id);
 		c5Img.setImageResource(blank_card_id);
-		// Make player cards pressable.
 		pc1Img.setImageResource(blank_card_id);
 		pc2Img.setImageResource(blank_card_id);
-		pc1Img.setOnClickListener(l_player1);
-		pc2Img.setOnClickListener(l_player1);
 		p2card1Img.setImageResource(blank_card_id);
 		p2card2Img.setImageResource(blank_card_id);
-		p2card1Img.setOnClickListener(l_player2);
-		p2card2Img.setOnClickListener(l_player2);
 		p3card1Img.setImageResource(blank_card_id);
 		p3card2Img.setImageResource(blank_card_id);
-		p3card1Img.setOnClickListener(l_player3);
-		p3card2Img.setOnClickListener(l_player3);
 		p4card1Img.setImageResource(blank_card_id);
 		p4card2Img.setImageResource(blank_card_id);
+
+		// Make player cards pressable.
+		pc1Img.setOnClickListener(l_player1);
+		pc2Img.setOnClickListener(l_player1);
+		p2card1Img.setOnClickListener(l_player2);
+		p2card2Img.setOnClickListener(l_player2);
+		p3card1Img.setOnClickListener(l_player3);
+		p3card2Img.setOnClickListener(l_player3);
 		p4card1Img.setOnClickListener(l_player4);
 		p4card2Img.setOnClickListener(l_player4);
         
+		// Set up game buttons.
         call = (ImageButton)this.findViewById(R.id.but_call);
         call.setOnClickListener(l_call);
         check = (ImageButton)this.findViewById(R.id.but_check);
@@ -277,9 +288,21 @@ public class GameWindow extends Activity{
                 	   pot_tv.setText(temp_string1);
                        break;
                        
-                   case GameWindow.HIGHLIGHTCARDS:
-                	   int[] h_cards = (int[])msg.obj;
-                	   HighlightCards(h_cards);
+                   case GameWindow.SETPLAYERMONEY:
+                	   String temp_money = (String)msg.obj;
+                	   int id4 = (int)msg.arg1;
+                	   if(id4==1){
+                    	   player1_cash = temp_money;
+                       }
+                       if(id4==2){
+                    	   player2_cash = temp_money;
+                       }
+                       if(id4==3){
+                    	   player3_cash = temp_money;
+                       }
+                       if(id4==4){
+                    	   player4_cash = temp_money;
+                       }
                        break;
                        
                    case GameWindow.SETPLAYERSBESTHAND:
@@ -316,6 +339,7 @@ public class GameWindow extends Activity{
             	any_pressed = true;
             	first = false;
         	}else{
+        		// Opens the 'RaiseWindow.java' window named "RAISE" in the AndroidManifest XML file.
         		startActivityForResult(new Intent("com.poker.action.RAISE", null),0);
         		command = 0;
         		any_pressed = true;
@@ -510,10 +534,6 @@ public class GameWindow extends Activity{
     public static int getBet(){
     	pressed = false;
     	return bet;
-    }
-    
-    private static void HighlightCards(int[] cds){
-    	
     }
     
     public static void AdjustScroll(TextView in_oTextView){
