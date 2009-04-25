@@ -75,7 +75,11 @@ public class Player extends Pack {
 			communityCards[cardCount] = temp[i];
 			cardCount++;
 		}
-					
+
+		Message m = new Message();
+        m.what = GameWindow.DRAWCOMMUNITYCARDS;
+        m.obj = (Card[]) (communityCards);
+        GameWindow.myViewUpdateHandler.sendMessage(m);
 	}
 	
 	

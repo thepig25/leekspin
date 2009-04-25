@@ -27,7 +27,19 @@ public class GameWindow extends Activity{
 	static boolean any_pressed;
 	static boolean first = true;
 	static boolean raised_done = false;
+	static boolean game_over = false;
+	static boolean commCardsDealt = false;
+	static boolean p1Folded = false;
 	static int command;
+	static int currentPlayerInfo;
+	static String player1_name = "";
+	static String player2_name = "";
+	static String player3_name = "";
+	static String player4_name = "";
+	static Card[] player1_hand;
+	static Card[] player2_hand;
+	static Card[] player3_hand;
+	static Card[] player4_hand;
 	
 	/** Used to communicate between threads. */
     protected static final int GUIUPDATEIDENTIFIER = 0x101;
@@ -39,11 +51,12 @@ public class GameWindow extends Activity{
     protected static final int HIGHLIGHTCARDS = 0x107;
     protected static final int DRAWOPPONENTCARDS = 0x108;
     protected static final int DRAWOPPONENTNAME = 0x109;
+    protected static final int SETPLAYERSBESTHAND = 0x110;
 	
     /** Choice of bets. */
     public static String[] bets = {"20","40","60"};
     
-	private static int blank_card_id;
+	static int blank_card_id;
 	private static int bet = 0;
 	private Button start;
 	private ImageButton call;
@@ -168,12 +181,23 @@ public class GameWindow extends Activity{
 		c3Img.setImageResource(blank_card_id);
 		c4Img.setImageResource(blank_card_id);
 		c5Img.setImageResource(blank_card_id);
+		// Make player cards pressable.
 		pc1Img.setImageResource(blank_card_id);
 		pc2Img.setImageResource(blank_card_id);
+		pc1Img.setOnClickListener(l_player1);
+		pc2Img.setOnClickListener(l_player1);
 		p2card1Img.setImageResource(blank_card_id);
 		p2card2Img.setImageResource(blank_card_id);
 		p2card1Img.setOnClickListener(l_player2);
 		p2card2Img.setOnClickListener(l_player2);
+		p3card1Img.setImageResource(blank_card_id);
+		p3card2Img.setImageResource(blank_card_id);
+		p3card1Img.setOnClickListener(l_player3);
+		p3card2Img.setOnClickListener(l_player3);
+		p4card1Img.setImageResource(blank_card_id);
+		p4card2Img.setImageResource(blank_card_id);
+		p4card1Img.setOnClickListener(l_player4);
+		p4card2Img.setOnClickListener(l_player4);
         
         call = (ImageButton)this.findViewById(R.id.but_call);
         call.setOnClickListener(l_call);
@@ -224,7 +248,18 @@ public class GameWindow extends Activity{
                    case GameWindow.DRAWOPPONENTNAME:
                        String temp_oppenent_name = (String)msg.obj;
                        int id2 = (int)msg.arg1;
-                       // print it
+                       if(id2==1){
+                    	   player1_name = temp_oppenent_name;
+                       }
+                       if(id2==2){
+                    	   player2_name = temp_oppenent_name;
+                       }
+                       if(id2==3){
+                    	   player3_name = temp_oppenent_name;
+                       }
+                       if(id2==4){
+                    	   player4_name = temp_oppenent_name;
+                       }
                        break;
                        
                    case GameWindow.SETBET:
@@ -245,6 +280,23 @@ public class GameWindow extends Activity{
                    case GameWindow.HIGHLIGHTCARDS:
                 	   int[] h_cards = (int[])msg.obj;
                 	   HighlightCards(h_cards);
+                       break;
+                       
+                   case GameWindow.SETPLAYERSBESTHAND:
+                	   Card[] opp_best_hand = (Card[])msg.obj;
+                	   int id3 = (int)msg.arg1;
+                       if(id3==1){
+                    	   player1_hand = opp_best_hand;
+                       }
+                       if(id3==2){
+                    	   player2_hand = opp_best_hand;
+                       }
+                       if(id3==3){
+                    	   player3_hand = opp_best_hand;
+                       }
+                       if(id3==4){
+                    	   player4_hand = opp_best_hand;
+                       }
                        break;
               }
               super.handleMessage(msg);
@@ -288,8 +340,27 @@ public class GameWindow extends Activity{
         	any_pressed = true;
         }
     };
+    private OnClickListener l_player1 = new OnClickListener() {
+        public void onClick(View v) {
+        	currentPlayerInfo = 1;
+        	startActivityForResult(new Intent("com.poker.action.PLAYER", null),2);
+        }
+    };
     private OnClickListener l_player2 = new OnClickListener() {
         public void onClick(View v) {
+        	currentPlayerInfo = 2;
+        	startActivityForResult(new Intent("com.poker.action.PLAYER", null),2);
+        }
+    };
+    private OnClickListener l_player3 = new OnClickListener() {
+        public void onClick(View v) {
+        	currentPlayerInfo = 3;
+        	startActivityForResult(new Intent("com.poker.action.PLAYER", null),2);
+        }
+    };
+    private OnClickListener l_player4 = new OnClickListener() {
+        public void onClick(View v) {
+        	currentPlayerInfo = 4;
         	startActivityForResult(new Intent("com.poker.action.PLAYER", null),2);
         }
     };
@@ -404,15 +475,15 @@ public class GameWindow extends Activity{
     	Card c2 = cards[1];
     	int resId1 = c1.getImageResourceId();
     	int resId2 = c2.getImageResourceId();
-    	if(id==1){
+    	if(id==2){
             p2card1Img.setImageResource(resId1);
             p2card2Img.setImageResource(resId2);
     	}
-    	if(id==2){
+    	if(id==3){
             p3card1Img.setImageResource(resId1);
             p3card2Img.setImageResource(resId2);
     	}
-    	if(id==3){
+    	if(id==4){
             p4card1Img.setImageResource(resId1);
             p4card2Img.setImageResource(resId2);
     	}

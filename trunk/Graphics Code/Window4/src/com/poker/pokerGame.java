@@ -19,6 +19,15 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 		positions[2] = new AI_Player ("Optimus Prime",startAmount,null,3);
 		positions[3] = new AI_Player ("Roomba",startAmount,null,4);
 
+		for(int i = 0; i < positions.length; i++){
+			
+	        Message m5 = new Message();
+	        m5.what = GameWindow.DRAWOPPONENTNAME;
+	        m5.arg1 = positions[i].playerID;
+	        m5.obj = (String) (positions[i].getName());
+	        GameWindow.myViewUpdateHandler.sendMessage(m5);
+	        
+		}
 //		while(gameOver>1){ // loop which keeps game going
 //			for (int i=0;i<positions.length;i++{ // checks at start of hand if any players are out of chips
 //				if(positions[i].canPlay==false){ 
@@ -77,25 +86,24 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			
 			reducedPositions[0].printCommunity();
-			
-			System.out.println("Player "+reducedPositions[0].getName()+"'s best hand is: ");
-			Message m1 = new Message();
-	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m1.obj = (String) ("Player "+reducedPositions[0].getName()+"'s best hand is: ");
-	        GameWindow.myViewUpdateHandler.sendMessage(m1);
-			
-			reducedPositions[0].showBestHand();
-			
-			System.out.println("Player "+reducedPositions[1].getName()+"'s best hand is:");
-			Message m2 = new Message();
-	        m2.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m2.obj = (String) ("Player "+reducedPositions[1].getName()+"'s best hand is: ");
-	        GameWindow.myViewUpdateHandler.sendMessage(m2);
 	        
-			reducedPositions[1].showBestHand();
-			reducedPositions[2].showBestHand();
-			reducedPositions[3].showBestHand();
+			for(int i=0; i<reducedPositions.length; i++ ){
+				reducedPositions[i].showBestHand();
+			}
 			
+			GameWindow.commCardsDealt = true;
+			
+			for(int i = 0; i < reducedPositions.length; i++){
+				
+				System.out.println("Player "+reducedPositions[i].getName()+"'s best hand is: ");
+				
+		        Message m5 = new Message();
+		        m5.what = GameWindow.SETPLAYERSBESTHAND;
+		        m5.arg1 = reducedPositions[i].playerID;
+		        m5.obj = (Card[]) (reducedPositions[i].getBestHand());
+		        GameWindow.myViewUpdateHandler.sendMessage(m5);
+		        
+			}
 			
 			bettingRound(reducedPositions); // 2nd betting round
 			reducedPositions = returnPlayersHack();
@@ -116,6 +124,18 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			System.out.println("Player "+reducedPositions[1].getName()+"'s best hand is:");
 			reducedPositions[1].showBestHand();
+			
+			for(int i = 0; i < reducedPositions.length; i++){
+				
+				System.out.println("Player "+reducedPositions[i].getName()+"'s best hand is: ");
+				
+		        Message m5 = new Message();
+		        m5.what = GameWindow.SETPLAYERSBESTHAND;
+		        m5.arg1 = reducedPositions[i].playerID;
+		        m5.obj = (Card[]) (reducedPositions[i].getBestHand());
+		        GameWindow.myViewUpdateHandler.sendMessage(m5);
+		        
+			}
 			
 			bettingRound(reducedPositions); // 3rd betting round
 			reducedPositions = returnPlayersHack();
@@ -139,6 +159,18 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			System.out.println("Player "+reducedPositions[1].getName()+"'s best hand is:");
 			reducedPositions[1].showBestHand();
 			
+			for(int i = 0; i < reducedPositions.length; i++){
+				
+				System.out.println("Player "+reducedPositions[i].getName()+"'s best hand is: ");
+				
+		        Message m5 = new Message();
+		        m5.what = GameWindow.SETPLAYERSBESTHAND;
+		        m5.arg1 = reducedPositions[i].playerID;
+		        m5.obj = (Card[]) (reducedPositions[i].getBestHand());
+		        GameWindow.myViewUpdateHandler.sendMessage(m5);
+		        
+			}
+			
 			bettingRound(reducedPositions); // 4th betting round
 			reducedPositions = returnPlayersHack();
 			System.out.println("reduced"+reducedPositions.length);
@@ -152,6 +184,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			resetCounters(reducedPositions);
 			
+			GameWindow.game_over = true;
 			
 			System.out.println("Pot is: " +returnPot());
 			
@@ -160,6 +193,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			
 			Player [] winner = winner(reducedPositions);
+			
 			
 			if(winner.length>=2){
 				System.out.print ("\nSplit pot between: ");
