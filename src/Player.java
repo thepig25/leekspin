@@ -391,5 +391,27 @@ public int getPlayerHighCard(){
 	public void makeDecision(){
 		
 	}
+	
+	public int getPlayerHighHoleCard(){
+        Card [] temp = playerHand;
+       
+        if(temp [0].getValue()>temp [1].getValue()){
+            return temp [0].getValue();
+        }
+        else{
+            return temp [1].getValue();
+        }
+	}
+	
+	public int getPlayerLowHoleCard(){
+	    Card [] temp = playerHand;
+	   
+	    if(temp [0].getValue()<temp [1].getValue()){
+	        return temp [0].getValue();
+	    }
+	    else{
+	        return temp [1].getValue();
+	    }
+	}
 
 }
