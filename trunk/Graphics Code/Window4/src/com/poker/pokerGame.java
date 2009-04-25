@@ -180,7 +180,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 				System.out.print (winner[i].getName()+" ");
 				Message m4 = new Message();
 		        m4.what = GameWindow.GUIUPDATEIDENTIFIER;
-		        m4.obj = (String) (winner[i].getName()+" ");
+		        m4.obj = (String) (winner[i].getName()+", ");
 		        GameWindow.myViewUpdateHandler.sendMessage(m4);
 			}
 			
