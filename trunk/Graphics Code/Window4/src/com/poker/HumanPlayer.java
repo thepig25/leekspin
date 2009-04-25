@@ -31,11 +31,7 @@ public class HumanPlayer extends Player {
 			communityCards[cardCount] = temp[i];
 			cardCount++;
 		}
-		Message m = new Message();
-        m.what = GameWindow.DRAWCOMMUNITYCARDS;
-        m.obj = (Card[]) (communityCards);
-        GameWindow.myViewUpdateHandler.sendMessage(m);
-					
+			
 	}
 	
 	
@@ -85,6 +81,7 @@ public class HumanPlayer extends Player {
         		Message m = new Message();
                 m.what = GameWindow.DRAWBLANKCARDS;
                 GameWindow.myViewUpdateHandler.sendMessage(m);
+                GameWindow.p1Folded = true;
         		break;
             
         	case 2: // Call
@@ -123,7 +120,7 @@ public class HumanPlayer extends Player {
 		if(decision==2&&currentBet>bet){
 			Message m1 = new Message();
 	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m1.obj = (String) ("\Player has raised to "+currentBet+". Press raise or call to continue\n");
+	        m1.obj = (String) ("Player has raised to "+currentBet+". Press raise or call to continue\n");
 	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 			makeDecision();
 			if(decision==2){
@@ -135,7 +132,7 @@ public class HumanPlayer extends Player {
 		
 			Message m1 = new Message();
 	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m1.obj = (String) ("\Player has raised to "+currentBet+". Press raise to continue\n");
+	        m1.obj = (String) ("Player has raised to "+currentBet+". Press raise to continue\n");
 	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 	        while(GameWindow.raised_done != true){
 	        	// wait
