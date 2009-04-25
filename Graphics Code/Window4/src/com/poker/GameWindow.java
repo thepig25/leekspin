@@ -170,6 +170,10 @@ public class GameWindow extends Activity{
 		c5Img.setImageResource(blank_card_id);
 		pc1Img.setImageResource(blank_card_id);
 		pc2Img.setImageResource(blank_card_id);
+		p2card1Img.setImageResource(blank_card_id);
+		p2card2Img.setImageResource(blank_card_id);
+		p2card1Img.setOnClickListener(l_player2);
+		p2card2Img.setOnClickListener(l_player2);
         
         call = (ImageButton)this.findViewById(R.id.but_call);
         call.setOnClickListener(l_call);
@@ -180,6 +184,8 @@ public class GameWindow extends Activity{
         fold = (ImageButton)this.findViewById(R.id.but_fold);
         fold.setOnClickListener(l_fold);
     	
+        first = true;
+        
         Thread t = new Thread() {
         	public void run() {
         		// Start a new game in a separate thread.
@@ -282,6 +288,11 @@ public class GameWindow extends Activity{
         	any_pressed = true;
         }
     };
+    private OnClickListener l_player2 = new OnClickListener() {
+        public void onClick(View v) {
+        	startActivityForResult(new Intent("com.poker.action.PLAYER", null),2);
+        }
+    };
     
     /** Creates the menu items */
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -319,15 +330,11 @@ public class GameWindow extends Activity{
     protected void onActivityResult(int requestCode, int resultCode,
             Intent data) {
         if (requestCode == 0) {
-        	String s = "Raised by ";
-        	String st = Integer.toString(resultCode);
-        	String sst = s + st +"\n";
-        	console.append(sst);
         	bet = resultCode;
         	pressed = true;
         }
     }
-
+    
     /** Draws the community cards to screen.
      * Can handle 3, 4 or 5 cards being drawn. */
     public static void drawCardImgs(Card[] cards){
