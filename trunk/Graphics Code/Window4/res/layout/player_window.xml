@@ -7,9 +7,57 @@
     android:paddingRight="6dip"
     android:paddingBottom="3dip">
     <TextView
-	android:id="@+id/playerInfo"
+	android:id="@+id/player_name"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:text="Megatron\nCurrent Bet: 200">
+	android:lines="3"
+	android:textSize="16sp">
 	</TextView>
+	<TextView
+	android:id="@+id/best"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="Best Hand:"
+	android:textSize="15sp">
+	</TextView>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+  	android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+	<ImageView
+	android:id="@+id/card_01"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:src="@drawable/card_back"
+	>
+	</ImageView>
+	<ImageView
+	android:id="@+id/card_02"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:src="@drawable/card_back"
+	>
+	</ImageView>
+	<ImageView
+	android:id="@+id/card_03"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:src="@drawable/card_back"
+	>
+	</ImageView>
+	<ImageView
+	android:id="@+id/card_04"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:src="@drawable/card_back"
+	>
+	</ImageView>
+	<ImageView
+	android:id="@+id/card_05"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:src="@drawable/card_back"
+	>
+	</ImageView>
+	</LinearLayout>
 </LinearLayout>
