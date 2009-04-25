@@ -26,11 +26,15 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 	int firstMatch=0;
 	int secondMatch;
 	int flushCount=0;
+	int HighNonPairThreeCard=0;
+	int LowNonPairThreeCard=0;
 	int flushSuit;
 	boolean almostFlush=false;
 	boolean printedBoolean=false;
 	int[][] cardStats = new int[10][3];
 	int highestSecondPair;
+	int firstNon=0;
+	int secondNon=0;
 	
 
 
@@ -228,13 +232,28 @@ public class PokerHand extends Pack { // Not really working for this weeks assig
 
 	}
 	public boolean isThreeOfAKind(){
+		boolean temp=false;
+
 
 		for(int i=0;i<3;i++){
 
 			if((mySortedCards[i]).getValue()==(mySortedCards[i+1].getValue())&&(mySortedCards[i+1]).getValue()==(mySortedCards[i+2].getValue())){
 				threeCard = mySortedCards[i].getValue();
-				return true;
+				temp = true;
 
+			}
+			if(temp == true){
+				for(int i=0;i<mySortedCards.length-1;i++){
+					if(mySortedCards[i]).getValue()!=threeCard){
+						firstNon=mySortedCards[i]).getValue();
+					}
+					
+				}
+				for(int i=0;i<mySortedCards.length-1;i++){
+					if(mySortedCards[i]).getValue()!=threeCard&&mySortedCards[i]).getValue()!=firstNon){
+						secondNon=mySortedCards[i]).getValue();
+					}
+				
 			}
 
 		}

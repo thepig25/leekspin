@@ -29,8 +29,9 @@ public class Player extends Pack {
 	int nonPair;
 	int nonPairForEight;
 	int threeCard=0;
-    int firstNonThreeCard=0;
-    int secondNonThreeCard=0;
+	int firstNonThreeCard=0;
+	int secondNonThreeCard=0;
+	
 	
 	public boolean isHuman=false;
 	
@@ -79,11 +80,7 @@ public class Player extends Pack {
 			communityCards[cardCount] = temp[i];
 			cardCount++;
 		}
-
-		Message m = new Message();
-        m.what = GameWindow.DRAWCOMMUNITYCARDS;
-        m.obj = (Card[]) (communityCards);
-        GameWindow.myViewUpdateHandler.sendMessage(m);
+					
 	}
 	
 	
@@ -271,6 +268,7 @@ public int getPlayerHighCard(){
 							//if(testHand.getLastCardValue()>highCard&&bestBoolean==7){
 						highestSecondPair=testHand.highestSecondPair;
 						highestFirstPair=testHand.firstMatch;
+						bestPokerHand = testHand.getCard();
 						
 						if (testHand.getNonPair()>nonPair) {
 								nonPair=testHand.getNonPair();
@@ -325,6 +323,18 @@ public int getPlayerHighCard(){
 					}
 					
 					
+				}
+				
+				if(testHand.testBooleans()==6{
+					if(testHand.testBooleans()<bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
+						bestBoolean=testHand.testBooleans();
+					}
+					if(testHand.threeCard>threeCard&&testHand.firstNon>firstNonThreeCard&&testHand.secondNon>secondNonThreeCard&&testHand.testBooleans()==bestBoolean){
+						threeCard=testHand.threeCard;
+						firstNonThreeCard=testHand.firstNon;
+						secondNonThreeCard=testHand.secondNon;
+						bestPokerHand= testHand.getCard();
+					}
 				}
 				
 				
@@ -409,5 +419,16 @@ public int getPlayerHighCard(){
 	public void makeDecision(){
 		
 	}
+	
+	public int getPlayerHighHoleCard(){
+        Card [] temp = playerHand;
+       
+        if(temp [0].getValue()>temp [1].getValue()){
+            return temp [0].getValue();
+        }
+        else{
+            return temp [1].getValue();
+        }
+}
 
 }
