@@ -7,6 +7,7 @@ public class HumanPlayer extends Player {
 	int bet=0;
 	private int decision;
 	public boolean alreadyBet = false;
+	private int currentBet;
 	
 	public HumanPlayer(String Name, int Chips, Card[] currentHand, int tempPlayerID) {
 		super(Name, Chips, currentHand, tempPlayerID);
@@ -63,7 +64,7 @@ public class HumanPlayer extends Player {
 		
 		Message m1 = new Message();
         m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-        m1.obj = (String) ("\nMake Choice to continue..\n");
+        m1.obj = (String) ("\nPlayer has raised to "+currentBet+"Press raise or call to continue\n");
         GameWindow.myViewUpdateHandler.sendMessage(m1);
 		while(GameWindow.getAnyPressed() != true){
 			// wait
