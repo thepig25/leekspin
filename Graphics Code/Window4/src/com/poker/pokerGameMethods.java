@@ -389,6 +389,7 @@ public int getHighestBet(){
     //addToPot(currentBet);
    
     for(int i=0;i<involvedPlayers.length;i++){
+    	// -<<<<<<<< updating highest current bet GUI code goes here
         if(involvedPlayers[i].getBet(currentBet)>currentBet){ // go back to first player if bet has increased
             currentBet=involvedPlayers[i].getBet(currentBet);
             getHighestBet();
