@@ -168,6 +168,43 @@ public Player [] winner(Player [] involvedPlayers){
     count =0;
     if(bestBoolean==9){
     	
+    	
+    	Player[] highLowPlayers = new Player[0];
+        int playerPosition = 0;
+        count = 0;
+        int highestHoleCard = 0;
+        int lowestHoleCard = involvedPlayers[0].getPlayerLowHoleCard();
+       
+        for(int i = 0;i< involvedPlayers.length;i++){
+            if (involvedPlayers[i].getPlayerHighHoleCard() > highestHoleCard){
+                highestHoleCard = involvedPlayers[i].getPlayerHighHoleCard();
+                playerPosition = i;
+            }
+            else if (involvedPlayers[i].getPlayerHighHoleCard() == highestHoleCard){
+                   
+                    if (involvedPlayers[i].getPlayerLowHoleCard() > lowestHoleCard){
+                        lowestHoleCard =involvedPlayers[i].getPlayerLowHoleCard();
+                        playerPosition = i;
+                    }
+                    else if (involvedPlayers[i].getPlayerLowHoleCard() == lowestHoleCard){
+                    //spilt pot
+                    	Player[] tempCopy = new Player[(highLowPlayers.length)];
+                        System.arraycopy(highLowPlayers, 0, tempCopy, 0, tempCopy.length);
+                        highLowPlayers = new Player[(highLowPlayers.length+2)];
+                        System.arraycopy(tempCopy, 0,highLowPlayers , 0, tempCopy.length);
+                        highLowPlayers[count] = involvedPlayers[i];
+                        count ++;
+                        highLowPlayers[count] = involvedPlayers[playerPosition];
+                        playerPosition = i;
+                        count ++;
+                    }
+                }
+            if(count == 0){
+                highLowPlayers[count] = involvedPlayers[playerPosition];
+            }
+        }
+        return highLowPlayers;
+    	
     	// paddy's code goes here
     	
     }
@@ -223,6 +260,65 @@ public Player [] winner(Player [] involvedPlayers){
     	}
     	else{
     		return tempWinners;
+    	}
+    	
+    }
+    
+    if(bestBoolean==7){
+    	int secondPair=0;
+    	count =0;
+    	Player []tempWinners=new Player[0];
+    	for(int j=0;j<involvedPlayers.length;j++){ // establish highest pair card (get playrs 2nd pair becuase will always be higher than 1st pair
+    		
+    		if(involvedPlayers[j].highestSecondPair>secondPair){
+    			
+    			secondPair = involvedPlayers[j].highestSecondPair; // establish highest pair
+    			
+    		}
+    	}
+    	for(int j=0;j<involvedPlayers.length;j++){// go though players and find players with that high second pair
+    		if(involvedPlayers[j].highestSecondPair==secondPair){
+    			Player[] tempCopy = new Player[(tempWinners.length);
+    			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
+    			tempWinners = new Player[(tempWinners.length+1)];
+                System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
+                tempWinners[count]=involvedPlayers[j];
+                count++;
+    		}
+    	}
+    	
+    	
+    	
+    	if(tempWinners.length>1){ // got players still in contention so now need to check their 1st pair
+		    		involvedPlayers=tempWinners;
+		    		tempWinners=new Player[0];
+		    		count=0;
+		    		int firstPair=0;
+		    		for(int j=0;j<involvedPlayers.length;j++){ // establish highest pair card
+		        		if(involvedPlayers[j].highestFirstPair>firstPair){
+		        			firstPair = involvedPlayers[j].highestFirstPair; 
+		        		}
+		        	}
+		    		Player []tempWinners=new Player[0];
+		    		for(int j=0;j<involvedPlayers.length;j++){
+		    			if(involvedPlayers[j].highestFirstPair==firstPair){
+		    				Player[] tempCopy = new Player[(tempWinners.length);
+		        			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
+		        			tempWinners = new Player[(tempWinners.length+1)];
+		                    System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
+		                    tempWinners[count]=involvedPlayers[j];
+		                    count++;
+		    			}
+		    		}
+    	
+    	
+    	}
+    	else{
+    		return tempWinners;
+    	}
+    	
+    	if(tempWinners>1){ // if array has still got 2 players in it, then try and get the non pair card to decide it.
+    		
     	}
     	
     }
