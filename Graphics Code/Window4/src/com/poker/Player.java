@@ -28,6 +28,10 @@ public class Player extends Pack {
 	int playerID;
 	int nonPair;
 	int nonPairForEight;
+	int threeCard=0;
+    int firstNonThreeCard=0;
+    int secondNonThreeCard=0;
+	
 	public boolean isHuman=false;
 	
 	
