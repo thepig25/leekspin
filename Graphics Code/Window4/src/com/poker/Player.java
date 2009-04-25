@@ -325,7 +325,7 @@ public int getPlayerHighCard(){
 					
 				}
 				
-				if(testHand.testBooleans()==6{
+				if(testHand.testBooleans()==6){
 					if(testHand.testBooleans()<bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
 						bestBoolean=testHand.testBooleans();
 					}
@@ -430,5 +430,15 @@ public int getPlayerHighCard(){
             return temp [1].getValue();
         }
 }
+	public int getPlayerLowHoleCard(){
+		   Card [] temp = playerHand;
+		 
+		   if(temp [0].getValue()<temp [1].getValue()){
+		       return temp [0].getValue();
+		   }
+		   else{
+		       return temp [1].getValue();
+		   }
+		}
 
 }

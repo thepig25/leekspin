@@ -278,7 +278,7 @@ public Player [] winner(Player [] involvedPlayers){
     	}
     	for(int j=0;j<involvedPlayers.length;j++){// go though players and find players with that high second pair
     		if(involvedPlayers[j].highestSecondPair==secondPair){
-    			Player[] tempCopy = new Player[(tempWinners.length);
+    			Player[] tempCopy = new Player[(tempWinners.length)];
     			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
     			tempWinners = new Player[(tempWinners.length+1)];
                 System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
@@ -299,10 +299,10 @@ public Player [] winner(Player [] involvedPlayers){
 		        			firstPair = involvedPlayers[j].highestFirstPair; 
 		        		}
 		        	}
-		    		Player []tempWinners=new Player[0];
+		    		tempWinners=new Player[0];
 		    		for(int j=0;j<involvedPlayers.length;j++){
 		    			if(involvedPlayers[j].highestFirstPair==firstPair){
-		    				Player[] tempCopy = new Player[(tempWinners.length);
+		    				Player[] tempCopy = new Player[(tempWinners.length)];
 		        			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
 		        			tempWinners = new Player[(tempWinners.length+1)];
 		                    System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
@@ -317,7 +317,7 @@ public Player [] winner(Player [] involvedPlayers){
     		return tempWinners;
     	}
     	
-    	if(tempWinners>1){ // if array has still got 2 players in it, then try and get the non pair card to decide it.
+    	if(tempWinners.length>1){ // if array has still got 2 players in it, then try and get the non pair card to decide it.
     		involvedPlayers=tempWinners;
     		tempWinners=new Player[0];
     		count=0;
@@ -327,10 +327,10 @@ public Player [] winner(Player [] involvedPlayers){
         			highNonPair = involvedPlayers[j].nonPair; 
         		}
         	}
-    		Player []tempWinners=new Player[0];
+    		tempWinners=new Player[0];
     		for(int j=0;j<involvedPlayers.length;j++){
     			if(involvedPlayers[j].nonPair==highNonPair){
-    				Player[] tempCopy = new Player[(tempWinners.length);
+    				Player[] tempCopy = new Player[(tempWinners.length)];
         			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
         			tempWinners = new Player[(tempWinners.length+1)];
                     System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
@@ -341,12 +341,12 @@ public Player [] winner(Player [] involvedPlayers){
     		return tempWinners;
     		
     	}
-    	return tempWinners
+    	return tempWinners;
     	
     }
     
     if(bestBoolean==6){
-    	int ThreeCard=0;
+    	int threeCard=0;
     	count =0;
     	Player []tempWinners=new Player[0];
     	for(int j=0;j<involvedPlayers.length;j++){ // establish highest 3 of a kind
@@ -359,7 +359,7 @@ public Player [] winner(Player [] involvedPlayers){
     	}
     	for(int j=0;j<involvedPlayers.length;j++){// go though players and find players with that high second pair
     		if(involvedPlayers[j].threeCard==threeCard){
-    			Player[] tempCopy = new Player[(tempWinners.length);
+    			Player[] tempCopy = new Player[(tempWinners.length)];
     			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
     			tempWinners = new Player[(tempWinners.length+1)];
                 System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
@@ -372,7 +372,7 @@ public Player [] winner(Player [] involvedPlayers){
     	
     	if(tempWinners.length>1){
     		involvedPlayers=tempWinners;
-    		Player []tempWinners=new Player[0];
+    		tempWinners=new Player[0];
     		count =0;
     		int secondNonThreeCard=0;
     		
@@ -386,7 +386,7 @@ public Player [] winner(Player [] involvedPlayers){
         	}
         	for(int j=0;j<involvedPlayers.length;j++){// go though players and find players with that high second pair
         		if(involvedPlayers[j].secondNonThreeCard==secondNonThreeCard){
-        			Player[] tempCopy = new Player[(tempWinners.length);
+        			Player[] tempCopy = new Player[(tempWinners.length)];
         			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
         			tempWinners = new Player[(tempWinners.length+1)];
                     System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
@@ -397,7 +397,7 @@ public Player [] winner(Player [] involvedPlayers){
         	
         	if(tempWinners.length>1){
         		involvedPlayers=tempWinners;
-        		Player []tempWinners=new Player[0];
+        		tempWinners=new Player[0];
         		count =0;
         		int firstNonThreeCard=0;
         		
@@ -411,7 +411,7 @@ public Player [] winner(Player [] involvedPlayers){
             	}
             	for(int j=0;j<involvedPlayers.length;j++){// go though players and find players with that high second pair
             		if(involvedPlayers[j].firstNonThreeCard==firstNonThreeCard){
-            			Player[] tempCopy = new Player[(tempWinners.length);
+            			Player[] tempCopy = new Player[(tempWinners.length)];
             			System.arraycopy(tempWinners, 0, tempCopy, 0, tempCopy.length);
             			tempWinners = new Player[(tempWinners.length+1)];
                         System.arraycopy(tempCopy, 0,tempWinners , 0, tempCopy.length);
