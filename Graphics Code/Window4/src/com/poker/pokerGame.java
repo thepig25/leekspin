@@ -49,8 +49,8 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 	        GameWindow.myViewUpdateHandler.sendMessage(m);
 	        
 			dealBlinds(Dealer, positions);
-			System.out.println(positions[0].checkMoney());
-			System.out.println(positions[1].checkMoney());
+			
+			checkPlayerMonies(positions);
 			
 			dealPocketCard(myPack, positions);
 			
