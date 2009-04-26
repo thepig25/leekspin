@@ -515,7 +515,7 @@ public class GameWindow extends Activity{
             p4card2Img.setImageResource(resId2);
     	}
     }
-
+    
     /** Tells if the raise button has been pressed */
     public static boolean getRaisedPressed(){
     	return pressed;
@@ -544,7 +544,7 @@ public class GameWindow extends Activity{
         int l_nLineCount = in_oTextView.getLineCount();
         int l_nViewHeight = in_oTextView.getHeight();
         int l_nPixelsPerLine = in_oTextView.getLineHeight();
-
+        
         //The difference between view height and total text height
         int l_nDifference = ( l_nLineCount * l_nPixelsPerLine ) - l_nViewHeight;
         if( l_nDifference < 1 ){
@@ -552,17 +552,17 @@ public class GameWindow extends Activity{
         }
         
         in_oTextView.scrollTo( 0, l_nDifference );
-    } 
+    }
     
     @Override
     public void onPause(){
-          t.interrupt();
-          super.onPause();
+    	t.interrupt();
+    	super.onPause();
     }
-   
+    
     @Override
     public void onResume(){
-     super.onResume();
+    	super.onResume();
     }
     
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -581,19 +581,4 @@ public class GameWindow extends Activity{
         }
         return super.onKeyDown(keyCode, event);
    }
-    
-    /** Saves the game if its interrupted by a phone call. 
-    @Override
-    protected void onPause() {  
-    	super.onPause();
-    	// save game
-    }
-    
-    /** Loads the previously interrupted game.
-    @Override
-    protected void onResume() {  
-    	super.onResume();  
-    	// load saved game.
-    }
-    */
 }

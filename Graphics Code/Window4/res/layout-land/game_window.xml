@@ -11,10 +11,35 @@
 	>
 	</ImageView>
 	<TextView
+	android:id="@+id/tvpot1"
+	android:textColor="#ffff00"
+	android:maxLines="1"
+	android:lines="1"
+	android:layout_height="25px"
+	android:textSize="18sp"
+	android:text="Pot:"
+	android:layout_y="20px" android:layout_x="330px" android:layout_width="35px"/>
+	<TextView
+	android:id="@+id/tvpot"
+	android:textColor="#ffff00"
+	android:maxLines="1"
+	android:lines="1"
+	android:layout_height="25px"
+	android:layout_width="90px"
+	android:textSize="18sp"
+	android:text="0"
+	android:layout_y="20px" android:layout_x="370px"/>
+	<TextView
 	android:id="@+id/tv1"
 	android:layout_height="wrap_content"
 	android:text=""
-	android:background="@drawable/white" android:layout_width="wrap_content" android:layout_y="60px" android:layout_x="310px" android:width="165px" android:maxLines="6" android:lines="6">
+	android:background="@drawable/white"
+	android:layout_width="wrap_content"
+	android:layout_y="60px"
+	android:layout_x="310px"
+	android:width="165px"
+	android:maxLines="6"
+	android:lines="6" android:textColor="#ff000000">
 	</TextView>
 	<ImageButton
 	android:id="@+id/but_check"
@@ -44,4 +69,90 @@
 	android:src="@drawable/raise_button"
 	android:layout_x="310px" android:layout_y="240px">
 	</ImageButton>
+	<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card1"
+	android:src="@drawable/card_back"
+    android:layout_x="15px" android:layout_y="130px"/>
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card2"
+	android:src="@drawable/card_back"
+    android:layout_x="75px" android:layout_y="130px"/>
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card3"
+	android:src="@drawable/card_back"
+    android:layout_x="135px" android:layout_y="130px"/>
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/card4"
+	android:src="@drawable/card_back"
+    android:layout_x="195px" android:layout_y="130px"/>
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"  
+    android:id="@+id/card5"
+	android:src="@drawable/card_back"
+    android:layout_x="255px" android:layout_y="130px"/>
+    <ImageView
+	android:id="@+id/pcard1"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_y="230px" android:layout_x="190px">
+	</ImageView>
+	<ImageView
+	android:id="@+id/pcard2"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_y="230px" android:layout_x="245px">
+	</ImageView>
+	<ImageView
+	android:id="@+id/p2card1"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_x="15px" android:layout_y="230px">
+	</ImageView>
+	<ImageView
+	android:id="@+id/p2card2"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_x="70px" android:layout_y="230px">
+	</ImageView>
+	<ImageView
+	android:id="@+id/p3card1"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_x="15px" android:layout_y="30px">
+	</ImageView>
+	<ImageView
+	android:id="@+id/p3card2"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_x="70px" android:layout_y="30px">
+	</ImageView>
+	<ImageView
+	android:id="@+id/p4card1"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_y="30px" android:layout_x="190px">
+	</ImageView>
+	<ImageView
+	android:id="@+id/p4card2"
+	android:src="@drawable/card_back"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_y="30px" android:layout_x="245px">
+	</ImageView>
 </AbsoluteLayout>

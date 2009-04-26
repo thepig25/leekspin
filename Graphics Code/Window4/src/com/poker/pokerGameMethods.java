@@ -50,9 +50,14 @@ public class pokerGameMethods extends Pack {
         m.obj = (Card[]) (positions[0].playerHand);
         GameWindow.myViewUpdateHandler.sendMessage(m);
         positions[0].makeDecision();
+
+        //long startTime = System.currentTimeMillis();
+        //while(System.currentTimeMillis()<startTime+3000){
+        	// waits for 500 milliseconds.
+        //}
         
     }
-   
+    
     public void dealFlopCommunityCards(Pack myPack, Player [] positions){
         //Card[] deal = myPack.dealThreeCardArray();
     	Card[] deal = myPack.getCommmunitySpecial();
