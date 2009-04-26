@@ -120,7 +120,7 @@ public class AI_Player extends Player {
 		if(firstCardValue == secondCardValue){
 			pocketPair = firstPocketCard.getValue();
 			havePocketPair = true;
-			pocketPairMultiplier = 5;
+			pocketPairMultiplier = 7;
 			
 		}
 		
@@ -143,13 +143,13 @@ public class AI_Player extends Player {
 		 * the threshold then the computer knows it has good pocket cards
 		 */
 		// it should just call
-		if((firstCardValue + secondCardValue + Multipliers)> threshold){
+		if((firstCardValue + secondCardValue + Multipliers)>= threshold){
 			
 			// the total surpasses the theshold by a bit so it should call or maybe raise
-			if((firstCardValue + secondCardValue + Multipliers)> (threshold+ thresholdLowerLimit) ){
+			if((firstCardValue + secondCardValue + Multipliers)>= (threshold+ thresholdLowerLimit) ){
 				
 				// the total far surpasses the theshold so it should raise
-				if((firstCardValue + secondCardValue + Multipliers)> (threshold+ thresholdHigherLimit) ){
+				if((firstCardValue + secondCardValue + Multipliers)>= (threshold+ thresholdHigherLimit) ){
 					getFCR(4,6,0);
 					
 				}
@@ -168,6 +168,26 @@ public class AI_Player extends Player {
 		
 	}
 	
+	
+	public void lowMoney(){
+		
+		(if bigBlind == 80)
+	}
+	
+	
+	/*
+	 * Make decisions about the hand that you currently have.
+	 * 
+	 * if it is a pair get the value of the pair and see what the pot it and what the current highest bet.
+	 */
+	
+	public void makeHandDecision(){
+		
+		if( = 8){
+			
+		}
+		
+	}
 	
 	
 	}
