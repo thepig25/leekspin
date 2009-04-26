@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/ab_lay"
+    >
+    <ImageView
+	android:id="@+id/img1"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:src="@drawable/menu1"
+	>
+	</ImageView>
+	<ImageButton
+	android:id="@+id/b_start"
+    android:src="@drawable/new_button"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="Start Game"
+	android:layout_x="50px" android:layout_y="230px">
+	</ImageButton>
+	<ImageButton
+	android:id="@+id/b_saved"
+    android:src="@drawable/saved_button"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="Saved Game"
+	android:layout_x="190px" android:layout_y="230px">
+	</ImageButton>
+</AbsoluteLayout>
