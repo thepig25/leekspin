@@ -66,6 +66,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			bettingRound(positions); // 1st betting round
 			reducedPositions = returnPlayersHack();
+			checkPlayerMonies(reducedPositions);
 			System.out.println("reduced"+reducedPositions.length);
 			if(reducedPositions.length==1){
 				
@@ -107,6 +108,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			bettingRound(reducedPositions); // 2nd betting round
 			reducedPositions = returnPlayersHack();
+			checkPlayerMonies(reducedPositions);
 			System.out.println("reduced"+reducedPositions.length);
 			if(reducedPositions.length==1){
 				
@@ -139,6 +141,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			bettingRound(reducedPositions); // 3rd betting round
 			reducedPositions = returnPlayersHack();
+			checkPlayerMonies(reducedPositions);
 			System.out.println("reduced"+reducedPositions.length);
 			if(reducedPositions.length==1){
 				
@@ -173,6 +176,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			
 			bettingRound(reducedPositions); // 4th betting round
 			reducedPositions = returnPlayersHack();
+			checkPlayerMonies(reducedPositions);
 			System.out.println("reduced"+reducedPositions.length);
 			if(reducedPositions.length==1){
 				
@@ -219,6 +223,7 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			}
 			
 			rewardWinners(winner,returnPot());
+			checkPlayerMonies(reducedPositions);
 			resetCounters(positions);
 			int temp = incrementDealer(Dealer, positions);
 			Dealer=temp;
