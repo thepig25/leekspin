@@ -670,4 +670,10 @@ public int incrementDealer(int currentDealer, Player [] positions){
 	
 }
 
+public void checkPlayerMonies(Player [] playerArg){
+	for(int i=0;i<playerArg.length;i++){
+		System.out.println(playerArg[i].getName()+"has got "+playerArg[i].checkMoney()+" left.");
+	}
+}
+
 }
