@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.method.ScrollingMovementMethod;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.poker.R.id;
 
 public class GameWindow extends Activity{
 	
+	/** Thread to run the poker game. */
+	private Thread t = null;
 	/** True if the raise amount has been chosen. */
 	private static boolean pressed;
 	static boolean any_pressed;
@@ -221,7 +224,7 @@ public class GameWindow extends Activity{
     	
         first = true;
         
-        Thread t = new Thread() {
+        t = new Thread() {
         	public void run() {
         		// Start a new game in a separate thread.
         		myGame = new pokerGame(4, 2500, 50);
@@ -550,6 +553,34 @@ public class GameWindow extends Activity{
         
         in_oTextView.scrollTo( 0, l_nDifference );
     } 
+    
+    @Override
+    public void onPause(){
+          t.interrupt();
+          super.onPause();
+    }
+   
+    @Override
+    public void onResume(){
+     super.onResume();
+    }
+    
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+        case KeyEvent.KEYCODE_BACK:
+             t.interrupt();
+             break;
+        case KeyEvent.KEYCODE_HOME:
+             t.interrupt();
+             break;
+        case KeyEvent.KEYCODE_ENDCALL :
+             t.interrupt();
+             break;
+        default:
+             break;
+        }
+        return super.onKeyDown(keyCode, event);
+   }
     
     /** Saves the game if its interrupted by a phone call. 
     @Override
