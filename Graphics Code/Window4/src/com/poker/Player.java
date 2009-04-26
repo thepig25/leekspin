@@ -47,21 +47,9 @@ public class Player extends Pack {
 	public void rewardPlayer(int amount){
 		System.out.println("amount is "+amount);
 		currentMoney=currentMoney+amount;
-		
-		Message m = new Message();
-        m.what = GameWindow.SETPLAYERMONEY;
-        m.arg1 = this.playerID;
-        m.obj = (String) (Integer.toString(currentMoney));
-        GameWindow.myViewUpdateHandler.sendMessage(m);
 	}
 	public void removeBlinds(int amount){
 		currentMoney = currentMoney-amount;
-		
-		Message m = new Message();
-        m.what = GameWindow.SETPLAYERMONEY;
-        m.arg1 = this.playerID;
-        m.obj = (String) (Integer.toString(currentMoney));
-        GameWindow.myViewUpdateHandler.sendMessage(m);
 	}
 	public void incrementDealer(){
 		
@@ -165,8 +153,14 @@ public class Player extends Pack {
 	}
 	
 	public int checkMoney(){ // returns player's current money
-		return currentMoney;
 		
+		Message m = new Message();
+        m.what = GameWindow.SETPLAYERMONEY;
+        m.arg1 = this.playerID;
+        m.obj = (String) (Integer.toString(currentMoney));
+        GameWindow.myViewUpdateHandler.sendMessage(m);
+        
+		return currentMoney;
 	}
 	
 	public  Card [] getBestHand(){
