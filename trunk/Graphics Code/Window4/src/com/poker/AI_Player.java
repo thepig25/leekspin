@@ -39,4 +39,4 @@ public class AI_Player extends Player {
 		askCount=0;
 	}
 	
-	}
+}
