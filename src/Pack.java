@@ -74,7 +74,7 @@ public class Pack {
 	    
 	    public Card[] getSecondPocketSpecial(){ // player 1
 	        Card [] special = new Card [1];
-	        special[0] = thisPack[24];
+	        special[0] = thisPack[5];
 	        
 	        return special;
 	    }
@@ -87,7 +87,7 @@ public class Pack {
 	    }
 	    public Card[] getFourthPocketSpecial(){ // player 1
 	        Card [] special = new Card [1];
-	        special[0] = thisPack[47];
+	        special[0] = thisPack[13];
 	        return special;
 	        
 	        
