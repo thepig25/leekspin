@@ -100,7 +100,7 @@ public class HumanPlayer extends Player {
 		return decision;
 	}
 	
-	public int getBet(int currentBet){
+	public int getBet(int currentBet, int tempBigBlind){
 		
 		localCurrentBet=currentBet;
 		
