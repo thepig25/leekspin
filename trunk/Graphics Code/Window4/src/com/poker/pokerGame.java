@@ -146,7 +146,9 @@ public class pokerGame extends pokerGameMethods {
 			
 			resetCounters(reducedPositions);
 		
-			dealTurn(myPack, reducedPositions);			
+			dealTurn(myPack, reducedPositions);	// deal best card
+			
+			
 			System.out.println("Player "+reducedPositions[0].getName()+"'s best hand is:");
 			reducedPositions[0].showBestHand();
 			
@@ -178,7 +180,7 @@ public class pokerGame extends pokerGameMethods {
 			else{
 			
 			resetCounters(reducedPositions);
-			dealRiver(myPack, reducedPositions);
+			dealRiver(myPack, reducedPositions); // deal River
 			
 			
 			
