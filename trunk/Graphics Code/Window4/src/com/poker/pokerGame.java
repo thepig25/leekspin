@@ -71,7 +71,7 @@ public class pokerGame extends pokerGameMethods {
 			System.out.println("Dealer is player: "+Dealer);
 			Message m = new Message();
 	        m.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m.obj = (String) ("Dealer is player: "+Dealer+"\n");
+	        m.obj = (String) ("\nDealer is player: "+Dealer+"");
 	        GameWindow.myViewUpdateHandler.sendMessage(m);
 	        
 			dealBlinds(Dealer, positions);
@@ -84,7 +84,7 @@ public class pokerGame extends pokerGameMethods {
 				System.out.print("Player "+positions[i].getName()+" has been dealt a ");
 				Message m1 = new Message();
 		        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-		        m1.obj = (String) ("Player "+positions[i].getName()+" has been dealt a ");
+		        m1.obj = (String) ("\nPlayer "+positions[i].getName()+" has been dealt a ");
 		        GameWindow.myViewUpdateHandler.sendMessage(m1);
 		        
 				positions[i].printPocketHand();
@@ -234,7 +234,7 @@ public class pokerGame extends pokerGameMethods {
 				System.out.println ("\nWinner is: ");
 				Message m3 = new Message();
 		        m3.what = GameWindow.GUIUPDATEIDENTIFIER;
-		        m3.obj = (String) ("Winner is: ");
+		        m3.obj = (String) ("\nWinner is: ");
 		        GameWindow.myViewUpdateHandler.sendMessage(m3);
 			}
 			System.out.println(winner.length);

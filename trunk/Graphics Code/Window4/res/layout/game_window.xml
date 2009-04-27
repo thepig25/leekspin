@@ -61,15 +61,14 @@
 	android:id="@+id/pcard1"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:layout_x="180px"
-	android:layout_y="270px">
+	android:layout_x="180px" android:layout_y="255px">
 	</ImageView>
 	<ImageView
 	android:id="@+id/pcard2"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_x="240px"
-	android:layout_y="270px">
+	android:layout_y="255px">
 	</ImageView>
 	<ImageView
 	android:id="@+id/p2card1"
@@ -112,15 +111,13 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:layout_x="0px"
-	android:lines="4"
 	android:background="@drawable/white"
-	android:layout_y="345px"
 	android:textColor="#ff000000"
 	android:scrollbars="vertical"
 	android:scrollbarAlwaysDrawVerticalTrack="true"
 	android:focusable="true"
 	android:focusableInTouchMode="true"
-	android:maxLines="100">
+	android:maxLines="100" android:lines="5" android:layout_y="329px">
 	</TextView>
 	<ImageButton
 	android:id="@+id/but_check"
