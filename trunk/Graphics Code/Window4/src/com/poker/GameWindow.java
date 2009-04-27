@@ -227,7 +227,7 @@ public class GameWindow extends Activity{
         		//if(MenuWindow.Saved==true){
         			//myGame = new pokerGame(4, 2500, 50, money_array);
         		//}else{
-        			myGame = new pokerGame(4, 2500, 50, null);
+        			myGame = new pokerGame(4, 500, 50, null);
         		//}
         	}
         };
