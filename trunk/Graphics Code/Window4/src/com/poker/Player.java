@@ -32,6 +32,7 @@ public class Player extends Pack {
 	int threeCard=0;
 	int firstNonThreeCard=0;
 	int secondNonThreeCard=0;
+	int bigBlind;
 	
 	
 	public boolean isHuman=false;
@@ -80,6 +81,7 @@ highStraightCard=0;
 threeCard=0;
 firstNonThreeCard=0;
 secondNonThreeCard=0;
+bigBlind=0;
 	} 
 	
 	public String getName(){
@@ -171,7 +173,7 @@ secondNonThreeCard=0;
 		return  decision; // 0=fold,1=check/call, 2=raise
 	}*/
 	
-	public int getBet(int currentBet){ // implemented differently for AI and Human Players
+	public int getBet(int currentBet, int tempbigBlind){ // implemented differently for AI and Human Players
 		/*if(decision!=0){ 
 			return bet;
 		}*/
