@@ -60,6 +60,7 @@ public class GameWindow extends Activity{
     protected static final int DRAWOPPONENTCARDS = 0x108;
     protected static final int DRAWOPPONENTNAME = 0x109;
     protected static final int SETPLAYERSBESTHAND = 0x110;
+    protected static final int NEWROUND = 0x111;
 	
     /** Choice of bets. */
     public static String[] bets = {"20","40","60"};
@@ -327,6 +328,23 @@ public class GameWindow extends Activity{
                        if(id3==4){
                     	   player4_hand = opp_best_hand;
                        }
+                       break;
+                       
+                   case GameWindow.NEWROUND:
+                	   pot_tv.setText("0");
+                	   c1Img.setImageResource(blank_card_id);
+               		   c2Img.setImageResource(blank_card_id);
+               		   c3Img.setImageResource(blank_card_id);
+               		   c4Img.setImageResource(blank_card_id);
+               		   c5Img.setImageResource(blank_card_id);
+               		   pc1Img.setImageResource(blank_card_id);
+               		   pc2Img.setImageResource(blank_card_id);
+               		   p2card1Img.setImageResource(blank_card_id);
+            		   p2card2Img.setImageResource(blank_card_id);
+            		   p3card1Img.setImageResource(blank_card_id);
+            		   p3card2Img.setImageResource(blank_card_id);
+            		   p4card1Img.setImageResource(blank_card_id);
+            		   p4card2Img.setImageResource(blank_card_id);
                        break;
               }
               super.handleMessage(msg);
