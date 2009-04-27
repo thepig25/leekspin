@@ -183,6 +183,10 @@ public Player [] winner(Player [] involvedPlayers){
     }
     count =0;
     involvedPlayers=finalWinners;
+    if(involvedPlayers.length==1){
+    	return involvedPlayers;
+    }
+    else{
     if(bestBoolean==9){
     	
     	
@@ -448,12 +452,12 @@ public Player [] winner(Player [] involvedPlayers){
     		return tempWinners;
     	}
     }
+    else{
+    	return involvedPlayers;
+    }
     
-    
-    System.out.println("length"+finalWinners.length);
-   
-   
-    return finalWinners;
+    }
+
    
 }
 

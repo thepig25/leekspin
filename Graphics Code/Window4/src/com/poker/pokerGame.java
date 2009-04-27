@@ -217,11 +217,7 @@ public class pokerGame extends pokerGameMethods {
 			GameWindow.game_over = true;
 			
 			System.out.println("Pot is: " +returnPot());
-			
-			
-			PokerHand [] winningCards = {reducedPositions[0].getBestPokerHand(),reducedPositions[1].getBestPokerHand()};
-			
-			
+				
 			Player [] winner = winner(reducedPositions);
 			
 			
