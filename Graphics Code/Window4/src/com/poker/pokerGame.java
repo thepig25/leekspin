@@ -2,8 +2,9 @@ package com.poker;
 
 import android.os.Message;
 
-public class pokerGame extends pokerGameMethods { // this is test code for dealing - not a final implementation. 
-	//Want to be able to deal with more than 2 players in future. for now we'll just use 2
+// this class runs an actual poker game
+
+public class pokerGame extends pokerGameMethods { 
 	
 	int gameOver;
 	private int pot;
@@ -13,19 +14,18 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 		Player [] positions = new Player[NOplayer];
 		Player [] reducedPositions;
 		// code for deciding dealer goes here
-		gameOver = NOplayer;
-		
-		if(money==null){
+		gameOver = NOplayer;	
+	//if(money==null){
 			positions[0] = new HumanPlayer("Hugh Man",startAmount,null,1);
 			positions[1] = new AI_Player ("Megatron",startAmount,null,2);
 			positions[2] = new AI_Player ("Optimus Prime",startAmount,null,3);
 			positions[3] = new AI_Player ("Roomba",startAmount,null,4);
-		}else{
+		/*}else{
 			positions[0] = new HumanPlayer("Hugh Man",money[0],null,1);
 			positions[1] = new AI_Player ("Megatron",money[1],null,2);
 			positions[2] = new AI_Player ("Optimus Prime",money[2],null,3);
 			positions[3] = new AI_Player ("Roomba",money[3],null,4);
-		}
+		}*/
 		
 		
 		for(int i = 0; i < positions.length; i++){
@@ -37,17 +37,34 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 	        GameWindow.myViewUpdateHandler.sendMessage(m5);
 	        
 		}
-//		while(gameOver>1){ // loop which keeps game going
-//			for (int i=0;i<positions.length;i++{ // checks at start of hand if any players are out of chips
-//				if(positions[i].canPlay==false){ 
-//					positon[i]=null;// kicks player if they're out
-//					gameOver--; // one closer to a game over situation
-//				}
-//			}
+		
+		int count =0;
+		while(gameOver>1){ // loop which keeps game going
+			Player[] tempPlayer = new Player[0];
+		
+			for (int i=0;i<positions.length;i++){ // checks at start of hand if any players are out of chips
+				if(positions[i].checkMoney()==0){ 
+					gameOver--; // one closer to a game over situation
+				}
+				
+				
+				if(positions[i].checkMoney()>0){ 
+					Player[] tempCopy = new Player[(tempPlayer.length)];
+        			System.arraycopy(tempPlayer, 0, tempCopy, 0, tempCopy.length);
+        			tempPlayer = new Player[(tempPlayer.length+1)];
+                    System.arraycopy(tempCopy, 0,tempPlayer , 0, tempCopy.length);
+                    tempPlayer[count]=positions[i];
+                    count++;
+					 
+				}
+			}
+			positions=tempPlayer;
+			count=0;
+			
 			
 			Pack myPack = new Pack();
 			myPack.createPack();
-			//myPack.Shuffle();
+			myPack.Shuffle();
 			
 			Dealer = chooseFirstDealer(positions.length); // method to choose Dealer
 			
@@ -240,9 +257,9 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 			}
 			}
 			}
+	resetAllCounters(positions);
+	}// end game loop
 	
 	}
 	
-	}
-	
-
+}

@@ -45,11 +45,11 @@ public class Player extends Pack {
 		playerID = tempPlayerID;
 	}
 	
-	public void rewardPlayer(int amount){
+	public void rewardPlayer(int amount){ // methods for adding to player's total if they win
 		System.out.println("amount is "+amount);
 		currentMoney=currentMoney+amount;
 	}
-	public void removeBlinds(int amount){
+	public void removeBlinds(int amount){ // removes from the player's total
 		currentMoney = currentMoney-amount;
 	}
 	public void incrementDealer(){
@@ -59,12 +59,35 @@ public class Player extends Pack {
 		
 	}
 	
+public void resetAllCounters(){
+	
+	first = true;
+	bet=0;
+	thisHand = new Card[7];
+	playerHand = new Card[2];
+	communityCards = new Card[3];
+	cardCount=0;
+	cardPocketCount=0;
+
+
+highestFirstPair=-1;
+highestSecondPair=-1;
+bestBoolean=20;
+highCard=2;
+highestLowest=0;
+highestGeneralPair=0;
+highStraightCard=0;
+threeCard=0;
+firstNonThreeCard=0;
+secondNonThreeCard=0;
+	} 
+	
 	public String getName(){
 		return name;
 	}
 	
 	// this takes an array of dealt cards then adds them to the
-	// players hand. using cardCount to make sure its in the 
+	// players hand. using cardCount to make sure its in the right
 	// position
 	public void receiveCommunityCards(Card[] received){ // method for receiving community cards. 
 		//initially set array to size 3 and then copy to make it the full size of 5
@@ -148,10 +171,10 @@ public class Player extends Pack {
 		return  decision; // 0=fold,1=check/call, 2=raise
 	}*/
 	
-	public int getBet(int currentBet){
-		if(decision!=0){
+	public int getBet(int currentBet){ // implemented differently for AI and Human Players
+		/*if(decision!=0){ 
 			return bet;
-		}
+		}*/
 		return bet;
 		
 	}
@@ -168,7 +191,7 @@ public class Player extends Pack {
 	
 	public int checkMoney(){ // returns player's current money
 		
-		Message m = new Message();
+		Message m = new Message(); // updates UI
         m.what = GameWindow.SETPLAYERMONEY;
         m.arg1 = this.playerID;
         m.obj = (String) (Integer.toString(currentMoney));
@@ -177,11 +200,11 @@ public class Player extends Pack {
 		return currentMoney;
 	}
 	
-	public  Card [] getBestHand(){
+	public  Card [] getBestHand(){ // returns a card array of 5
 		//poolCards = new Card[communityCards.length+playerHand.length];
 
 				
-		if(playerHand.length+communityCards.length==5){ // just return the 5 cards available
+		if(playerHand.length+communityCards.length==5){ // just return the 5 cards available as that's the only combination available
 			poolCards = new Card[communityCards.length+playerHand.length];
 			System.arraycopy(playerHand, 0, poolCards, 0, playerHand.length);
 			System.arraycopy(communityCards, 0, poolCards, 2, communityCards.length);
@@ -202,8 +225,8 @@ public class Player extends Pack {
 			
 			if(poolCards.length==6){
 				
-				elements = new int[]  {0, 1, 2, 3, 4, 5};
-				x = new CombinationGenerator (elements.length, 5);
+				elements = new int[]  {0, 1, 2, 3, 4, 5}; 
+				x = new CombinationGenerator (elements.length, 5); // call combination generator with a 6 choose 5 argument
 				allCombosLength=6; // six possible combinations of five cards
 				
 				
@@ -211,7 +234,7 @@ public class Player extends Pack {
 			else if(poolCards.length==7){
 				
 				elements = new int[] {0, 1, 2, 3, 4, 5, 6};
-				x = new CombinationGenerator (elements.length, 5);
+				x = new CombinationGenerator (elements.length, 5);// call combination generator with a 7 choose 5 argument
 				allCombosLength=21; // 21 possible combinations of five cards
 	
 			}
@@ -234,7 +257,7 @@ public class Player extends Pack {
 				while (x.hasMore ()) {
 					combination = new StringBuffer ();
 					indices = x.getNext ();
-						for (int i = 0; i < indices.length; i++) {
+						for (int i = 0; i < indices.length; i++) { 
 							combination.append (elements[indices[i]]);
 							genCards[i]= elements[indices[i]];
 							allCombos[count][i] = genCards[i];
@@ -245,7 +268,7 @@ public class Player extends Pack {
 				}
 				
 				
-			
+				// read in the combination string and create an array of 5 cards from that
 			
 				for (int i = 0; i < allCombosLength; i++) {
 					for (int k=0;k<genCards.length;k++){
@@ -258,6 +281,13 @@ public class Player extends Pack {
 				}
 				
 				PokerHand testHand=new PokerHand(testCard[j]);
+				
+				
+				if(testHand.testBooleans()<bestBoolean){
+					bestBoolean=testHand.testBooleans();
+					bestPokerHand = testHand.getCard();
+				}
+				
 				
 				
 				if(testHand.testBooleans()==8){ // pair
@@ -282,8 +312,11 @@ public class Player extends Pack {
 						//System.out.println("upper 2 pair code");
 						//System.out.println(testHand.firstMatch);
 						
+						
+						
 					}
-						Card [] tempy = testHand.firstTwo();
+					testHand.printPokerHand();	
+					Card [] tempy = testHand.firstTwo();
 						nonPair=testHand.getNonPair();
 						
 
@@ -299,7 +332,7 @@ public class Player extends Pack {
 								System.out.println("2nd pair is: "+highestSecondPair);
 								highestFirstPair=testHand.firstMatch;
 								bestPokerHand = testHand.getCard();
-								highCard=testHand.getHighCard().getValue();
+								//highCard=testHand.getHighCard().getValue();
 								
 								//System.out.println("In "+bestBoolean+ "best hand is ");
 								testHand.printPokerHand();
@@ -348,7 +381,7 @@ public class Player extends Pack {
 					
 				}
 				
-				if(testHand.testBooleans()==6){
+				if(testHand.testBooleans()==6){ // three of a kind
 					if(testHand.testBooleans()<bestBoolean){//&&testHand.highestSecondPair>highestSecondPair&&testHand.firstMatch>highestFirstPair){
 						bestBoolean=testHand.testBooleans();
 					}
@@ -364,17 +397,11 @@ public class Player extends Pack {
 				//System.out.println("Best Boolean is ");
 					
 				
-				if(testHand.testBooleans()<bestBoolean){
-					bestBoolean=testHand.testBooleans();
-					highCard=testHand.getHighCard().getValue();
-					highestLowest=testHand.getLowestHighCard().getValue();
-					bestPokerHand = testHand.getCard();
-					
-				}
+
 				
 				
 				
-				
+				// all other hands should go into this
 				if(testHand.testBooleans()==bestBoolean&&(testHand.getHighCard().getValue()>highCard)&&testHand.getLowestHighCard().getValue()>highestLowest&&testHand.testBooleans()!=8&&testHand.testBooleans()!=7&&testHand.testBooleans()!=3&&testHand.testBooleans()!=5&&testHand.testBooleans()!=1){
 						
 						System.out.println("above if "+highCard);
@@ -408,16 +435,8 @@ public class Player extends Pack {
 		PokerHand tempPokerHand = new PokerHand(bestPokerHand);
 		return tempPokerHand;
 	}
-		
-		
-		   // need to add the community and pocket card arrays together here!
 			
-			// then go through the combos and select the best card
-			// a lot of the combos are going to have the same hand value so we need to search by highest card
-	
-	
-	
-	public  void showBestHand(){
+	public  void showBestHand(){ // this updates the UI with the best hand
 		Card [] showCards = getBestHand();
 		PokerHand newCard = new PokerHand(showCards);
 		showCards=newCard.getCard();
@@ -434,7 +453,7 @@ public class Player extends Pack {
 		
 	}
 
-	public int getDecision() {
+	public int getDecision() { // AI and human player handle this differently
 		// TODO Auto-generated method stub
 		return decision;
 	}
@@ -443,7 +462,7 @@ public class Player extends Pack {
 		
 	}
 	
-	public int getPlayerHighHoleCard(){
+	public int getPlayerHighHoleCard(){ // used when determining the winner in a high card situation
         Card [] temp = playerHand;
        
         if(temp [0].getValue()>temp [1].getValue()){
@@ -453,7 +472,7 @@ public class Player extends Pack {
             return temp [1].getValue();
         }
 }
-	public int getPlayerLowHoleCard(){
+	public int getPlayerLowHoleCard(){ // used when determining the winner in a high card situation
 		   Card [] temp = playerHand;
 		 
 		   if(temp [0].getValue()<temp [1].getValue()){
