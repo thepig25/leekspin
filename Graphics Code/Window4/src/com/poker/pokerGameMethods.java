@@ -70,16 +70,16 @@ public class pokerGameMethods extends Pack {
     }
     
     public void dealFlopCommunityCards(Pack myPack, Player [] positions){
-        //Card[] deal = myPack.dealThreeCardArray();
-    	Card[] deal = myPack.getCommmunitySpecial();
+        Card[] deal = myPack.dealThreeCardArray();
+    	//Card[] deal = myPack.getCommmunitySpecial();
         for(int i=0;i<positions.length;i++){
             positions[i].receiveCommunityCards(deal);
         }
     }
    
     public void dealTurn(Pack myPack, Player [] positions){
-        //Card[] deal = myPack.dealOneCardArray();
-    	Card[] deal = myPack.getTurnSpecial();
+        Card[] deal = myPack.dealOneCardArray();
+    	//Card[] deal = myPack.getTurnSpecial();
         int printCount=0;
         for(int i=0;i<positions.length;i++){
            
@@ -93,8 +93,8 @@ public class pokerGameMethods extends Pack {
     }
    
     public void dealRiver(Pack myPack, Player [] positions){
-    	Card[] deal = myPack.getRiverSpecial();
-    	//Card[] deal = myPack.dealOneCardArray();
+    	//Card[] deal = myPack.getRiverSpecial();
+    	Card[] deal = myPack.dealOneCardArray();
         int printCount=0;
         for(int i=0;i<positions.length;i++){
            
