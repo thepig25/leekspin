@@ -18,15 +18,11 @@
     android:orientation="horizontal">
 	<Spinner
 	android:id="@+id/spin1"
-	android:layout_width="200px"
 	android:layout_height="wrap_content"
-    android:layout_gravity="left">
+    android:layout_gravity="left" android:layout_width="190px">
 	</Spinner>
     <Button
     android:id="@+id/ok"
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:layout_gravity="right"
-    android:text="ok" />
+    android:layout_gravity="right" android:text="Ok" android:layout_width="70px" android:textSize="18sp" android:layout_height="80px"/>
     </LinearLayout>
 </LinearLayout>
