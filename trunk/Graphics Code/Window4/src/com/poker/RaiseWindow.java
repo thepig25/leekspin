@@ -34,7 +34,7 @@ public class RaiseWindow extends Activity implements View.OnClickListener{
         public void onClick(View v) {
         	String s = (String)raiseby.getSelectedItem();
         	int in = Integer.parseInt(s);
-        	GameWindow.raised_done = true;
+        	GameWindow.any_pressed = true;
         	setResult(in);
         	finish();
         }

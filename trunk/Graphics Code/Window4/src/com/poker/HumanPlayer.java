@@ -134,11 +134,11 @@ public class HumanPlayer extends Player {
 	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
 	        m1.obj = (String) ("Player has raised to "+currentBet+". Press raise to continue\n");
 	        GameWindow.myViewUpdateHandler.sendMessage(m1);
-	        while(GameWindow.raised_done != true){
+	        while(GameWindow.any_pressed != true){
 	        	// wait
 	        }
 				
-		GameWindow.raised_done = false;
+		GameWindow.any_pressed = false;
 		
 		System.out.println(currentBet);
 		String as,bs,cs;

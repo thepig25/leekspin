@@ -29,7 +29,6 @@ public class GameWindow extends Activity{
 	private static boolean pressed;
 	static boolean any_pressed;
 	static boolean first = true;
-	static boolean raised_done = false;
 	static boolean game_over = false;
 	static boolean commCardsDealt = false;
 	static boolean p1Folded = false;
@@ -146,7 +145,6 @@ public class GameWindow extends Activity{
     	first = true;
     	p1Folded = false;
     	game_over = false;
-    	raised_done = false;
     	commCardsDealt = false;
     	
         console = (TextView)this.findViewById(R.id.tv1);
@@ -367,7 +365,6 @@ public class GameWindow extends Activity{
         		// Opens the 'RaiseWindow.java' window named "RAISE" in the AndroidManifest XML file.
         		startActivityForResult(new Intent("com.poker.action.RAISE", null),0);
         		command = 0;
-        		any_pressed = true;
         	}
         }
     };
