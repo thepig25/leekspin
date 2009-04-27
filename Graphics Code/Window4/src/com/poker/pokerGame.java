@@ -258,6 +258,13 @@ public class pokerGame extends pokerGameMethods {
 			}
 			}
 	resetAllCounters(positions);
+	
+	Message m1 = new Message();
+    m1.what = GameWindow.NEWROUND;
+    GameWindow.myViewUpdateHandler.sendMessage(m1);
+    for(int i=0; i<positions.length; i++){
+    	positions[i].checkMoney();
+    }
 	}// end game loop
 	
 	}
