@@ -9,15 +9,24 @@ public class pokerGame extends pokerGameMethods { // this is test code for deali
 	private int pot;
 	int Dealer;
 	
-	public pokerGame(int NOplayer, int startAmount, int bigBlind){
+	public pokerGame(int NOplayer, int startAmount, int bigBlind, int[] money){
 		Player [] positions = new Player[NOplayer];
 		Player [] reducedPositions;
 		// code for deciding dealer goes here
 		gameOver = NOplayer;
-		positions[0] = new HumanPlayer("Hugh Man",startAmount,null,1);
-		positions[1] = new AI_Player ("Megatron",startAmount,null,2);
-		positions[2] = new AI_Player ("Optimus Prime",startAmount,null,3);
-		positions[3] = new AI_Player ("Roomba",startAmount,null,4);
+		
+		if(money==null){
+			positions[0] = new HumanPlayer("Hugh Man",startAmount,null,1);
+			positions[1] = new AI_Player ("Megatron",startAmount,null,2);
+			positions[2] = new AI_Player ("Optimus Prime",startAmount,null,3);
+			positions[3] = new AI_Player ("Roomba",startAmount,null,4);
+		}else{
+			positions[0] = new HumanPlayer("Hugh Man",money[0],null,1);
+			positions[1] = new AI_Player ("Megatron",money[1],null,2);
+			positions[2] = new AI_Player ("Optimus Prime",money[2],null,3);
+			positions[3] = new AI_Player ("Roomba",money[3],null,4);
+		}
+		
 		
 		for(int i = 0; i < positions.length; i++){
 			

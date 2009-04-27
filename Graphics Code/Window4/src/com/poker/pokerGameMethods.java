@@ -44,18 +44,29 @@ public class pokerGameMethods extends Pack {
         deal = myPack.getFourthPocketSpecial();
         positions[1].receivePocketCards(deal);*/
         
+        long startTime1 = System.currentTimeMillis();
+        while(System.currentTimeMillis()<startTime1+600){
+        	// waits for 600 milliseconds.
+        }
        
         Message m = new Message();
         m.what = GameWindow.DRAWPLAYERCARDS;
-        m.obj = (Card[]) (positions[0].playerHand);
+        m.obj = (Card) (positions[0].playerHand[0]);
+        m.arg1 = 1;
         GameWindow.myViewUpdateHandler.sendMessage(m);
-        positions[0].makeDecision();
 
-        //long startTime = System.currentTimeMillis();
-        //while(System.currentTimeMillis()<startTime+3000){
-        	// waits for 500 milliseconds.
-        //}
+        long startTime = System.currentTimeMillis();
+        while(System.currentTimeMillis()<startTime+600){
+        	// waits for 600 milliseconds.
+        }
         
+        Message m1 = new Message();
+        m1.what = GameWindow.DRAWPLAYERCARDS;
+        m1.obj = (Card) (positions[0].playerHand[1]);
+        m1.arg1 = 2;
+        GameWindow.myViewUpdateHandler.sendMessage(m1);
+
+        positions[0].makeDecision();
     }
     
     public void dealFlopCommunityCards(Pack myPack, Player [] positions){

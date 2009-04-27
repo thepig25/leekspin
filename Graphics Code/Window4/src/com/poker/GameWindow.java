@@ -35,6 +35,7 @@ public class GameWindow extends Activity{
 	static boolean p1Folded = false;
 	static int command;
 	static int currentPlayerInfo;
+	int[] money_array;
 	static String player1_name = "";
 	static String player2_name = "";
 	static String player3_name = "";
@@ -99,7 +100,7 @@ public class GameWindow extends Activity{
         setContentView(R.layout.game_window_begin);
         
         start = (Button)this.findViewById(R.id.but_start);
-        start.setOnClickListener(l_start); 
+        start.setOnClickListener(l_start);
         
         // Create card images.
         c1Img = (ImageView) findViewById(id.card1);
@@ -134,10 +135,7 @@ public class GameWindow extends Activity{
 		c5Img.setImageResource(blank_card_id);
 		pc1Img.setImageResource(blank_card_id);
 		pc2Img.setImageResource(blank_card_id);
-		
     }
-    
-    //private final Handler mHandler = new Handler();
     
     public void startGame(){
     	
@@ -227,7 +225,11 @@ public class GameWindow extends Activity{
         t = new Thread() {
         	public void run() {
         		// Start a new game in a separate thread.
-        		myGame = new pokerGame(4, 2500, 50);
+        		//if(MenuWindow.Saved==true){
+        			//myGame = new pokerGame(4, 2500, 50, money_array);
+        		//}else{
+        			myGame = new pokerGame(4, 2500, 50, null);
+        		//}
         	}
         };
         t.start();
@@ -244,13 +246,15 @@ public class GameWindow extends Activity{
                         break;
                         
                    case GameWindow.DRAWCOMMUNITYCARDS:
-                        Card[] temp_cards = (Card[])msg.obj;
-                        drawCardImgs(temp_cards);
+                        Card temp_card = (Card)msg.obj;
+                        int choice = msg.arg1;
+                        drawCardImgs(temp_card, choice);
                         break;
                         
                    case GameWindow.DRAWPLAYERCARDS:
-                       Card[] temp_player_cards = (Card[])msg.obj;
-                       drawPocketCardImgs(temp_player_cards);
+                       Card temp_player_card = (Card)msg.obj;
+                       int temp_no = msg.arg1;
+                       drawPocketCardImgs(temp_player_card, temp_no);
                        break;
                        
                    case GameWindow.DRAWOPPONENTCARDS:
@@ -407,8 +411,7 @@ public class GameWindow extends Activity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case 0:
-            // Call method to save game.
-        	
+        	// save game //save();
             return true;
         case 1:
         	if(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
@@ -435,65 +438,45 @@ public class GameWindow extends Activity{
     
     /** Draws the community cards to screen.
      * Can handle 3, 4 or 5 cards being drawn. */
-    public static void drawCardImgs(Card[] cards){
+    public static void drawCardImgs(Card card, int i){
     	
-    	if(cards.length == 3){
-        	Card c1 = cards[0];
-        	Card c2 = cards[1];
-        	Card c3 = cards[2];
+    	if(i==1){
+    		Card c1 = card;
         	int resId = c1.getImageResourceId();
             c1Img.setImageResource(resId);
-            resId = c2.getImageResourceId();
-            c2Img.setImageResource(resId);
-            resId = c3.getImageResourceId();
-            c3Img.setImageResource(resId);
-            c4Img.setImageResource(blank_card_id);
-            c5Img.setImageResource(blank_card_id);
     	}
-    	
-    	if(cards.length == 4){
-        	Card c1 = cards[0];
-        	Card c2 = cards[1];
-        	Card c3 = cards[2];
-        	Card c4 = cards[3];
+    	if(i==2){
+    		Card c1 = card;
         	int resId = c1.getImageResourceId();
-            c1Img.setImageResource(resId);
-            resId = c2.getImageResourceId();
             c2Img.setImageResource(resId);
-            resId = c3.getImageResourceId();
-            c3Img.setImageResource(resId);
-            resId = c4.getImageResourceId();
-            c4Img.setImageResource(resId);
-            c5Img.setImageResource(blank_card_id);
     	}
-    	
-    	if(cards.length == 5){
-        	Card c1 = cards[0];
-        	Card c2 = cards[1];
-        	Card c3 = cards[2];
-        	Card c4 = cards[3];
-        	Card c5 = cards[4];
+    	if(i==3){
+    		Card c1 = card;
         	int resId = c1.getImageResourceId();
-            c1Img.setImageResource(resId);
-            resId = c2.getImageResourceId();
-            c2Img.setImageResource(resId);
-            resId = c3.getImageResourceId();
             c3Img.setImageResource(resId);
-            resId = c4.getImageResourceId();
+    	}
+    	if(i==4){
+    		Card c1 = card;
+        	int resId = c1.getImageResourceId();
             c4Img.setImageResource(resId);
-            resId = c5.getImageResourceId();
+    	}
+    	if(i==5){
+    		Card c1 = card;
+        	int resId = c1.getImageResourceId();
             c5Img.setImageResource(resId);
     	}
     }
     
     /** Draws the players pocket cards to screen. */
-    public static void drawPocketCardImgs(Card[] cards){
-    	Card c1 = cards[0];
-    	Card c2 = cards[1];
+    public static void drawPocketCardImgs(Card card, int i){
+    	Card c1 = card;
     	int resId = c1.getImageResourceId();
-        pc1Img.setImageResource(resId);
-        resId = c2.getImageResourceId();
-        pc2Img.setImageResource(resId);
+    	if(i==1){
+            pc1Img.setImageResource(resId);
+    	}
+    	if(i==2){
+    		pc2Img.setImageResource(resId);
+    	}
     }
     
     /** Draws the players pocket cards to screen. */
@@ -580,5 +563,26 @@ public class GameWindow extends Activity{
              break;
         }
         return super.onKeyDown(keyCode, event);
-   }
+	}
+    
+    /*public void onSavedInstanceState(Bundle savedInstanceState){
+    	//Bundle savedInstanceState = new Bundle();
+    	savedInstanceState.putInt("P1", Integer.parseInt(player1_cash));
+    	savedInstanceState.putInt("P2", Integer.parseInt(player2_cash));
+    	savedInstanceState.putInt("P3", Integer.parseInt(player3_cash));
+    	savedInstanceState.putInt("P4", Integer.parseInt(player4_cash));
+    	savedInstanceState.putString("Console", (String)console.getText());
+    	super.onSaveInstanceState(savedInstanceState);
+    }
+    
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+    	  super.onRestoreInstanceState(savedInstanceState);
+
+			console.setText(savedInstanceState.getString("Console"));
+			money_array[0] = savedInstanceState.getInt("P1");
+			money_array[1] = savedInstanceState.getInt("P2");
+			money_array[2] = savedInstanceState.getInt("P3");
+			money_array[3] = savedInstanceState.getInt("P4");
+    	}*/
+
 }
