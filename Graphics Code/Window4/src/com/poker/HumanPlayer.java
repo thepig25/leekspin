@@ -60,7 +60,7 @@ public class HumanPlayer extends Player {
 		
 		Message m1 = new Message();
         m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-        m1.obj = (String) ("\nPlayer has raised to "+localCurrentBet+"Press raise or call to continue\n");
+        m1.obj = (String) ("\nPlayer has raised to "+localCurrentBet+". Press raise or call to continue.");
         GameWindow.myViewUpdateHandler.sendMessage(m1);
 		while(GameWindow.getAnyPressed() != true){
 			// wait
@@ -120,7 +120,7 @@ public class HumanPlayer extends Player {
 		if(decision==2&&currentBet>bet){
 			Message m1 = new Message();
 	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m1.obj = (String) ("Player has raised to "+currentBet+". Press raise or call to continue\n");
+	        m1.obj = (String) ("\nPlayer has raised to "+currentBet+". Press raise or call to continue.");
 	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 			makeDecision();
 			if(decision==2){
@@ -132,7 +132,7 @@ public class HumanPlayer extends Player {
 		
 			Message m1 = new Message();
 	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m1.obj = (String) ("Player has raised to "+currentBet+". Press raise to continue\n");
+	        m1.obj = (String) ("\nPlayer has raised to "+currentBet+". Press raise to continue.");
 	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 	        while(GameWindow.any_pressed != true){
 	        	// wait
@@ -156,15 +156,6 @@ public class HumanPlayer extends Player {
         m2.obj = (String[]) (bets);
         GameWindow.myViewUpdateHandler.sendMessage(m2);
 		
-		
-			//int oldBet= bet;
-			Message m3 = new Message();
-	        m3.what = GameWindow.GUIUPDATEIDENTIFIER;
-	        m3.obj = (String) (" >> Press Raise to bet. <<\n");
-	        GameWindow.myViewUpdateHandler.sendMessage(m3);
-			//while(GameWindow.getAnyPressed() != true){
-				// wait
-			//}
 	        int oldBet=bet;
 			bet = GameWindow.getBet();
 			//bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Current Bet is: "+currentBet+" Enter amount here"));

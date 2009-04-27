@@ -444,13 +444,13 @@ bigBlind=0;
 		showCards=newCard.getCard();
 		//System.out.println("Player's best hand is: ");
 		//System.out.println("showCards length: "+showCards.length);
-		for (int i=0;i<showCards.length;i++){
+		/*for (int i=0;i<showCards.length;i++){
 			System.out.println(showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString());
 			Message m = new Message();
 	        m.what = GameWindow.GUIUPDATEIDENTIFIER;
 	        m.obj = (String) (showCards[i].getValueAsString()+" of "+showCards[i].getSuitAsString()+", ");
 	        GameWindow.myViewUpdateHandler.sendMessage(m);
-		}
+		}*/
 		
 		
 	}

@@ -330,6 +330,7 @@ public class GameWindow extends Activity{
                        
                    case GameWindow.NEWROUND:
                 	   pot_tv.setText("0");
+            		   first = true;
                 	   c1Img.setImageResource(blank_card_id);
                		   c2Img.setImageResource(blank_card_id);
                		   c3Img.setImageResource(blank_card_id);
@@ -359,10 +360,10 @@ public class GameWindow extends Activity{
         public void onClick(View v) {
         	if(first==true){
         		command = 0;
-            	any_pressed = true;
             	first = false;
+            	any_pressed = true;
         	}else{
-        		// Opens the 'RaiseWindow.java' window named "RAISE" in the AndroidManifest XML file.
+        		// Opens the 'RaiseWindow.java' window, named "RAISE" in the AndroidManifest XML file.
         		startActivityForResult(new Intent("com.poker.action.RAISE", null),0);
         		command = 0;
         	}
@@ -370,18 +371,27 @@ public class GameWindow extends Activity{
     };
     private OnClickListener l_call = new OnClickListener() {
         public void onClick(View v) {
+        	if(first==true){
+            	first = false;
+        	}
         	command = 2;
         	any_pressed = true;
         }
     };
     private OnClickListener l_fold = new OnClickListener() {
         public void onClick(View v) {
+        	if(first==true){
+            	first = false;
+        	}
         	command = 1;
         	any_pressed = true;
         }
     };
     private OnClickListener l_check = new OnClickListener() {
         public void onClick(View v) {
+        	if(first==true){
+            	first = false;
+        	}
         	command = 3;
         	any_pressed = true;
         }
@@ -426,7 +436,7 @@ public class GameWindow extends Activity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case 0:
-        	// save game //save();
+        	// save game //save(); Not finished.
             return true;
         case 1:
         	if(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
@@ -537,6 +547,7 @@ public class GameWindow extends Activity{
     	return bet;
     }
     
+    /** Scrolls the Console TextView to the bottom. */
     public static void AdjustScroll(TextView in_oTextView){
     	
         int l_nLineCount = in_oTextView.getLineCount();

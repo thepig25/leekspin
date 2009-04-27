@@ -2,6 +2,8 @@ package com.poker;
 
 import java.util.Random;
 
+import android.os.Message;
+
 public class AI_Player extends Player {
 	
 	int askCount=0;
@@ -69,22 +71,38 @@ public class AI_Player extends Player {
 			//call = 2
 			//check = 3
 			System.out.println("Computers decison is call");
+			Message m1 = new Message();
+	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m1.obj = (String) ("\n"+name+": Call.");
+	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 			return 2;
 		}
 		
 		if(FCR > call&& FCR <(call+raise)){
 			//raise = 0
 			System.out.println("Computers decison is raise");
+			Message m1 = new Message();
+	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m1.obj = (String) ("\n"+name+": Raise.");
+	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 			return 0;
 		}
 		
 		if(FCR >(call+raise) && FCR<(call+raise+ fold)){
 			//fold = 1
 			System.out.println("Computers decison is fold");
+			Message m1 = new Message();
+	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+	        m1.obj = (String) ("\n"+name+": Fold.");
+	        GameWindow.myViewUpdateHandler.sendMessage(m1);
 			return 1;
 		}
 		
 		System.out.println("Computers decison is deafault call");
+		Message m1 = new Message();
+        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+        m1.obj = (String) ("\n"+name+": Call.");
+        GameWindow.myViewUpdateHandler.sendMessage(m1);
 		return 2;
 	}
 	
@@ -171,7 +189,7 @@ public class AI_Player extends Player {
 	}
 	
 	
-	public void lowMoney(){
+	public boolean lowMoney(){
 		
 		if (bigBlind == (currentMoney *4)){
 			return true;

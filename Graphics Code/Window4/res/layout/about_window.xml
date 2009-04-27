@@ -10,12 +10,30 @@
 	android:id="@+id/rby1"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:text="By:">
+	android:text="
+	Team LeekSpin">
+	</TextView>
+    <ImageView
+	android:id="@+id/leeks"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:src="@drawable/leekspin" android:layout_gravity="center">
+	</ImageView>
+    <TextView
+	android:id="@+id/rby1"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="By:
+	Ciaran Hale,
+	Thady Lynch,
+	Neill McCarthy,
+	Stephen McBride,
+	Ciaran McElhatton,
+	Paddy O'Sullivan">
 	</TextView>
     <Button
     android:id="@+id/close"
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content" 
-    android:layout_gravity="right"
-    android:text="Close" />
+    android:text="Close" android:layout_gravity="center"/>
 </LinearLayout>
