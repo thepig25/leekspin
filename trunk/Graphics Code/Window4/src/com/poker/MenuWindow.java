@@ -13,6 +13,7 @@ public class MenuWindow extends Activity {
 	
 	private ImageButton start;
 	private ImageButton saved;
+	public static boolean Saved;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -31,11 +32,13 @@ public class MenuWindow extends Activity {
     
     private OnClickListener l_start = new OnClickListener() {
         public void onClick(View v) {
+        	Saved = false;
         	startActivityForResult(new Intent("com.poker.action.GAME", null),0);
         }
     };
     private OnClickListener l_saved = new OnClickListener() {
         public void onClick(View v) {
+        	Saved = true;
         	startActivityForResult(new Intent("com.poker.action.GAME", null),0);
         }
     };

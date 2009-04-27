@@ -5,6 +5,7 @@ import android.os.Message;
 public class Player extends Pack {
 
 	private int decision;
+	private boolean first = true;
 	int bet=0;
 	int currentMoney;
 	String name;
@@ -80,10 +81,23 @@ public class Player extends Pack {
 			communityCards[cardCount] = temp[i];
 			cardCount++;
 		}
-		Message m = new Message();
-        m.what = GameWindow.DRAWCOMMUNITYCARDS;
-        m.obj = (Card[]) (communityCards);
-        GameWindow.myViewUpdateHandler.sendMessage(m);
+		
+		for(int i=0; i<communityCards.length; i++){
+			Message m = new Message();
+	        m.what = GameWindow.DRAWCOMMUNITYCARDS;
+	        m.obj = (Card) (communityCards[i]);
+	        m.arg1 = i+1;
+	        GameWindow.myViewUpdateHandler.sendMessage(m);
+	        
+	        // First time we draw comm. cards, pause between each one.
+	        if(first){
+	        	long startTime = System.currentTimeMillis();
+		        while(System.currentTimeMillis()<startTime+600){
+		        	// waits for 600 milliseconds.
+		        }
+	        }
+		}
+		first = false;
 	}
 	
 	

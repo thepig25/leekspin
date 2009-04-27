@@ -7,7 +7,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		pokerGame test = new pokerGame(2, 2500, 50);
+		pokerGame test = new pokerGame(2, 2500, 50, null);
 		
 		//myPack.dealCards(temp1)
 		//PokerHand myPhand = new PokerHand(myPack);
