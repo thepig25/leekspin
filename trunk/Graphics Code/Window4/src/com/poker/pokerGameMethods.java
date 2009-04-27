@@ -182,6 +182,7 @@ public Player [] winner(Player [] involvedPlayers){
         
     }
     count =0;
+    involvedPlayers=finalWinners;
     if(bestBoolean==9){
     	
     	
@@ -285,8 +286,9 @@ public Player [] winner(Player [] involvedPlayers){
     	count =0;
     	Player []tempWinners=new Player[0];
     	for(int j=0;j<involvedPlayers.length;j++){ // establish highest pair card (get playrs 2nd pair becuase will always be higher than 1st pair
-    		
+    		System.out.println(involvedPlayers[j].highestSecondPair);
     		if(involvedPlayers[j].highestSecondPair>secondPair){
+    			
     			
     			secondPair = involvedPlayers[j].highestSecondPair; // establish highest pair
     			
@@ -655,6 +657,7 @@ public void rewardWinners(Player [] winners, int total){
         System.out.println("Winner is "+winners[i].getName());
         //System.out.println("Player "+winners[i].getName()+" now has "+winners[i].checkMoney());
     }
+    potTotal=0;
 }
 
 public void resetCounters(Player [] players){
@@ -662,6 +665,25 @@ public void resetCounters(Player [] players){
         players[i].resetCounters();
     }
 }
+
+public void resetAllCounters(Player [] players){
+    
+	
+	for (int i=0;i<players.length;i++){
+        players[i].resetAllCounters();
+    }
+bestBoolean=10;
+ currentBet=20;
+    BlindLevel=1;
+HighCard=0;
+ winningPlayer=0;
+firstPair=0;
+ secondPair=0;
+
+ handCounter=0;
+}
+
+
 public void dealBlinds(int currentDealer, Player [] positions){
 
 		if(handCounter ==10){
