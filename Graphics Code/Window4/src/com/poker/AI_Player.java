@@ -1,6 +1,4 @@
 package com.poker;
-import Card;
-import Player;
 
 import java.util.Random;
 
