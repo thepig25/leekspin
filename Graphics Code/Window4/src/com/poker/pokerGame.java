@@ -259,6 +259,17 @@ public class pokerGame extends pokerGameMethods {
 			}
 	resetAllCounters(positions);
 	
+	Message m7 = new Message();
+    m7.what = GameWindow.GUIUPDATEIDENTIFIER;
+    m7.obj = (String) ("\nPress any Button to continue.");
+    GameWindow.myViewUpdateHandler.sendMessage(m7);
+	
+	while(GameWindow.any_pressed != true){
+    	// wait
+    }
+	
+	GameWindow.any_pressed = false;
+	
 	Message m1 = new Message();
     m1.what = GameWindow.NEWROUND;
     GameWindow.myViewUpdateHandler.sendMessage(m1);
