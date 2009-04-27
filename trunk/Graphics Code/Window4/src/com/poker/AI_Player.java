@@ -174,8 +174,9 @@ public class AI_Player extends Player {
 	public void lowMoney(){
 		
 		if (bigBlind == (currentMoney *4)){
-			
+			return true;
 		}
+		return false;
 	}
 	
 	
@@ -186,37 +187,45 @@ public class AI_Player extends Player {
 	 */
 	
 	public void makeHandDecision(){
-		
+		//highcard
 		if( bestBoolean == 9){
 			
 		}
-		
+		//pair
 		if( bestBoolean == 8){
 			
 		}
+		//two pair
 		if( bestBoolean == 7){
 			
 		}
+		//triples
 		if( bestBoolean == 6){
-			
+			getFCR(60,40,0);
 		}
+		//straight
 		if( bestBoolean == 5){
-			
+			getFCR(50,50,0);
 		}
+		//flush
 		if( bestBoolean == 4){
-			
+			getFCR(40,60,0);
 		}
+		//fullhouse
 		if( bestBoolean == 3){
-			
+			getFCR(30,70,0);
 		}
+		//fours
 		if( bestBoolean == 2){
 			getFCR(20,80,0);	
 		}
+		//straight flush
 		if( bestBoolean == 1){
-			getFCR(20,80,0);
-		}
-		if( bestBoolean == 0){
 			getFCR(10,90,0);
+		}
+		// royal flush
+		if( bestBoolean == 0){
+			getFCR(0,100,0);
 		}
 	
 		

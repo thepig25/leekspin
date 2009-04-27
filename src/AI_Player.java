@@ -58,6 +58,17 @@ public class AI_Player extends Player {
 	public int getFCR(int call, int raise, int fold){
 		
 		int total = call +raise+fold;
+		int amountShouldRaise = 0;
+		if (raise <= 30 ){
+			amountShouldRaise = 20;
+		}
+		
+		if (raise >= 30 && raise < 70){
+			amountShouldRaise = 40;
+		}
+		if (raise >= 70 ){
+			amountShouldRaise = 60;
+		}
 		
 		//int FCR = total %10; 
 		Random randomGenerator = new Random();
@@ -184,28 +195,30 @@ public class AI_Player extends Player {
 	 */
 	
 	public void makeHandDecision(){
-		
+		//highcard
 		if( bestBoolean == 9){
 			
 		}
-		
+		//pair
 		if( bestBoolean == 8){
 			
 		}
+		//two pair
 		if( bestBoolean == 7){
 			
 		}
+		//triples
 		if( bestBoolean == 6){
-			
+			getFCR(60,40,0);
 		}
 		if( bestBoolean == 5){
-			
+			getFCR(50,50,0);
 		}
 		if( bestBoolean == 4){
-			
+			getFCR(40,60,0);
 		}
 		if( bestBoolean == 3){
-			
+			getFCR(30,70,0);
 		}
 		if( bestBoolean == 2){
 			getFCR(20,80,0);	
