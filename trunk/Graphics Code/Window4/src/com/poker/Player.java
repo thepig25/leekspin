@@ -464,7 +464,9 @@ bigBlind=0;
 		
 	}
 	
-	public int getPlayerHighHoleCard(){ // used when determining the winner in a high card situation
+	// used when determining the winner in a high card situation
+	// where the lower pocket card is used
+	public int getPlayerHighHoleCard(){ 
         Card [] temp = playerHand;
        
         if(temp [0].getValue()>temp [1].getValue()){
@@ -473,8 +475,11 @@ bigBlind=0;
         else{
             return temp [1].getValue();
         }
-}
-	public int getPlayerLowHoleCard(){ // used when determining the winner in a high card situation
+	}
+	
+	// used when determining the winner in a high card situation
+	// where the lower pocket card is used
+	public int getPlayerLowHoleCard(){ 
 		   Card [] temp = playerHand;
 		 
 		   if(temp [0].getValue()<temp [1].getValue()){
