@@ -25,6 +25,7 @@ public class Player extends Pack {
 	int playerID;
 	int nonPair;
 	int nonPairForEight;
+	int bigBlind;
 	
 	
 
@@ -119,7 +120,7 @@ public int getPlayerHighCard(){
 		return  decision; // 0=fold,1=check/call, 2=raise
 	}*/
 	
-	public int getBet(int currentBet){
+	public int getBet(int currentBet, int bigBlind){
 		if(decision!=0){
 			return bet;
 		}

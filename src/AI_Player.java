@@ -13,8 +13,8 @@ public class AI_Player extends Player {
 	}
 	
 	
-	public int getBet(int highestCurrentBet){
-		
+	public int getBet(int highestCurrentBet, int tempbigBlind){
+		bigBlind = tempbigBlind;
 		if(askCount<1){
 		bet = 20;
 		if (highestCurrentBet>bet){ // <<<-------- this is where the AI coding needs to go
@@ -171,7 +171,9 @@ public class AI_Player extends Player {
 	
 	public void lowMoney(){
 		
-		(if bigBlind == 80)
+		if (bigBlind == (currentMoney *4)){
+			
+		}
 	}
 	
 	
@@ -183,11 +185,40 @@ public class AI_Player extends Player {
 	
 	public void makeHandDecision(){
 		
-		if( = 8){
+		if( bestBoolean == 9){
 			
 		}
+		
+		if( bestBoolean == 8){
+			
+		}
+		if( bestBoolean == 7){
+			
+		}
+		if( bestBoolean == 6){
+			
+		}
+		if( bestBoolean == 5){
+			
+		}
+		if( bestBoolean == 4){
+			
+		}
+		if( bestBoolean == 3){
+			
+		}
+		if( bestBoolean == 2){
+			getFCR(20,80,0);	
+		}
+		if( bestBoolean == 1){
+			getFCR(20,80,0);
+		}
+		if( bestBoolean == 0){
+			getFCR(10,90,0);
+		}
+	
 		
 	}
 	
 	
-	}
+}
