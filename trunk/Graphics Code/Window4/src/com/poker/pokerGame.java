@@ -47,6 +47,10 @@ public class pokerGame extends pokerGameMethods {
 					gameOver--; // one closer to a game over situation
 					if(positions[i].checkMoney()<=0&&positions[i].isHuman){
 						// put loser screen here
+						
+						Message m5 = new Message();
+				        m5.what = GameWindow.LOSER;
+				        GameWindow.myViewUpdateHandler.sendMessage(m5);
 					break; // V important to keep this!
 					}
 				}
@@ -283,6 +287,7 @@ public class pokerGame extends pokerGameMethods {
     	positions[i].checkMoney();
     }
 	}// end game loop
+		System.exit(0);
 	
 	}
 	
