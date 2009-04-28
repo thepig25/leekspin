@@ -43,8 +43,12 @@ public class pokerGame extends pokerGameMethods {
 			Player[] tempPlayer = new Player[0];
 		
 			for (int i=0;i<positions.length;i++){ // checks at start of hand if any players are out of chips
-				if(positions[i].checkMoney()==0){ 
+				if(positions[i].checkMoney()<=0){ 
 					gameOver--; // one closer to a game over situation
+					if(positions[i].checkMoney()<=0&&positions[i].isHuman){
+						// put loser screen here
+					break; // V important to keep this!
+					}
 				}
 				
 				
@@ -59,6 +63,10 @@ public class pokerGame extends pokerGameMethods {
 				}
 			}
 			positions=tempPlayer;
+			if(positions.length==1&&positions[0].isHuman ){
+				// display winner screen
+				break;
+			}
 			count=0;
 			
 			
