@@ -254,16 +254,22 @@ public class AI_Player extends Player {
 		
 		//highcard
 		if( bestBoolean == 9){
+			
+			
 			if(getPlayerHighHoleCard() == bestPokerHand[4].getValue()){
 				myHighCardMultiplier = 2;
 			}
 			
-			if(getPlayerLowHoleCard() == bestPokerHand[3].getValue()){
+			else if(getPlayerLowHoleCard() == bestPokerHand[3].getValue()){
 				myLowCardMultiplier = 1;
 			}
-			int Multipliers = myHighCardMultiplier + myLowCardMultiplier;
+			
+			
 			// if there are only high cards minus 3 from the threshold it has to pass
 			int onlyHighCards = -3;
+						
+			int Multipliers = myHighCardMultiplier + myLowCardMultiplier;
+			
 			if((getPlayerHighHoleCard() + getPlayerLowHoleCard() + Multipliers)>= (threshold + onlyHighCards)){
 				return getFCR(90,0,10);
 			}
@@ -342,27 +348,27 @@ public class AI_Player extends Player {
 				 * this will tell me which of the pair cards the AI has in it's hand.
 				 * check is the hand on the table higher than the hand in my hand
 				 */
-				if (firstPairValue == getPlayerHighHoleCard()){
-					myPair = firstPairValue;
-				}
-				if (firstPairValue == getPlayerLowHoleCard()){
-					myPair = firstPairValue;
-				}
-				
-				if (secondPairValue == getPlayerHighHoleCard()){
-					myPair = secondPairValue;
-				}
-				if (secondPairValue == getPlayerLowHoleCard()){
-					myPair = secondPairValue;
-				}
-				
-				if(myPair == firstPairValue){
-					if(myPair > 10){
-						faceCardMutliplier = 3;
+					if (firstPairValue == getPlayerHighHoleCard()){
+						myPair = firstPairValue;
 					}
+					if (firstPairValue == getPlayerLowHoleCard()){
+						myPair = firstPairValue;
+					}
+					
+					if (secondPairValue == getPlayerHighHoleCard()){
+						myPair = secondPairValue;
+					}
+					if (secondPairValue == getPlayerLowHoleCard()){
+						myPair = secondPairValue;
+					}
+					
+					if(myPair == firstPairValue){
+						if(myPair > 10){
+							faceCardMutliplier = 3;
+						}
 					if( (myPair - firstPairValue) > 5 ){
-						faceCardMutliplier = faceCardMutliplier+2;
-						
+							faceCardMutliplier = faceCardMutliplier+2;
+							
 					}
 				}
 				
