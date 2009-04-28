@@ -9,11 +9,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class LoserWindow extends Activity implements View.OnClickListener{
+public class LoserWindow extends Activity {
     
 	private Button close;
-    MediaPlayer mp = new MediaPlayer();
-
 	
     /** Called when the activity is first created. */
     @Override
@@ -21,8 +19,6 @@ public class LoserWindow extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loser_window);
 
-		
-        mp.start(); 
         close = (Button)this.findViewById(R.id.close1);
         close.setOnClickListener(l_close);
     }
@@ -30,15 +26,7 @@ public class LoserWindow extends Activity implements View.OnClickListener{
     /** Handles Close button selection */
     private OnClickListener l_close = new OnClickListener() {
         public void onClick(View v) {
-        	mp.stop(); 
-        	mp.reset();
         	finish();
         }
     };
-    
-    /** Not used. */
-	@Override
-	public void onClick(View v) {
-		
-	}
 }
