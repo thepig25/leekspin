@@ -1,6 +1,10 @@
 package com.poker;
 
+import java.io.IOException;
+
 import android.app.Activity;
+import android.media.AsyncPlayer;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,13 +13,42 @@ import android.widget.Button;
 public class AboutWindow extends Activity implements View.OnClickListener{
     
 	private Button close;
+    MediaPlayer mp = new MediaPlayer();
+
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_window);
-        
+
+        try {
+
+			mp.setDataSource("data/leekspin.mp3");
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IllegalArgumentException");
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IllegalStateException");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
+        try {
+			mp.prepare();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        mp.start(); 
         close = (Button)this.findViewById(R.id.close);
         close.setOnClickListener(l_close);
     }
@@ -23,6 +56,8 @@ public class AboutWindow extends Activity implements View.OnClickListener{
     /** Handles Close button selection */
     private OnClickListener l_close = new OnClickListener() {
         public void onClick(View v) {
+        	mp.stop(); 
+        	mp.reset();
         	finish();
         }
     };
