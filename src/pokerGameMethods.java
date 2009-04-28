@@ -409,7 +409,6 @@ public void resetCounters(Player [] players){
         players[i].resetCounters();
     }
 }
-// terergge
 public void dealBlinds(int currentDealer, Player [] positions){
 
 		if(handCounter ==10){
