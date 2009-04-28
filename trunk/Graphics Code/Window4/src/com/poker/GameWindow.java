@@ -428,7 +428,7 @@ public class GameWindow extends Activity{
         menu.add(0, 1, 0, "Rotate")
         	.setIcon(android.R.drawable.ic_menu_rotate);
         menu.add(0, 2, 0, "About")
-        	;
+        	.setIcon(android.R.drawable.ic_dialog_info);
         return true;
     }
 
@@ -565,7 +565,11 @@ public class GameWindow extends Activity{
     
     @Override
     public void onPause(){
-    	t.interrupt();
+    	try{
+    		t.interrupt();
+    	} catch (Exception e){
+    		
+    	}
     	super.onPause();
     }
     

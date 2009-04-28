@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class AboutWindow extends Activity implements View.OnClickListener{
+public class AboutWindow extends Activity {
     
 	private Button close;
     MediaPlayer mp = new MediaPlayer();
@@ -60,10 +60,4 @@ public class AboutWindow extends Activity implements View.OnClickListener{
         	finish();
         }
     };
-    
-    /** Not used. */
-	@Override
-	public void onClick(View v) {
-		
-	}
 }
