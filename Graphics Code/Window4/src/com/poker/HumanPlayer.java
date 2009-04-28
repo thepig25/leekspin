@@ -142,9 +142,9 @@ public class HumanPlayer extends Player {
 		
 		System.out.println(currentBet);
 		String as,bs,cs;
-		as = Integer.toString(currentBet);
-		bs = Integer.toString(currentBet * 2);
-		cs = Integer.toString(currentBet * 3);
+		as = Integer.toString(20);
+		bs = Integer.toString(40);
+		cs = Integer.toString(60);
 		
 		String[] bets = new String[3];
 		bets[0] = as;
