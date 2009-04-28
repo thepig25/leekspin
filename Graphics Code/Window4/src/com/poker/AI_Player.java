@@ -119,13 +119,35 @@ public class AI_Player extends Player {
 			//call = 2
 			//check = 3
 			System.out.println("Computers decison is call");
+			
+			long startTime = System.currentTimeMillis();
+	        while(System.currentTimeMillis()<startTime+500){
+	        	// waits for 500 milliseconds.
+	        }
+			
+			Message m2 = new Message();
+            m2.what = GameWindow.GUIUPDATEIDENTIFIER;
+            m2.obj = (String) ("\n"+name+": Call.");
+            GameWindow.myViewUpdateHandler.sendMessage(m2);
+			
 			return 2;
 		}
 		
 		if(FCR > call&& FCR <(call+raise)){
 			//raise = 0
 			System.out.println("Computers decison is raise");
-			//setting the raise amount if we bet
+			
+			long startTime = System.currentTimeMillis();
+	        while(System.currentTimeMillis()<startTime+500){
+	        	// waits for 500 milliseconds.
+	        }
+			
+			Message m2 = new Message();
+            m2.what = GameWindow.GUIUPDATEIDENTIFIER;
+            m2.obj = (String) ("\n"+name+": Raise.");
+            GameWindow.myViewUpdateHandler.sendMessage(m2);
+			
+			//setting the raise amount if we bet.
 			setBet(amountShouldRaise);
 			return 0;
 		}
@@ -133,6 +155,17 @@ public class AI_Player extends Player {
 		if(FCR >(call+raise) && FCR<(call+raise+ fold)){
 			//fold = 1
 			System.out.println("Computers decison is fold");
+			
+			long startTime = System.currentTimeMillis();
+	        while(System.currentTimeMillis()<startTime+500){
+	        	// waits for 500 milliseconds.
+	        }
+			
+			Message m2 = new Message();
+            m2.what = GameWindow.GUIUPDATEIDENTIFIER;
+            m2.obj = (String) ("\n"+name+": Fold.");
+            GameWindow.myViewUpdateHandler.sendMessage(m2);
+			
 			return 1;
 		}
 		
