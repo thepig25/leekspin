@@ -75,10 +75,12 @@ public class AI_Player extends Player {
 		
 		int total = call +raise+fold;
 		int amountShouldRaise = 0;
-		
+		call = call * 10;
+		raise = raise * 10;
+		fold = fold * 10;
 		//Adds random amount to the amount the computer should raise by
 		Random randomGenerator = new Random();
-		int raiseRandomer = randomGenerator.nextInt(2);
+		int raiseRandomer = randomGenerator.nextInt(3);
 		int randomRaise = 0;
 		switch (raiseRandomer) {
 		case 0: randomRaise = 5; break;
@@ -89,7 +91,7 @@ public class AI_Player extends Player {
 		// this random decides if the computer should change randomRaise to + or -
 		// so a good hand might not be raised. or a bad had it might raise (bluff)
 		Random randomGenerator1 = new Random();
-		int plusOrMinus = randomGenerator1.nextInt(1);
+		int plusOrMinus = randomGenerator1.nextInt(2);
 		switch (plusOrMinus) {
 		case 0: randomRaise = randomRaise * 1; break;
 		case 1: randomRaise = randomRaise * -1; break;
@@ -98,7 +100,7 @@ public class AI_Player extends Player {
 		
 		
 		//get the amount the computer should raise
-		if (raise + randomRaise <= 30 ){
+		if (raise + randomRaise > 5 && raise + randomRaise <= 30 ){
 			amountShouldRaise = 20 + currentHighBet;
 		}
 		
@@ -113,7 +115,7 @@ public class AI_Player extends Player {
 		
 		//int FCR = total %10; 
 		Random randomGenerator2 = new Random();
-		int FCR = randomGenerator2.nextInt(10);
+		int FCR  = (randomGenerator2.nextInt(11))*10;
 		
 		if(FCR < call){
 			//call = 2
