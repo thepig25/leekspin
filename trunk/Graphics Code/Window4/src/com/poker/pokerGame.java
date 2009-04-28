@@ -49,7 +49,7 @@ public class pokerGame extends pokerGameMethods {
 						// put loser screen here
 						
 						Message m5 = new Message();
-				        m5.what = GameWindow.LOSER;
+//				        m5.what = GameWindow.LOSER;
 				        GameWindow.myViewUpdateHandler.sendMessage(m5);
 					break; // V important to keep this!
 					}

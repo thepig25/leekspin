@@ -153,10 +153,11 @@ bigBlind=0;
 	
 		for(int i = 0; i < 2; i++){
 			System.out.println(playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString());
-			Message m = new Message();
+			// Only for testing.
+			/*Message m = new Message();
 	        m.what = GameWindow.GUIUPDATEIDENTIFIER;
 	        m.obj = (String) (playerHand[i].getValueAsString()+ " of " + playerHand[i].getSuitAsString()+ " ");
-	        GameWindow.myViewUpdateHandler.sendMessage(m);
+	        GameWindow.myViewUpdateHandler.sendMessage(m);*/
 		}
 	}
 	

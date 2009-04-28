@@ -13,7 +13,6 @@ public class AboutWindow extends Activity {
     
 	private Button close;
     MediaPlayer mp = new MediaPlayer();
-
 	
     /** Called when the activity is first created. */
     @Override
@@ -22,28 +21,22 @@ public class AboutWindow extends Activity {
         setContentView(R.layout.about_window);
 
         try {
-
 			mp.setDataSource("data/leekspin.mp3");
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			System.out.println("IllegalArgumentException");
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			System.out.println("IllegalStateException");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("IOException");
 			e.printStackTrace();
 		}
         try {
 			mp.prepare();
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
