@@ -15,7 +15,7 @@ public class pokerGame extends pokerGameMethods {
 		Player [] reducedPositions;
 		// code for deciding dealer goes here
 		gameOver = NOplayer;	
-	//if(money==null){
+		//if(money==null){
 			positions[0] = new HumanPlayer("Hugh Man",startAmount,null,1);
 			positions[1] = new AI_Player ("Megatron",startAmount,null,2);
 			positions[2] = new AI_Player ("Optimus Prime",startAmount,null,3);
@@ -26,7 +26,6 @@ public class pokerGame extends pokerGameMethods {
 			positions[2] = new AI_Player ("Optimus Prime",money[2],null,3);
 			positions[3] = new AI_Player ("Roomba",money[3],null,4);
 		}*/
-		
 		
 		for(int i = 0; i < positions.length; i++){
 			
@@ -55,7 +54,6 @@ public class pokerGame extends pokerGameMethods {
 					}
 				}
 				
-				
 				if(positions[i].checkMoney()>0){ 
 					Player[] tempCopy = new Player[(tempPlayer.length)];
         			System.arraycopy(tempPlayer, 0, tempCopy, 0, tempCopy.length);
@@ -72,7 +70,6 @@ public class pokerGame extends pokerGameMethods {
 				break;
 			}
 			count=0;
-			
 			
 			Pack myPack = new Pack();
 			myPack.createPack();
@@ -94,10 +91,10 @@ public class pokerGame extends pokerGameMethods {
 			
 			for(int i=0;i<positions.length;i++){
 				System.out.print("Player "+positions[i].getName()+" has been dealt a ");
-				Message m1 = new Message();
+				/*Message m1 = new Message();
 		        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
 		        m1.obj = (String) ("\nPlayer "+positions[i].getName()+" has been dealt a ");
-		        GameWindow.myViewUpdateHandler.sendMessage(m1);
+		        GameWindow.myViewUpdateHandler.sendMessage(m1);*/
 		        
 				positions[i].printPocketHand();
 			}

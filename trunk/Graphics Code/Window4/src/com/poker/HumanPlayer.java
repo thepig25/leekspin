@@ -58,10 +58,6 @@ public class HumanPlayer extends Player {
 		
 		//decision = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter decision here. Fold=1"));
 		
-		Message m1 = new Message();
-        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
-        m1.obj = (String) ("\nPlayer has raised to "+localCurrentBet+". Press raise or call to continue.");
-        GameWindow.myViewUpdateHandler.sendMessage(m1);
 		while(GameWindow.getAnyPressed() != true){
 			// wait
 		}
@@ -72,6 +68,11 @@ public class HumanPlayer extends Player {
 		switch (decision) {
         	case 0: // Raise
         		bet = GameWindow.getBet();
+        		
+        		Message m1 = new Message();
+                m1.what = GameWindow.GUIUPDATEIDENTIFIER;
+                m1.obj = (String) ("\nYou raised by "+bet+".");
+                GameWindow.myViewUpdateHandler.sendMessage(m1);
         		//askCount++;
         		//alreadyBet=true;
         		// send new bet somewhere...
@@ -82,6 +83,12 @@ public class HumanPlayer extends Player {
                 m.what = GameWindow.DRAWBLANKCARDS;
                 GameWindow.myViewUpdateHandler.sendMessage(m);
                 GameWindow.p1Folded = true;
+                
+                Message m2 = new Message();
+                m2.what = GameWindow.GUIUPDATEIDENTIFIER;
+                m2.obj = (String) ("\nYou Fold.");
+                GameWindow.myViewUpdateHandler.sendMessage(m2);
+
         		break;
             
         	case 2: // Call
