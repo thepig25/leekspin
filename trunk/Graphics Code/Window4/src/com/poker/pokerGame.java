@@ -47,9 +47,9 @@ public class pokerGame extends pokerGameMethods {
 					if(positions[i].checkMoney()<=0&&positions[i].isHuman){
 						// put loser screen here
 						
-						Message m5 = new Message();
-//				        m5.what = GameWindow.LOSER;
-				        GameWindow.myViewUpdateHandler.sendMessage(m5);
+						//Message m5 = new Message();
+				        //m5.what = GameWindow.LOSER;
+				        //GameWindow.myViewUpdateHandler.sendMessage(m5);
 					break; // V important to keep this!
 					}
 				}

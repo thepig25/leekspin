@@ -92,11 +92,19 @@ public class HumanPlayer extends Player {
         		break;
             
         	case 2: // Call
-        		// ?
+        		Message m3 = new Message();
+                m3.what = GameWindow.GUIUPDATEIDENTIFIER;
+                m3.obj = (String) ("\nYou Call.");
+                GameWindow.myViewUpdateHandler.sendMessage(m3);
+                
         		break;
         		
         	case 3: // Check
-        		
+        		Message m4 = new Message();
+                m4.what = GameWindow.GUIUPDATEIDENTIFIER;
+                m4.obj = (String) ("\nYou Check.");
+                GameWindow.myViewUpdateHandler.sendMessage(m4);
+                
         		break;
 		}
 		GameWindow.any_pressed=false;
@@ -125,10 +133,10 @@ public class HumanPlayer extends Player {
 			return currentBet;
 		}
 		if(decision==2&&currentBet>bet){
-			Message m1 = new Message();
+			/*Message m1 = new Message();
 	        m1.what = GameWindow.GUIUPDATEIDENTIFIER;
 	        m1.obj = (String) ("\nPlayer has raised to "+currentBet+". Press raise or call to continue.");
-	        GameWindow.myViewUpdateHandler.sendMessage(m1);
+	        GameWindow.myViewUpdateHandler.sendMessage(m1);*/
 			makeDecision();
 			if(decision==2){
 				return currentBet;
