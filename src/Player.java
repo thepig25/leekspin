@@ -88,7 +88,7 @@ public class Player extends Pack {
 		}
 	}
 	
-public int getPlayerHighCard(){
+	public int getPlayerHighCard(){
 		Card [] temp = playerHand;
 		
 		if(temp [0].getValue()>temp [1].getValue()){
